@@ -1,7 +1,7 @@
-# Outrank Blog Folder
+# Outrank Default Blog Template
 
-Copy this entire folder into a Next.js App Router project as `app/blog` after installing the
-`outrank-next-js-blog` package.
+This is the default Outrank blog implementation. Copy this entire folder into a Next.js App Router project as
+`app/blog` after installing the `outrank-next-js-blog` package.
 
 Required server-side environment variable:
 
@@ -16,6 +16,11 @@ This folder includes:
 - `/blog/tag/[slug]`
 - `/blog/sitemap.xml`
 - local components, styles, types, constants, formatting helpers, and the Outrank API wrapper
+
+The UI is intentionally neutral so it can be customized quickly. If you want a stronger visual direction, use one of
+the complete replacement templates in this repo's `templates/` directory.
+
+Styling uses Tailwind utility classes, so the target app must have Tailwind configured to scan `app/**/*.{ts,tsx}`.
 
 ## Cache Behavior
 

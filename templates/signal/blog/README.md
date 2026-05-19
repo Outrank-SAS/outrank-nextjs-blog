@@ -1,7 +1,8 @@
-# Outrank Blog Folder
+# Outrank Signal Blog Template
 
-Copy this entire folder into a Next.js App Router project as `app/blog` after installing the
-`outrank-next-js-blog` package.
+Signal is a dark, dashboard-inspired Outrank blog template with a featured article slot and compact article cards.
+Copy this entire folder into a Next.js App Router project as `app/blog` after installing the `outrank-next-js-blog`
+package.
 
 Required server-side environment variable:
 
@@ -16,6 +17,11 @@ This folder includes:
 - `/blog/tag/[slug]`
 - `/blog/sitemap.xml`
 - local components, styles, types, constants, formatting helpers, and the Outrank API wrapper
+
+This template is a complete replacement for the default `app/blog` folder. The API/data layer matches the default
+template; the differences are layout, component markup, and styling.
+
+Styling uses Tailwind utility classes, so the target app must have Tailwind configured to scan `app/**/*.{ts,tsx}`.
 
 ## Cache Behavior
 

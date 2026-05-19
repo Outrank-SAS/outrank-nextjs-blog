@@ -6,14 +6,15 @@ A native Next.js App Router starter for publishing Outrank articles on your own 
 
 This starter connects to the Outrank Next.js Blog API, fetches published articles with a private server-side API key,
 and renders a production-ready blog with cached article pages, tag pages, pagination, metadata, and a dynamic sitemap.
-All copyable blog code lives inside `app/blog`, so an existing App Router project can install the package, copy that
-folder, set the API key, and run.
+The default copyable blog lives in `app/blog`, and alternate complete blog templates live under `templates/`. An
+existing App Router project can install the package, copy one `blog` folder, set the API key, and run.
 
 ## Prerequisites
 
 - Node.js installed locally
 - An Outrank account with a product configured
 - A Next.js Blog integration API key from Outrank
+- Tailwind CSS configured in the target app if you are copying a blog folder into an existing project
 
 ## Environment Setup
 
@@ -47,7 +48,7 @@ This repo uses the published package:
 
 ## Add This Blog To An Existing App
 
-Install the API package, copy this repo's `app/blog` folder into your Next.js App Router project, and set the
+Install the API package, copy this repo's default `app/blog` folder into your Next.js App Router project, and set the
 server-side API key:
 
 ```env
@@ -62,6 +63,9 @@ cp -R app/blog ../my-next-app/app/blog
 The copied folder includes the blog routes, article pages, tag pages, sitemap, Outrank API wrapper, local components,
 types, constants, formatting helpers, pagination, and article content styles.
 
+The UI uses Tailwind utility classes. This starter already includes Tailwind, but an existing app needs Tailwind set up
+and configured to scan `app/**/*.{ts,tsx}`.
+
 ## Choose A Template
 
 This repo includes multiple theme folders under `templates/`. They all render the same Outrank blog integration; only
@@ -70,17 +74,22 @@ the UI changes. Each template is just a replacement `blog` folder.
 The shared API/data files are kept the same as the default `app/blog` folder. Template differences should stay limited
 to route markup, component styling, layout, and CSS.
 
-- `templates/studio/blog`
-- `templates/editorial/blog`
-- `templates/signal/blog`
-- `templates/journal/blog`
+| Template | Path | Best For |
+| --- | --- | --- |
+| Default | `app/blog` | A clean, neutral blog that is easy to customize. |
+| Studio | `templates/studio/blog` | Product teams that want a bright, structured editorial index. |
+| Editorial | `templates/editorial/blog` | Magazine-style sites with high-contrast typography. |
+| Signal | `templates/signal/blog` | Dark, dashboard-like growth or operations blogs. |
+| Journal | `templates/journal/blog` | Minimal, readable long-form article libraries. |
 
-To use a template, replace the default `app/blog` folder with the template's `blog` folder:
+To use a template in this starter, replace `app/blog` with the template's `blog` folder. In an existing app, copy the
+chosen template directly into that app's `app/blog` route:
 
 ```bash
-rm -rf app/blog
-cp -R templates/signal/blog app/blog
+cp -R templates/signal/blog ../my-next-app/app/blog
 ```
+
+If your app already has an `app/blog` route, move or remove the old folder before copying the template.
 
 ## Running the Development Server
 
@@ -144,3 +153,13 @@ Key implementation details:
 ## Deploy
 
 Set `OUTRANK_BLOG_API_KEY` in your hosting provider and deploy the app.
+
+Before shipping, run:
+
+```bash
+npm run lint
+npm run build
+```
+
+Production builds require access to your Outrank API key because article pages, tag pages, and the blog sitemap are
+generated from published Outrank content.
