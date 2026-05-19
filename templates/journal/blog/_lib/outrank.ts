@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
-import { BlogClient, type Article } from 'outrank-next-js-blog';
+import { BlogClient, type Article, type ArticleSummary } from 'outrank-next-js-blog';
 
 import {
   BLOG_ARTICLES_PER_PAGE,
@@ -19,7 +19,7 @@ type GetArticlesParams = {
   tag?: string;
 };
 
-type StaticArticle = Pick<Article, 'created_at' | 'slug' | 'tags' | 'updated_at'>;
+type StaticArticle = Pick<ArticleSummary, 'created_at' | 'slug' | 'tags' | 'updated_at'>;
 
 const getOutrankApiKey = () => {
   const apiKey = process.env.OUTRANK_BLOG_API_KEY;

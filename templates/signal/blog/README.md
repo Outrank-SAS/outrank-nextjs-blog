@@ -1,7 +1,7 @@
 # Outrank Signal Blog Template
 
 Signal is a dark, dashboard-inspired Outrank blog template with a featured article slot and compact article cards.
-Copy this entire folder into a Next.js App Router project as `app/blog` after installing the `outrank-next-js-blog`
+Copy this entire folder into a Next.js App Router project as `app/blog` after installing the `outrank-next-js-blog@^0.1.2`
 package.
 
 Required server-side environment variable:

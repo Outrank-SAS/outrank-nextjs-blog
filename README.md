@@ -29,7 +29,7 @@ OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
 This starter uses the published `outrank-next-js-blog` package from npm. You can install it in any Next.js site:
 
 ```bash
-npm install outrank-next-js-blog
+npm install outrank-next-js-blog@^0.1.2
 ```
 
 ```typescript
@@ -40,10 +40,13 @@ const { articles } = await client.getArticles(1, 12);
 const article = await client.getArticle('your-article-slug');
 ```
 
+List methods return article summaries for index, tag, and sitemap views. Fetch a single slug with `getArticle` when you
+need the rendered HTML or Markdown body.
+
 This repo uses the published package:
 
 ```json
-"outrank-next-js-blog": "^0.1.1"
+"outrank-next-js-blog": "^0.1.2"
 ```
 
 ## Add This Blog To An Existing App
@@ -56,7 +59,7 @@ OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
 ```
 
 ```bash
-npm install outrank-next-js-blog
+npm install outrank-next-js-blog@^0.1.2
 cp -R app/blog ../my-next-app/app/blog
 ```
 

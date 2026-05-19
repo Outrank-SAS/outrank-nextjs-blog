@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { OutrankArticle } from '../_types/blog';
+import type { OutrankArticleSummary } from '../_types/blog';
 import { BLOG_CARD_TAG_LIMIT } from '../_lib/constants';
 import { formatDate } from '../_lib/format';
 
 type Props = {
-  article: OutrankArticle;
+  article: OutrankArticleSummary;
   featured?: boolean;
   imageLoading?: 'eager' | 'lazy';
 };

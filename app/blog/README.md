@@ -1,7 +1,7 @@
 # Outrank Default Blog Template
 
 This is the default Outrank blog implementation. Copy this entire folder into a Next.js App Router project as
-`app/blog` after installing the `outrank-next-js-blog` package.
+`app/blog` after installing the `outrank-next-js-blog@^0.1.2` package.
 
 Required server-side environment variable:
 

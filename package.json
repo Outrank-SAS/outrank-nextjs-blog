@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "16.2.4",
-    "outrank-next-js-blog": "^0.1.1",
+    "outrank-next-js-blog": "^0.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
