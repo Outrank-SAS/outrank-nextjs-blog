@@ -49,37 +49,39 @@ const TagPage = async ({ params, searchParams }: Props) => {
   const remainingArticles = articles.slice(1);
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-7xl px-4 py-6 text-white md:py-10">
-      <header className="mb-10 rounded-lg border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/30 md:p-8">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-300">Tagged signal</p>
-        <h1 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">#{tag}</h1>
-        <p className="mt-5 text-lg leading-8 text-zinc-300">
-          {total} {total === 1 ? 'article' : 'articles'}
-        </p>
-      </header>
+    <main className="min-h-screen bg-[#050807] text-white">
+      <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-10">
+        <header className="mb-10 rounded-lg border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/30 md:p-8">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-300">Tagged signal</p>
+          <h1 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">#{tag}</h1>
+          <p className="mt-5 text-lg leading-8 text-zinc-300">
+            {total} {total === 1 ? 'article' : 'articles'}
+          </p>
+        </header>
 
-      {featuredArticle ? (
-        <div className="space-y-5">
-          <ArticleCard article={featuredArticle} featured />
-          {remainingArticles.length ? (
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {remainingArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
-          ) : null}
-        </div>
-      ) : (
-        <div className="rounded-lg border border-dashed border-white/20 bg-white/[0.04] p-10 text-center text-zinc-300">
-          No articles found.
-        </div>
-      )}
+        {featuredArticle ? (
+          <div className="space-y-5">
+            <ArticleCard article={featuredArticle} featured />
+            {remainingArticles.length ? (
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+                {remainingArticles.map((article) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ) : (
+          <div className="rounded-lg border border-dashed border-white/20 bg-white/[0.04] p-10 text-center text-zinc-300">
+            No articles found.
+          </div>
+        )}
 
-      <Pagination
-        basePath={`/blog/tag/${encodeURIComponent(tag)}`}
-        currentPage={currentPage}
-        totalPages={total_pages}
-      />
+        <Pagination
+          basePath={`/blog/tag/${encodeURIComponent(tag)}`}
+          currentPage={currentPage}
+          totalPages={total_pages}
+        />
+      </div>
     </main>
   );
 };

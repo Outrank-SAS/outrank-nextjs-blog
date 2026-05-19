@@ -72,7 +72,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
       {currentPage > 1 ? (
         <Link
           href={getPageHref(basePath, currentPage - 1)}
-          className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+          className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-teal-200 hover:text-teal-800"
         >
           Previous
         </Link>
@@ -90,7 +90,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             className={`rounded-md border px-4 py-2 text-sm font-semibold shadow-sm transition ${
               item.page === currentPage
                 ? 'border-slate-950 bg-slate-950 text-white'
-                : 'border-slate-300 bg-white text-slate-950 hover:border-slate-400 hover:bg-slate-50'
+                : 'border-slate-300 bg-white text-slate-950 hover:border-teal-200 hover:text-teal-800'
             }`}
           >
             {item.page}
@@ -100,7 +100,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
       {currentPage < totalPages ? (
         <Link
           href={getPageHref(basePath, currentPage + 1)}
-          className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+          className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-teal-200 hover:text-teal-800"
         >
           Next
         </Link>
