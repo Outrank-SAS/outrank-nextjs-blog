@@ -47,15 +47,40 @@ This repo uses the published package:
 
 ## Add This Blog To An Existing App
 
-Install the package, copy the entire `app/blog` folder into your Next.js App Router project, and set
-`OUTRANK_BLOG_API_KEY` on the server:
+Install the API package, copy this repo's `app/blog` folder into your Next.js App Router project, and set the
+server-side API key:
+
+```env
+OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
+```
 
 ```bash
 npm install outrank-next-js-blog
+cp -R app/blog ../my-next-app/app/blog
 ```
 
 The copied folder includes the blog routes, article pages, tag pages, sitemap, Outrank API wrapper, local components,
 types, constants, formatting helpers, pagination, and article content styles.
+
+## Choose A Template
+
+This repo includes multiple theme folders under `templates/`. They all render the same Outrank blog integration; only
+the UI changes. Each template is just a replacement `blog` folder.
+
+The shared API/data files are kept the same as the default `app/blog` folder. Template differences should stay limited
+to route markup, component styling, layout, and CSS.
+
+- `templates/studio/blog`
+- `templates/editorial/blog`
+- `templates/signal/blog`
+- `templates/journal/blog`
+
+To use a template, replace the default `app/blog` folder with the template's `blog` folder:
+
+```bash
+rm -rf app/blog
+cp -R templates/signal/blog app/blog
+```
 
 ## Running the Development Server
 
