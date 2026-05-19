@@ -8,9 +8,10 @@ import { formatDate } from '../_lib/format';
 type Props = {
   article: OutrankArticle;
   featured?: boolean;
+  imageLoading?: 'eager' | 'lazy';
 };
 
-const ArticleCard = ({ article, featured = false }: Props) => {
+const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
   return (
     <Link href={`/blog/${article.slug}`} className="group block h-full">
       <article
@@ -28,14 +29,25 @@ const ArticleCard = ({ article, featured = false }: Props) => {
                 : 'relative aspect-[16/9] overflow-hidden border-b border-zinc-100 bg-[#eee6db]'
             }
           >
-            <Image
-              src={article.image_url}
-              alt={article.title}
-              fill
-              loading={featured ? 'eager' : 'lazy'}
-              sizes={featured ? '(min-width: 1024px) 45vw, 100vw' : '(min-width: 1024px) 50vw, 100vw'}
-              className="object-contain"
-            />
+            {(imageLoading ?? (featured ? 'eager' : 'lazy')) === 'eager' ? (
+              <Image
+                src={article.image_url}
+                alt={article.title}
+                fill
+                loading="eager"
+                sizes={featured ? '(min-width: 1024px) 45vw, 100vw' : '(min-width: 1024px) 50vw, 100vw'}
+                className="object-contain"
+              />
+            ) : (
+              <Image
+                src={article.image_url}
+                alt={article.title}
+                fill
+                loading="lazy"
+                sizes={featured ? '(min-width: 1024px) 45vw, 100vw' : '(min-width: 1024px) 50vw, 100vw'}
+                className="object-contain"
+              />
+            )}
           </div>
         ) : null}
         <div className={featured ? 'flex flex-1 flex-col p-6 md:p-8' : 'flex flex-1 flex-col p-6 md:p-7'}>

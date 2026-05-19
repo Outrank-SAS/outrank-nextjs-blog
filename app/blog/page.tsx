@@ -39,8 +39,8 @@ const BlogPage = async ({ searchParams }: Props) => {
 
       {articles.length ? (
         <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {articles.map((article, index) => (
+            <ArticleCard key={article.id} article={article} imageLoading={index < 3 ? 'eager' : 'lazy'} />
           ))}
         </div>
       ) : (

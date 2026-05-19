@@ -8,9 +8,10 @@ import { formatDate } from '../_lib/format';
 type Props = {
   article: OutrankArticle;
   featured?: boolean;
+  imageLoading?: 'eager' | 'lazy';
 };
 
-const ArticleCard = ({ article, featured = false }: Props) => {
+const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
   return (
     <Link href={`/blog/${article.slug}`} className="group block h-full">
       <article
@@ -28,14 +29,25 @@ const ArticleCard = ({ article, featured = false }: Props) => {
                 : 'relative mb-4 aspect-[16/10] overflow-hidden rounded-lg bg-slate-100 md:mb-0 md:aspect-square'
             }
           >
-            <Image
-              src={article.image_url}
-              alt={article.title}
-              fill
-              loading={featured ? 'eager' : 'lazy'}
-              sizes={featured ? '(min-width: 768px) 18rem, 100vw' : '(min-width: 768px) 8rem, 100vw'}
-              className="object-cover transition duration-500 group-hover:scale-105"
-            />
+            {(imageLoading ?? (featured ? 'eager' : 'lazy')) === 'eager' ? (
+              <Image
+                src={article.image_url}
+                alt={article.title}
+                fill
+                loading="eager"
+                sizes={featured ? '(min-width: 768px) 18rem, 100vw' : '(min-width: 768px) 8rem, 100vw'}
+                className="object-cover transition duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <Image
+                src={article.image_url}
+                alt={article.title}
+                fill
+                loading="lazy"
+                sizes={featured ? '(min-width: 768px) 18rem, 100vw' : '(min-width: 768px) 8rem, 100vw'}
+                className="object-cover transition duration-500 group-hover:scale-105"
+              />
+            )}
           </div>
         ) : null}
         <div className="flex flex-1 flex-col">

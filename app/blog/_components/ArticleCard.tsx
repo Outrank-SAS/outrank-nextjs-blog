@@ -7,21 +7,34 @@ import { formatDate } from '../_lib/format';
 
 type Props = {
   article: OutrankArticle;
+  imageLoading?: 'eager' | 'lazy';
 };
 
-const ArticleCard = ({ article }: Props) => {
+const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
   return (
     <Link href={`/blog/${article.slug}`} className="group block h-full">
       <article className="flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
         {article.image_url ? (
           <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
-            <Image
-              src={article.image_url}
-              alt={article.title}
-              fill
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="object-cover transition duration-500 group-hover:scale-105"
-            />
+            {imageLoading === 'eager' ? (
+              <Image
+                src={article.image_url}
+                alt={article.title}
+                fill
+                loading="eager"
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                className="object-cover transition duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <Image
+                src={article.image_url}
+                alt={article.title}
+                fill
+                loading="lazy"
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                className="object-cover transition duration-500 group-hover:scale-105"
+              />
+            )}
           </div>
         ) : null}
         <div className="flex flex-1 flex-col p-6">

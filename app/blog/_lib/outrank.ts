@@ -19,6 +19,8 @@ type GetArticlesParams = {
   tag?: string;
 };
 
+type StaticArticle = Pick<Article, 'created_at' | 'slug' | 'tags' | 'updated_at'>;
+
 const getOutrankApiKey = () => {
   const apiKey = process.env.OUTRANK_BLOG_API_KEY;
 
@@ -84,16 +86,27 @@ export const getArticle = unstable_cache(
   { revalidate: BLOG_REVALIDATE_SECONDS },
 );
 
-export const getAllArticles = unstable_cache(
-  async (): Promise<Article[]> =>
-    runOutrankRequest(() => getClient().getAllArticles(BLOG_SITEMAP_PAGE_SIZE), BLOG_ALL_ARTICLES_REQUEST_ERROR),
-  ['outrank-blog-all-articles'],
+const getStaticArticlesByParams = unstable_cache(
+  async (): Promise<StaticArticle[]> => {
+    const articles = await runOutrankRequest(
+      () => getClient().getAllArticles(BLOG_SITEMAP_PAGE_SIZE),
+      BLOG_ALL_ARTICLES_REQUEST_ERROR,
+    );
+
+    return articles.map(({ created_at, slug, tags, updated_at }) => ({
+      created_at,
+      slug,
+      tags,
+      updated_at,
+    }));
+  },
+  ['outrank-blog-static-articles'],
   { revalidate: BLOG_REVALIDATE_SECONDS },
 );
 
-export const getStaticArticles = async (): Promise<Article[]> => {
+export const getStaticArticles = async (): Promise<StaticArticle[]> => {
   try {
-    return await getAllArticles();
+    return await getStaticArticlesByParams();
   } catch (error) {
     if (isOutrankConfigurationError(error)) {
       throw error;

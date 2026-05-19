@@ -91,7 +91,7 @@ const ArticlePage = async ({ params }: Props) => {
               src={article.image_url}
               alt={article.title}
               fill
-              priority
+              loading="eager"
               sizes="(min-width: 768px) 896px, 100vw"
               className="object-cover"
             />
