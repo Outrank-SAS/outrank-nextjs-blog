@@ -80,22 +80,31 @@ const ChipClearIcon = () => (
   </svg>
 );
 
-const FrownIcon = () => (
+const EmptySearchIllustration = () => (
   <svg
-    width="36"
-    height="36"
-    viewBox="0 0 24 24"
+    width="160"
+    height="140"
+    viewBox="0 0 160 140"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.8"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden="true"
   >
-    <circle cx="12" cy="12" r="10" />
-    <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
-    <line x1="9" y1="9" x2="9.01" y2="9" />
-    <line x1="15" y1="9" x2="15.01" y2="9" />
+    <g transform="rotate(-8 80 70)">
+      <circle cx="62" cy="58" r="36" />
+      <line x1="89" y1="84" x2="120" y2="115" strokeWidth="7" />
+      <path d="M 36 42 Q 39 33 48 30" strokeWidth="1.8" opacity="0.45" />
+      <path d="M 49 55 Q 53 60 57 55" />
+      <path d="M 67 55 Q 71 60 75 55" />
+      <path d="M 53 74 Q 62 69 71 74" />
+    </g>
+    <circle cx="140" cy="22" r="2.5" fill="currentColor" stroke="none" />
+    <circle cx="22" cy="48" r="1.8" fill="currentColor" stroke="none" />
+    <circle cx="18" cy="108" r="2.2" fill="currentColor" stroke="none" />
+    <path d="M 132 95 L 138 95 M 135 92 L 135 98" strokeWidth="1.8" opacity="0.6" />
+    <path d="M 30 18 L 34 18 M 32 16 L 32 20" strokeWidth="1.6" opacity="0.5" />
   </svg>
 );
 
@@ -321,10 +330,10 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         </div>
       ) : isFiltering ? (
         <div className="flex flex-col items-center rounded-xl border border-slate-200 bg-white px-6 py-16 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-slate-500">
-            <FrownIcon />
+          <div className="text-slate-400">
+            <EmptySearchIllustration />
           </div>
-          <h3 className="mt-6 text-2xl font-black tracking-tight text-slate-950">Nothing matched your search</h3>
+          <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Nothing matched your search</h3>
           <p className="mt-3 max-w-md text-base leading-7 text-slate-600">
             Try different keywords, browse a tag, or jump back to the full blog.
           </p>
