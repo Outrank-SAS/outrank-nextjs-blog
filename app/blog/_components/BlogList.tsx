@@ -274,10 +274,10 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
           <div className="space-y-2">
             <div className="flex items-center justify-between gap-3">
               <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
-              {isFiltering ? (
+              {isTagFiltering ? (
                 <button
                   type="button"
-                  onClick={handleClearFilters}
+                  onClick={() => setSelectedTag('')}
                   className="text-xs font-semibold text-teal-700 transition hover:text-teal-900"
                 >
                   Show all
