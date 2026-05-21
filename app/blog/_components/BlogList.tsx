@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -9,6 +8,7 @@ import Pagination from './Pagination';
 import type { OutrankArticleSummary } from '../_types/blog';
 
 const SEARCH_PARAM = 'q';
+const TAG_PARAM = 'tag';
 const PAGE_PARAM = 'page';
 const SEARCH_DEBOUNCE_MS = 150;
 const TAG_CHIP_LIMIT = 12;
@@ -65,14 +65,32 @@ const ClearIcon = () => (
   </svg>
 );
 
+const ChipClearIcon = () => (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    aria-hidden="true"
+  >
+    <path d="M18 6 6 18M6 6l12 12" />
+  </svg>
+);
+
 const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
   const initialQuery = searchParams.get(SEARCH_PARAM) || '';
+  const initialTag = searchParams.get(TAG_PARAM) || '';
+
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
+  const [selectedTag, setSelectedTag] = useState(initialTag);
 
   useEffect(() => {
     const handle = setTimeout(() => setDebouncedQuery(searchQuery), SEARCH_DEBOUNCE_MS);
@@ -82,42 +100,93 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
-    const trimmed = debouncedQuery.trim();
-    if (trimmed) {
-      params.set(SEARCH_PARAM, trimmed);
-      params.delete(PAGE_PARAM);
+
+    const trimmedQuery = debouncedQuery.trim();
+    if (trimmedQuery) {
+      params.set(SEARCH_PARAM, trimmedQuery);
     } else {
       params.delete(SEARCH_PARAM);
     }
+
+    if (selectedTag) {
+      params.set(TAG_PARAM, selectedTag);
+    } else {
+      params.delete(TAG_PARAM);
+    }
+
+    if (trimmedQuery || selectedTag) {
+      params.delete(PAGE_PARAM);
+    }
+
     const nextQuery = params.toString();
     const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
     const currentUrl = `${window.location.pathname}${window.location.search}`;
     if (nextUrl !== currentUrl) {
       router.replace(nextUrl, { scroll: false });
     }
-  }, [debouncedQuery, pathname, router]);
+  }, [debouncedQuery, selectedTag, pathname, router]);
 
   const allTags = useMemo(() => collectTags(allArticles), [allArticles]);
 
   const trimmedQuery = debouncedQuery.trim();
-  const isSearching = trimmedQuery.length > 0;
   const normalizedQuery = trimmedQuery.toLowerCase();
+  const isSearching = trimmedQuery.length > 0;
+  const isTagFiltering = selectedTag.length > 0;
+  const isFiltering = isSearching || isTagFiltering;
 
-  const searchResults = useMemo(() => {
-    if (!isSearching) return [];
+  const filteredResults = useMemo(() => {
+    if (!isFiltering) return [];
     return allArticles.filter((article) => {
-      const title = article.title.toLowerCase();
-      const description = article.meta_description.toLowerCase();
-      return title.includes(normalizedQuery) || description.includes(normalizedQuery);
+      const matchesQuery =
+        !isSearching ||
+        article.title.toLowerCase().includes(normalizedQuery) ||
+        article.meta_description.toLowerCase().includes(normalizedQuery);
+      const matchesTag = !isTagFiltering || article.tags.includes(selectedTag);
+      return matchesQuery && matchesTag;
     });
-  }, [isSearching, normalizedQuery, allArticles]);
+  }, [isFiltering, isSearching, isTagFiltering, normalizedQuery, selectedTag, allArticles]);
 
-  const displayedArticles = isSearching ? searchResults : paginatedArticles;
-  const showPagination = !isSearching && totalPages > 1;
+  const displayedArticles = isFiltering ? filteredResults : paginatedArticles;
+  const showPagination = !isFiltering && totalPages > 1;
+
+  const handleTagToggle = (tag: string) => {
+    setSelectedTag((current) => (current === tag ? '' : tag));
+  };
+
+  const handleClearFilters = () => {
+    setSearchQuery('');
+    setSelectedTag('');
+  };
+
+  const renderResultsSummary = () => {
+    if (!isFiltering) return null;
+    const count = filteredResults.length;
+    const noun = count === 1 ? 'result' : 'results';
+
+    if (isSearching && isTagFiltering) {
+      return (
+        <p className="text-sm text-slate-600">
+          {count} {noun} for &ldquo;{trimmedQuery}&rdquo; in <strong>{selectedTag}</strong>
+        </p>
+      );
+    }
+    if (isSearching) {
+      return (
+        <p className="text-sm text-slate-600">
+          {count} {noun} for &ldquo;{trimmedQuery}&rdquo;
+        </p>
+      );
+    }
+    return (
+      <p className="text-sm text-slate-600">
+        {count} {noun} tagged <strong>{selectedTag}</strong>
+      </p>
+    );
+  };
 
   return (
     <>
-      <div className="mb-10 space-y-5">
+      <div className="mb-8 space-y-5">
         <div className="relative">
           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
             <SearchIcon />
@@ -145,26 +214,40 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         {allTags.length > 0 ? (
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
-            {allTags.slice(0, TAG_CHIP_LIMIT).map((tag) => (
-              <Link
-                key={tag}
-                href={`/blog/tag/${encodeURIComponent(tag)}`}
-                className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 transition hover:bg-teal-50 hover:text-teal-800"
-              >
-                {tag}
-              </Link>
-            ))}
+            {allTags.slice(0, TAG_CHIP_LIMIT).map((tag) => {
+              const isActive = selectedTag === tag;
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => handleTagToggle(tag)}
+                  aria-pressed={isActive}
+                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition ${
+                    isActive
+                      ? 'bg-slate-950 text-white hover:bg-slate-800'
+                      : 'bg-slate-100 text-slate-700 hover:bg-teal-50 hover:text-teal-800'
+                  }`}
+                >
+                  {tag}
+                  {isActive ? <ChipClearIcon /> : null}
+                </button>
+              );
+            })}
           </div>
         ) : null}
       </div>
 
-      {isSearching ? (
-        <p className="mb-6 text-sm text-slate-600">
-          {displayedArticles.length === 1
-            ? '1 result'
-            : `${displayedArticles.length} results`}{' '}
-          for &ldquo;{trimmedQuery}&rdquo;
-        </p>
+      {isFiltering ? (
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          {renderResultsSummary()}
+          <button
+            type="button"
+            onClick={handleClearFilters}
+            className="text-sm font-semibold text-teal-700 underline-offset-2 hover:underline"
+          >
+            Clear filters
+          </button>
+        </div>
       ) : null}
 
       {displayedArticles.length ? (
@@ -179,15 +262,15 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         </div>
       ) : (
         <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center text-slate-600">
-          {isSearching ? (
+          {isFiltering ? (
             <>
-              No articles match &ldquo;{trimmedQuery}&rdquo;.{' '}
+              No articles match your filters.{' '}
               <button
                 type="button"
-                onClick={() => setSearchQuery('')}
+                onClick={handleClearFilters}
                 className="font-semibold text-teal-700 underline-offset-2 hover:underline"
               >
-                Clear search
+                Clear filters
               </button>
             </>
           ) : (
