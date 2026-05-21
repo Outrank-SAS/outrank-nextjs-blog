@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import ArticleCard from './ArticleCard';
 import Pagination from './Pagination';
@@ -11,7 +11,6 @@ const SEARCH_PARAM = 'q';
 const TAG_PARAM = 'tag';
 const PAGE_PARAM = 'page';
 const SEARCH_DEBOUNCE_MS = 150;
-const TAG_CHIP_COLLAPSED_LIMIT = 12;
 const EAGER_IMAGE_COUNT = 3;
 
 type Props = {
@@ -91,7 +90,8 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
   const [selectedTag, setSelectedTag] = useState(initialTag);
-  const [isTagListExpanded, setIsTagListExpanded] = useState(false);
+  const tagScrollerRef = useRef<HTMLDivElement>(null);
+  const activeChipRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handle = setTimeout(() => setDebouncedQuery(searchQuery), SEARCH_DEBOUNCE_MS);
@@ -129,20 +129,10 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
 
   const allTags = useMemo(() => collectTags(allArticles), [allArticles]);
 
-  const hasHiddenTags = allTags.length > TAG_CHIP_COLLAPSED_LIMIT;
-
-  const visibleTags = useMemo(() => {
-    if (isTagListExpanded || !hasHiddenTags) {
-      return allTags;
-    }
-    const collapsed = allTags.slice(0, TAG_CHIP_COLLAPSED_LIMIT);
-    if (selectedTag && !collapsed.includes(selectedTag)) {
-      return [selectedTag, ...collapsed.slice(0, TAG_CHIP_COLLAPSED_LIMIT - 1)];
-    }
-    return collapsed;
-  }, [isTagListExpanded, hasHiddenTags, allTags, selectedTag]);
-
-  const hiddenTagCount = allTags.length - TAG_CHIP_COLLAPSED_LIMIT;
+  useEffect(() => {
+    if (!selectedTag || !activeChipRef.current) return;
+    activeChipRef.current.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
+  }, [selectedTag]);
 
   const trimmedQuery = debouncedQuery.trim();
   const normalizedQuery = trimmedQuery.toLowerCase();
@@ -228,37 +218,39 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         </div>
 
         {allTags.length > 0 ? (
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="space-y-2">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
-            {visibleTags.map((tag) => {
-              const isActive = selectedTag === tag;
-              return (
-                <button
-                  key={tag}
-                  type="button"
-                  onClick={() => handleTagToggle(tag)}
-                  aria-pressed={isActive}
-                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition ${
-                    isActive
-                      ? 'bg-slate-950 text-white hover:bg-slate-800'
-                      : 'bg-slate-100 text-slate-700 hover:bg-teal-50 hover:text-teal-800'
-                  }`}
-                >
-                  {tag}
-                  {isActive ? <ChipClearIcon /> : null}
-                </button>
-              );
-            })}
-            {hasHiddenTags ? (
-              <button
-                type="button"
-                onClick={() => setIsTagListExpanded((current) => !current)}
-                aria-expanded={isTagListExpanded}
-                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-950"
+            <div className="relative">
+              <div
+                ref={tagScrollerRef}
+                className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
-                {isTagListExpanded ? 'Show less' : `Show all (${allTags.length})`}
-              </button>
-            ) : null}
+                {allTags.map((tag) => {
+                  const isActive = selectedTag === tag;
+                  return (
+                    <button
+                      key={tag}
+                      ref={isActive ? activeChipRef : undefined}
+                      type="button"
+                      onClick={() => handleTagToggle(tag)}
+                      aria-pressed={isActive}
+                      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition ${
+                        isActive
+                          ? 'bg-slate-950 text-white hover:bg-slate-800'
+                          : 'bg-slate-100 text-slate-700 hover:bg-teal-50 hover:text-teal-800'
+                      }`}
+                    >
+                      {tag}
+                      {isActive ? <ChipClearIcon /> : null}
+                    </button>
+                  );
+                })}
+              </div>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent"
+              />
+            </div>
           </div>
         ) : null}
       </div>
