@@ -40,7 +40,7 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
         <div className="flex flex-1 flex-col p-6">
           <div className="mb-4 flex flex-wrap gap-2">
             {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).map((tag) => (
-              <span key={tag} className="rounded-full border border-teal-400 px-3 py-1 text-xs font-semibold text-teal-700">
+              <span key={tag} className="rounded-full border border-teal-700 px-3 py-1 text-xs font-semibold text-teal-700">
                 {tag}
               </span>
             ))}
