@@ -220,36 +220,30 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         {allTags.length > 0 ? (
           <div className="space-y-2">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
-            <div className="relative">
-              <div
-                ref={tagScrollerRef}
-                className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-              >
-                {allTags.map((tag) => {
-                  const isActive = selectedTag === tag;
-                  return (
-                    <button
-                      key={tag}
-                      ref={isActive ? activeChipRef : undefined}
-                      type="button"
-                      onClick={() => handleTagToggle(tag)}
-                      aria-pressed={isActive}
-                      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition ${
-                        isActive
-                          ? 'border-slate-950 bg-slate-950 text-white hover:bg-slate-800'
-                          : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950'
-                      }`}
-                    >
-                      {tag}
-                      {isActive ? <ChipClearIcon /> : null}
-                    </button>
-                  );
-                })}
-              </div>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white via-white/85 to-transparent"
-              />
+            <div
+              ref={tagScrollerRef}
+              className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,black_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,black_92%,transparent_100%)]"
+            >
+              {allTags.map((tag) => {
+                const isActive = selectedTag === tag;
+                return (
+                  <button
+                    key={tag}
+                    ref={isActive ? activeChipRef : undefined}
+                    type="button"
+                    onClick={() => handleTagToggle(tag)}
+                    aria-pressed={isActive}
+                    className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition ${
+                      isActive
+                        ? 'border-slate-950 bg-slate-950 text-white hover:bg-slate-800'
+                        : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950'
+                    }`}
+                  >
+                    {tag}
+                    {isActive ? <ChipClearIcon /> : null}
+                  </button>
+                );
+              })}
             </div>
           </div>
         ) : null}
