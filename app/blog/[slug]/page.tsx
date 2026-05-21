@@ -3,8 +3,9 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
-import { getArticle, getStaticArticles } from '../_lib/outrank';
+import { getArticle, getRelatedArticles, getStaticArticles } from '../_lib/outrank';
 import { formatDate } from '../_lib/format';
 
 export const revalidate = 86400;
@@ -51,6 +52,8 @@ const ArticlePage = async ({ params }: Props) => {
   if (!article) {
     notFound();
   }
+
+  const relatedArticles = await getRelatedArticles(article.slug, article.tags);
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 md:py-14">
@@ -102,6 +105,8 @@ const ArticlePage = async ({ params }: Props) => {
           <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: article.html }} />
         </div>
       </article>
+
+      <RelatedArticles articles={relatedArticles} />
     </main>
   );
 };
