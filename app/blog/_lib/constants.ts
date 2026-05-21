@@ -17,3 +17,5 @@ export const BLOG_ARTICLES_REQUEST_ERROR = 'Failed to load Outrank blog articles
 export const BLOG_ARTICLE_REQUEST_ERROR = 'Failed to load Outrank blog article';
 export const BLOG_ALL_ARTICLES_REQUEST_ERROR = 'Failed to load Outrank blog sitemap articles';
 export const OUTRANK_ENV_ERROR_PATTERN = 'OUTRANK_';
+
+export const OUTRANK_API_KEY_PLACEHOLDER = 'your_outrank_blog_api_key';
