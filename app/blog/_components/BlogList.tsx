@@ -163,17 +163,6 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
     setSelectedTag('');
   };
 
-  const renderResultsSummary = () => {
-    if (!isFiltering) return null;
-    const count = filteredResults.length;
-    const noun = count === 1 ? 'result' : 'results';
-    return (
-      <p className="text-sm text-slate-600">
-        {count} {noun}
-      </p>
-    );
-  };
-
   return (
     <>
       <div className="mb-8 space-y-5">
@@ -203,7 +192,18 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
 
         {allTags.length > 0 ? (
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
+              {isFiltering ? (
+                <button
+                  type="button"
+                  onClick={handleClearFilters}
+                  className="text-xs font-semibold text-teal-700 transition hover:text-teal-900"
+                >
+                  Clear filters
+                </button>
+              ) : null}
+            </div>
             <div
               className="flex gap-2 overflow-x-auto pb-1 scroll-px-16 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
@@ -231,19 +231,6 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
           </div>
         ) : null}
       </div>
-
-      {isFiltering ? (
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          {renderResultsSummary()}
-          <button
-            type="button"
-            onClick={handleClearFilters}
-            className="text-sm font-semibold text-teal-700 underline-offset-2 hover:underline"
-          >
-            Clear filters
-          </button>
-        </div>
-      ) : null}
 
       {displayedArticles.length ? (
         <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
