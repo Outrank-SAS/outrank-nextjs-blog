@@ -92,7 +92,6 @@ const EmptySearchIllustration = () => (
     strokeLinejoin="round"
     aria-hidden="true"
   >
-    <rect x="22" y="22" width="156" height="156" rx="34" />
     <g transform="rotate(-6 100 100)">
       <circle cx="85" cy="85" r="34" strokeWidth="3" />
       <path d="M 71 80 Q 76 85 81 80" strokeWidth="2.4" />
