@@ -37,7 +37,7 @@ const getPaginationItems = (currentPage: number, totalPages: number): Pagination
   for (
     let page = currentPage - BLOG_PAGINATION_SIBLING_COUNT;
     page <= currentPage + BLOG_PAGINATION_SIBLING_COUNT;
-    page += BLOG_DEFAULT_PAGE
+    page++
   ) {
     if (page > BLOG_DEFAULT_PAGE && page < totalPages) {
       pages.add(page);
@@ -47,7 +47,7 @@ const getPaginationItems = (currentPage: number, totalPages: number): Pagination
   return Array.from(pages)
     .sort((firstPage, secondPage) => firstPage - secondPage)
     .reduce<PaginationItem[]>((items, page, index, sortedPages) => {
-      const previousPage = sortedPages[index - BLOG_DEFAULT_PAGE];
+      const previousPage = sortedPages[index - 1];
 
       if (previousPage && page - previousPage > BLOG_PAGINATION_VISIBLE_PAGE_GAP) {
         items.push({

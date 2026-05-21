@@ -115,9 +115,7 @@ const ArticlePage = async ({ params }: Props) => {
           </div>
         ) : null}
 
-        <div className="mx-auto max-w-5xl">
-          <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: article.html }} />
-        </div>
+        <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: article.html }} />
       </article>
 
       <RelatedArticles articles={relatedArticles} />
