@@ -271,7 +271,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
                   onClick={handleClearFilters}
                   className="text-xs font-semibold text-teal-700 transition hover:text-teal-900"
                 >
-                  Clear filters
+                  Show all
                 </button>
               ) : null}
             </div>
@@ -326,14 +326,14 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
           </div>
           <h3 className="mt-6 text-2xl font-black tracking-tight text-slate-950">Nothing matched your search</h3>
           <p className="mt-3 max-w-md text-base leading-7 text-slate-600">
-            Try different keywords or pick another tag. The full blog is just one click away.
+            Try different keywords, browse a tag, or jump back to the full blog.
           </p>
           <button
             type="button"
             onClick={handleClearFilters}
             className="mt-7 inline-flex items-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"
           >
-            Clear filters
+            Show all articles
           </button>
         </div>
       ) : (
