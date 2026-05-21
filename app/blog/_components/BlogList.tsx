@@ -11,7 +11,7 @@ const SEARCH_PARAM = 'q';
 const TAG_PARAM = 'tag';
 const PAGE_PARAM = 'page';
 const SEARCH_DEBOUNCE_MS = 150;
-const TAG_CHIP_LIMIT = 12;
+const TAG_CHIP_COLLAPSED_LIMIT = 12;
 const EAGER_IMAGE_COUNT = 3;
 
 type Props = {
@@ -91,6 +91,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
   const [selectedTag, setSelectedTag] = useState(initialTag);
+  const [isTagListExpanded, setIsTagListExpanded] = useState(false);
 
   useEffect(() => {
     const handle = setTimeout(() => setDebouncedQuery(searchQuery), SEARCH_DEBOUNCE_MS);
@@ -127,6 +128,21 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
   }, [debouncedQuery, selectedTag, pathname, router]);
 
   const allTags = useMemo(() => collectTags(allArticles), [allArticles]);
+
+  const hasHiddenTags = allTags.length > TAG_CHIP_COLLAPSED_LIMIT;
+
+  const visibleTags = useMemo(() => {
+    if (isTagListExpanded || !hasHiddenTags) {
+      return allTags;
+    }
+    const collapsed = allTags.slice(0, TAG_CHIP_COLLAPSED_LIMIT);
+    if (selectedTag && !collapsed.includes(selectedTag)) {
+      return [selectedTag, ...collapsed.slice(0, TAG_CHIP_COLLAPSED_LIMIT - 1)];
+    }
+    return collapsed;
+  }, [isTagListExpanded, hasHiddenTags, allTags, selectedTag]);
+
+  const hiddenTagCount = allTags.length - TAG_CHIP_COLLAPSED_LIMIT;
 
   const trimmedQuery = debouncedQuery.trim();
   const normalizedQuery = trimmedQuery.toLowerCase();
@@ -214,7 +230,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         {allTags.length > 0 ? (
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
-            {allTags.slice(0, TAG_CHIP_LIMIT).map((tag) => {
+            {visibleTags.map((tag) => {
               const isActive = selectedTag === tag;
               return (
                 <button
@@ -233,6 +249,16 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
                 </button>
               );
             })}
+            {hasHiddenTags ? (
+              <button
+                type="button"
+                onClick={() => setIsTagListExpanded((current) => !current)}
+                aria-expanded={isTagListExpanded}
+                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-950"
+              >
+                {isTagListExpanded ? 'Show less' : `Show all (${allTags.length})`}
+              </button>
+            ) : null}
           </div>
         ) : null}
       </div>
