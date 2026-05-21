@@ -80,7 +80,7 @@ const ArticlePage = async ({ params }: Props) => {
 
       <article className="mt-8">
         <header className="mx-auto mb-10 max-w-4xl">
-          <div className="mb-5 flex flex-wrap justify-center gap-2">
+          <div className="mb-5 flex flex-wrap gap-2">
             {article.tags.map((tag) => (
               <Link
                 key={tag}
@@ -95,7 +95,7 @@ const ArticlePage = async ({ params }: Props) => {
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
             {article.meta_description}
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-slate-500">
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-sm font-medium text-slate-500">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
             <span aria-hidden="true">/</span>
             <span>{article.reading_time_minutes} min read</span>
