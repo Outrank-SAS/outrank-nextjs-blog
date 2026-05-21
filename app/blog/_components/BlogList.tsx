@@ -271,7 +271,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
                   onClick={() => setSelectedTag('')}
                   className="text-xs font-semibold text-teal-700 transition hover:text-teal-900"
                 >
-                  Show all
+                  Clear filter
                 </button>
               ) : null}
             </div>
