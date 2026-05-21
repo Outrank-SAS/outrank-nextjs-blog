@@ -234,10 +234,10 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
                       type="button"
                       onClick={() => handleTagToggle(tag)}
                       aria-pressed={isActive}
-                      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition ${
+                      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition ${
                         isActive
-                          ? 'bg-slate-950 text-white hover:bg-slate-800'
-                          : 'bg-slate-100 text-slate-700 hover:bg-teal-50 hover:text-teal-800'
+                          ? 'border-slate-950 bg-slate-950 text-white hover:bg-slate-800'
+                          : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950'
                       }`}
                     >
                       {tag}
@@ -248,7 +248,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
               </div>
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent"
+                className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white via-white/85 to-transparent"
               />
             </div>
           </div>
