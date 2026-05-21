@@ -90,8 +90,6 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
   const [selectedTag, setSelectedTag] = useState(initialTag);
-  const [scrollMode, setScrollMode] = useState<'start' | 'middle' | 'end' | 'none'>('start');
-  const tagScrollerRef = useRef<HTMLDivElement>(null);
   const activeChipRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -131,52 +129,9 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
   const allTags = useMemo(() => collectTags(allArticles), [allArticles]);
 
   useEffect(() => {
-    const scroller = tagScrollerRef.current;
-    if (!scroller) return;
-
-    const update = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = scroller;
-      if (scrollWidth <= clientWidth + 1) {
-        setScrollMode('none');
-        return;
-      }
-      if (scrollLeft <= 1) {
-        setScrollMode('start');
-        return;
-      }
-      if (scrollLeft + clientWidth >= scrollWidth - 1) {
-        setScrollMode('end');
-        return;
-      }
-      setScrollMode('middle');
-    };
-
-    update();
-    scroller.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    return () => {
-      scroller.removeEventListener('scroll', update);
-      window.removeEventListener('resize', update);
-    };
-  }, [allTags.length]);
-
-  useEffect(() => {
     if (!selectedTag || !activeChipRef.current) return;
     activeChipRef.current.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
   }, [selectedTag]);
-
-  const tagScrollerMaskImage = (() => {
-    switch (scrollMode) {
-      case 'start':
-        return 'linear-gradient(to right, black 92%, transparent 100%)';
-      case 'end':
-        return 'linear-gradient(to right, transparent 0%, black 8%)';
-      case 'middle':
-        return 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)';
-      default:
-        return undefined;
-    }
-  })();
 
   const trimmedQuery = debouncedQuery.trim();
   const normalizedQuery = trimmedQuery.toLowerCase();
@@ -212,24 +167,9 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
     if (!isFiltering) return null;
     const count = filteredResults.length;
     const noun = count === 1 ? 'result' : 'results';
-
-    if (isSearching && isTagFiltering) {
-      return (
-        <p className="text-sm text-slate-600">
-          {count} {noun} for &ldquo;{trimmedQuery}&rdquo; in <strong>{selectedTag}</strong>
-        </p>
-      );
-    }
-    if (isSearching) {
-      return (
-        <p className="text-sm text-slate-600">
-          {count} {noun} for &ldquo;{trimmedQuery}&rdquo;
-        </p>
-      );
-    }
     return (
       <p className="text-sm text-slate-600">
-        {count} {noun} tagged <strong>{selectedTag}</strong>
+        {count} {noun}
       </p>
     );
   };
@@ -265,12 +205,6 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
           <div className="space-y-2">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Browse by tag</span>
             <div
-              ref={tagScrollerRef}
-              style={
-                tagScrollerMaskImage
-                  ? { maskImage: tagScrollerMaskImage, WebkitMaskImage: tagScrollerMaskImage }
-                  : undefined
-              }
               className="flex gap-2 overflow-x-auto pb-1 scroll-px-16 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {allTags.map((tag) => {
