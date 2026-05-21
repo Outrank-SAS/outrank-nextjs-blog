@@ -80,27 +80,22 @@ const ChipClearIcon = () => (
   </svg>
 );
 
-const EmptySearchIllustration = () => (
+const FrownIcon = () => (
   <svg
-    width="110"
-    height="110"
-    viewBox="0 0 200 200"
+    width="36"
+    height="36"
+    viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2.5"
+    strokeWidth="1.8"
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden="true"
   >
-    <g transform="rotate(-8 100 100)">
-      <circle cx="82" cy="82" r="46" strokeWidth="3" />
-      <path d="M 60 68 L 74 62" strokeWidth="2.8" />
-      <path d="M 92 62 L 106 68" strokeWidth="2.8" />
-      <path d="M 62 82 Q 68 88 74 82" strokeWidth="2.4" />
-      <path d="M 92 82 Q 98 88 104 82" strokeWidth="2.4" />
-      <path d="M 70 102 Q 83 93 96 102" strokeWidth="2.4" />
-      <line x1="115" y1="115" x2="155" y2="155" strokeWidth="7" />
-    </g>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
+    <line x1="9" y1="9" x2="9.01" y2="9" />
+    <line x1="15" y1="9" x2="15.01" y2="9" />
   </svg>
 );
 
@@ -326,8 +321,8 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         </div>
       ) : isFiltering ? (
         <div className="flex flex-col items-center rounded-xl border border-slate-200 bg-white px-6 py-16 text-center">
-          <div className="flex h-40 w-40 items-center justify-center rounded-full bg-slate-100 text-slate-500">
-            <EmptySearchIllustration />
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-slate-500">
+            <FrownIcon />
           </div>
           <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Nothing matched your search</h3>
           <p className="mt-3 max-w-md text-base leading-7 text-slate-600">
