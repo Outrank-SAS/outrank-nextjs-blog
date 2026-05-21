@@ -82,8 +82,8 @@ const ChipClearIcon = () => (
 
 const EmptySearchIllustration = () => (
   <svg
-    width="150"
-    height="150"
+    width="110"
+    height="110"
     viewBox="0 0 200 200"
     fill="none"
     stroke="currentColor"
@@ -326,7 +326,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         </div>
       ) : isFiltering ? (
         <div className="flex flex-col items-center rounded-xl border border-slate-200 bg-white px-6 py-16 text-center">
-          <div className="text-slate-400">
+          <div className="flex h-40 w-40 items-center justify-center rounded-full bg-slate-100 text-slate-500">
             <EmptySearchIllustration />
           </div>
           <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Nothing matched your search</h3>
