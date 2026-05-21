@@ -169,12 +169,10 @@ const getAllArticleSummariesCached = unstable_cache(
       return getAllMockArticles().map(toArticleSummary);
     }
 
-    const articles = await runOutrankRequest(
+    return runOutrankRequest(
       () => getClient().getAllArticles(BLOG_SITEMAP_PAGE_SIZE),
       BLOG_ALL_ARTICLES_REQUEST_ERROR,
     );
-
-    return articles.map(toArticleSummary);
   },
   ['outrank-blog-all-summaries'],
   { revalidate: BLOG_REVALIDATE_SECONDS },
