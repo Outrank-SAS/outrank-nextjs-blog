@@ -256,7 +256,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
             onChange={(event) => setSearchQuery(event.target.value)}
             placeholder="Search articles…"
             aria-label="Search articles"
-            className="w-full rounded-lg border border-slate-200 bg-white py-3 pl-12 pr-12 text-base text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
+            className="w-full rounded-lg border border-slate-200 bg-white py-3 pl-12 pr-12 text-base text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
           />
           {searchQuery ? (
             <button
