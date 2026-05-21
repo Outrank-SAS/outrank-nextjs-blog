@@ -12,6 +12,7 @@ const TAG_PARAM = 'tag';
 const PAGE_PARAM = 'page';
 const SEARCH_DEBOUNCE_MS = 150;
 const EAGER_IMAGE_COUNT = 3;
+const FADE_EDGE_TOLERANCE_PX = 96;
 
 type Props = {
   paginatedArticles: OutrankArticleSummary[];
@@ -140,11 +141,17 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         setScrollMode('none');
         return;
       }
-      if (scrollLeft <= 1) {
+      const atStart = scrollLeft <= FADE_EDGE_TOLERANCE_PX;
+      const atEnd = scrollLeft + clientWidth >= scrollWidth - FADE_EDGE_TOLERANCE_PX;
+      if (atStart && atEnd) {
+        setScrollMode('none');
+        return;
+      }
+      if (atStart) {
         setScrollMode('start');
         return;
       }
-      if (scrollLeft + clientWidth >= scrollWidth - 1) {
+      if (atEnd) {
         setScrollMode('end');
         return;
       }
