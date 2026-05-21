@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import BackToTop from '../_components/BackToTop';
 import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
 import { getArticle, getRelatedArticles, getStaticArticles } from '../_lib/outrank';
@@ -119,6 +120,7 @@ const ArticlePage = async ({ params }: Props) => {
       </article>
 
       <RelatedArticles articles={relatedArticles} />
+      <BackToTop />
     </main>
   );
 };

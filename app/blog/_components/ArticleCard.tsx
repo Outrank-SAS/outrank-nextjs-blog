@@ -34,11 +34,11 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
               </span>
             ))}
           </div>
-          <h2 className="text-xl font-bold leading-tight text-slate-950 transition group-hover:text-violet-700">
+          <h2 className="text-xl font-semibold leading-tight text-slate-950 transition group-hover:text-violet-700">
             {article.title}
           </h2>
           <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{article.meta_description}</p>
-          <div className="mt-auto flex items-center justify-between gap-4 pt-6 text-xs font-medium text-slate-500">
+          <div className="mt-auto flex items-center justify-between gap-4 pt-6 text-xs font-medium text-slate-600">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
             <span>{article.reading_time_minutes} min read</span>
           </div>
