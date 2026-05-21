@@ -82,8 +82,8 @@ const ChipClearIcon = () => (
 
 const EmptySearchIllustration = () => (
   <svg
-    width="160"
-    height="160"
+    width="150"
+    height="150"
     viewBox="0 0 200 200"
     fill="none"
     stroke="currentColor"
@@ -92,18 +92,15 @@ const EmptySearchIllustration = () => (
     strokeLinejoin="round"
     aria-hidden="true"
   >
-    <g transform="rotate(-6 100 100)">
-      <circle cx="85" cy="85" r="34" strokeWidth="3" />
-      <path d="M 71 80 Q 76 85 81 80" strokeWidth="2.4" />
-      <path d="M 89 80 Q 94 85 99 80" strokeWidth="2.4" />
-      <path d="M 75 98 Q 85 91 95 98" strokeWidth="2.4" />
-      <line x1="110" y1="110" x2="144" y2="144" strokeWidth="7" />
+    <g transform="rotate(-8 100 100)">
+      <circle cx="82" cy="82" r="46" strokeWidth="3" />
+      <path d="M 60 68 L 74 62" strokeWidth="2.8" />
+      <path d="M 92 62 L 106 68" strokeWidth="2.8" />
+      <path d="M 62 82 Q 68 88 74 82" strokeWidth="2.4" />
+      <path d="M 92 82 Q 98 88 104 82" strokeWidth="2.4" />
+      <path d="M 70 102 Q 83 93 96 102" strokeWidth="2.4" />
+      <line x1="115" y1="115" x2="155" y2="155" strokeWidth="7" />
     </g>
-    <circle cx="158" cy="60" r="3" fill="currentColor" stroke="none" />
-    <circle cx="50" cy="78" r="2.2" fill="currentColor" stroke="none" />
-    <circle cx="62" cy="150" r="2.4" fill="currentColor" stroke="none" />
-    <path d="M 150 152 L 160 152 M 155 147 L 155 157" strokeWidth="2.2" />
-    <path d="M 42 50 L 50 50 M 46 46 L 46 54" strokeWidth="1.8" />
   </svg>
 );
 
