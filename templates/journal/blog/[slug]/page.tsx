@@ -5,11 +5,13 @@ import { notFound } from 'next/navigation';
 
 import { siteConfig } from '@/app/_config/siteConfig';
 
+import ArticleSidebar from '../_components/ArticleSidebar';
 import BackToTop from '../_components/BackToTop';
 import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
 import { getArticle, getRelatedArticles, getStaticArticles } from '../_lib/outrank';
 import { formatDate } from '../_lib/format';
+import { ensureHeadingIds } from '../_lib/toc';
 
 export const revalidate = 86400;
 
@@ -56,10 +58,12 @@ const ArticlePage = async ({ params }: Props) => {
     notFound();
   }
 
+  const { html: articleHtml, tocItems } = ensureHeadingIds(article.html);
+  const hasTableOfContents = tocItems.length > 0;
   const relatedArticles = await getRelatedArticles(article.slug, article.tags);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
+    <main className="mx-auto w-full max-w-6xl px-4 py-6 md:py-12">
       <Link
         href="/blog"
         className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 underline-offset-4 transition hover:text-blue-800 hover:underline"
@@ -82,47 +86,76 @@ const ArticlePage = async ({ params }: Props) => {
       </Link>
 
       <article className="mt-10">
-        <header className="mx-auto mb-12 max-w-4xl text-center">
-          <div className="mb-5 flex flex-wrap justify-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
-            {article.tags.map((tag, index) => (
-              <span key={tag} className="flex items-center gap-3">
-                {index > 0 ? <span aria-hidden="true" className="text-slate-300">·</span> : null}
-                <Link
-                  href={`/blog/tag/${encodeURIComponent(tag)}`}
-                  className="transition hover:text-blue-900 hover:underline"
-                >
-                  {tag}
-                </Link>
-              </span>
-            ))}
-          </div>
-          <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-slate-950 md:text-6xl">
+        <header className="mb-12 max-w-4xl">
+          {article.tags.length > 0 ? (
+            <div className="mb-5 flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
+              {article.tags.map((tag, index) => (
+                <span key={tag} className="flex items-center gap-3">
+                  {index > 0 ? <span aria-hidden="true" className="text-slate-300">·</span> : null}
+                  <Link
+                    href={`/blog/tag/${encodeURIComponent(tag)}`}
+                    className="transition hover:text-blue-900 hover:underline"
+                  >
+                    {tag}
+                  </Link>
+                </span>
+              ))}
+            </div>
+          ) : null}
+          <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
             {article.title}
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
             {article.meta_description}
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-slate-600">
+          <div className="mt-8 flex flex-wrap items-center gap-3 text-sm font-medium text-slate-600">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
             <span aria-hidden="true">·</span>
             <span>{article.reading_time_minutes} min read</span>
           </div>
         </header>
 
-        {article.image_url ? (
-          <div className="relative mx-auto mb-14 aspect-[16/9] max-w-4xl overflow-hidden rounded-xl bg-slate-100">
-            <Image
-              src={article.image_url}
-              alt={article.title}
-              fill
-              loading="eager"
-              sizes="(min-width: 768px) 896px, 100vw"
-              className="object-cover"
-            />
-          </div>
-        ) : null}
+        {hasTableOfContents ? (
+          <div className="lg:grid lg:grid-cols-[14rem_1fr] lg:gap-12">
+            <div className="mb-10 lg:mb-0">
+              <ArticleSidebar items={tocItems} />
+            </div>
 
-        <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: article.html }} />
+            <div>
+              {article.image_url ? (
+                <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-xl bg-slate-100">
+                  <Image
+                    src={article.image_url}
+                    alt={article.title}
+                    fill
+                    loading="eager"
+                    sizes="(min-width: 1024px) 720px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
+
+              <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+            </div>
+          </div>
+        ) : (
+          <>
+            {article.image_url ? (
+              <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-xl bg-slate-100">
+                <Image
+                  src={article.image_url}
+                  alt={article.title}
+                  fill
+                  loading="eager"
+                  sizes="(min-width: 1024px) 896px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : null}
+
+            <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+          </>
+        )}
       </article>
 
       <RelatedArticles articles={relatedArticles} />

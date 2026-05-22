@@ -21,6 +21,8 @@ export type SiteBlogConfig = {
   relatedEyebrow: string;
   relatedTitle: string;
 
+  tableOfContentsLabel: string;
+
   emptyState: string;
   backToBlog: string;
 
@@ -73,6 +75,8 @@ export const siteConfig: SiteConfig = {
 
     relatedEyebrow: 'Keep reading',
     relatedTitle: 'More articles',
+
+    tableOfContentsLabel: 'Table of contents',
 
     emptyState: 'No articles found.',
     backToBlog: 'Back to blog',
