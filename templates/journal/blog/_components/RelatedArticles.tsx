@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
 import type { OutrankArticleSummary } from '../_types/blog';
 import { BLOG_CARD_TAG_LIMIT } from '../_lib/constants';
 import { formatDate } from '../_lib/format';
@@ -14,9 +16,9 @@ const RelatedArticles = ({ articles }: Props) => {
 
   return (
     <section className="mx-auto mt-20 max-w-5xl border-t border-slate-200 pt-14 md:mt-24 md:pt-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Keep reading</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">{siteConfig.blog.relatedEyebrow}</p>
       <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-slate-950 md:text-4xl">
-        More articles
+        {siteConfig.blog.relatedTitle}
       </h2>
 
       <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-7">

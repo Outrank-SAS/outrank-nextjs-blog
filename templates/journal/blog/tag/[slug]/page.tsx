@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
 import ArticleCard from '../../_components/ArticleCard';
 import Pagination from '../../_components/Pagination';
 import { getArticles, getStaticArticles } from '../../_lib/outrank';
@@ -51,7 +53,7 @@ const TagPage = async ({ params, searchParams }: Props) => {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
       <header className="mb-14 md:mb-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Tag</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">{siteConfig.blog.tagEyebrow}</p>
         <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
           #{tag}
         </h1>
@@ -73,7 +75,7 @@ const TagPage = async ({ params, searchParams }: Props) => {
         </div>
       ) : (
         <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center text-slate-600">
-          No articles found.
+          {siteConfig.blog.emptyState}
         </div>
       )}
 
