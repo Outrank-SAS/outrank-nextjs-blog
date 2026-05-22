@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import {
   BLOG_DEFAULT_PAGE,
+  BLOG_PAGINATION_MIN_PAGES_FOR_ARROWS,
   BLOG_PAGINATION_SIBLING_COUNT,
   BLOG_PAGINATION_VISIBLE_PAGE_GAP,
 } from '../_lib/constants';
@@ -66,20 +67,34 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
   if (totalPages <= 1) return null;
 
   const paginationItems = getPaginationItems(currentPage, totalPages);
+  const showArrows = totalPages >= BLOG_PAGINATION_MIN_PAGES_FOR_ARROWS;
 
   return (
-    <nav className="mt-12 flex flex-wrap items-center justify-center gap-2" aria-label="Pagination">
-      {currentPage > 1 ? (
+    <nav className="mt-14 flex flex-wrap items-center justify-center gap-1.5" aria-label="Pagination">
+      {showArrows && currentPage > 1 ? (
         <Link
           href={getPageHref(basePath, currentPage - 1)}
-          className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+          aria-label="Previous page"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
         >
-          Previous
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
         </Link>
       ) : null}
       {paginationItems.map((item) =>
         item.type === PAGINATION_ITEM_ELLIPSIS ? (
-          <span key={item.key} className="px-2 text-sm text-zinc-500" aria-hidden="true">
+          <span key={item.key} className="px-2 text-sm text-slate-500" aria-hidden="true">
             ...
           </span>
         ) : (
@@ -87,22 +102,35 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`rounded-md border px-4 py-2 text-sm font-semibold shadow-sm transition ${
+            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-semibold shadow-sm transition ${
               item.page === currentPage
                 ? 'border-slate-950 bg-slate-950 text-white'
-                : 'border-slate-300 bg-white text-slate-950 hover:border-slate-400 hover:bg-slate-50'
+                : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
             }`}
           >
             {item.page}
           </Link>
         ),
       )}
-      {currentPage < totalPages ? (
+      {showArrows && currentPage < totalPages ? (
         <Link
           href={getPageHref(basePath, currentPage + 1)}
-          className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+          aria-label="Next page"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
         >
-          Next
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
         </Link>
       ) : null}
     </nav>

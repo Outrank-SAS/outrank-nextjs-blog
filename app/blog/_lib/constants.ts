@@ -5,6 +5,7 @@ export const BLOG_REVALIDATE_SECONDS = process.env.NODE_ENV === 'development' ? 
 export const BLOG_CARD_TAG_LIMIT = 3;
 export const BLOG_PAGINATION_SIBLING_COUNT = 1;
 export const BLOG_PAGINATION_VISIBLE_PAGE_GAP = 1;
+export const BLOG_PAGINATION_MIN_PAGES_FOR_ARROWS = 3;
 export const BLOG_INDEX_SITEMAP_PRIORITY = 0.8;
 export const BLOG_ARTICLE_SITEMAP_PRIORITY = 0.7;
 export const SITE_URL_FALLBACK = 'http://localhost:3000';
