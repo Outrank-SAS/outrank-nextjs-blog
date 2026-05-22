@@ -10,6 +10,7 @@ import BackToTop from '../_components/BackToTop';
 import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
 import { getArticle, getRelatedArticles, getStaticArticles } from '../_lib/outrank';
+import { BLOG_ARTICLE_HEADER_TAG_LIMIT } from '../_lib/constants';
 import { formatDate } from '../_lib/format';
 import { ensureHeadingIds } from '../_lib/toc';
 
@@ -60,6 +61,7 @@ const ArticlePage = async ({ params }: Props) => {
 
   const { html: articleHtml, tocItems } = ensureHeadingIds(article.html);
   const hasTableOfContents = tocItems.length > 0;
+  const visibleTags = article.tags.slice(0, BLOG_ARTICLE_HEADER_TAG_LIMIT);
   const relatedArticles = await getRelatedArticles(article.slug, article.tags);
 
   return (
@@ -87,14 +89,14 @@ const ArticlePage = async ({ params }: Props) => {
 
       <article className="mt-10">
         <header className="mb-12 max-w-4xl">
-          {article.tags.length > 0 ? (
+          {visibleTags.length > 0 ? (
             <div className="mb-5 flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
-              {article.tags.map((tag, index) => (
+              {visibleTags.map((tag, index) => (
                 <span key={tag} className="flex items-center gap-3">
-                  {index > 0 ? <span aria-hidden="true" className="text-slate-300">·</span> : null}
+                  {index > 0 ? <span aria-hidden="true">·</span> : null}
                   <Link
                     href={`/blog/tag/${encodeURIComponent(tag)}`}
-                    className="transition hover:text-blue-900 hover:underline"
+                    className="underline-offset-2 transition hover:underline"
                   >
                     {tag}
                   </Link>
