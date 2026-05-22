@@ -86,7 +86,7 @@ const ArticlePage = async ({ params }: Props) => {
       </Link>
 
       <article className="mt-8">
-        <header className="mb-10 max-w-4xl">
+        <header className="mb-10 max-w-5xl">
           {article.tags.length > 0 ? (
             <div className="mb-5 flex flex-wrap gap-2">
               {article.tags.map((tag) => (
