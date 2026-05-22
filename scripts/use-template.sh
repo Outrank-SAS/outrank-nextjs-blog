@@ -18,6 +18,7 @@ cd "$ROOT_DIR"
 case "$TEMPLATE" in
   default)
     git checkout HEAD -- app/blog
+    git clean -fd app/blog >/dev/null
     ;;
   studio|editorial|signal|journal)
     if [[ ! -d "templates/$TEMPLATE/blog" ]]; then
