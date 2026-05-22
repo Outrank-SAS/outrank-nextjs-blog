@@ -62,7 +62,7 @@
 }
 
 .articleContent a {
-  color: #be123c;
+  color: #6d28d9;
   font-weight: 700;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
@@ -74,9 +74,9 @@
 }
 
 .articleContent blockquote {
-  border-left: 0.25rem solid #e11d48;
-  background: #fff1f2;
-  color: #881337;
+  border-left: 0.25rem solid #7c3aed;
+  background: #f5f3ff;
+  color: #3b0764;
   padding: 1rem 1.25rem;
   border-radius: 0 8px 8px 0;
   font-style: normal;
