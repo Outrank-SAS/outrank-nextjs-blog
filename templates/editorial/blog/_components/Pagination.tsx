@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import {
   BLOG_DEFAULT_PAGE,
+  BLOG_PAGINATION_MIN_PAGES_FOR_ARROWS,
   BLOG_PAGINATION_SIBLING_COUNT,
   BLOG_PAGINATION_VISIBLE_PAGE_GAP,
 } from '../_lib/constants';
@@ -37,7 +38,7 @@ const getPaginationItems = (currentPage: number, totalPages: number): Pagination
   for (
     let page = currentPage - BLOG_PAGINATION_SIBLING_COUNT;
     page <= currentPage + BLOG_PAGINATION_SIBLING_COUNT;
-    page += BLOG_DEFAULT_PAGE
+    page++
   ) {
     if (page > BLOG_DEFAULT_PAGE && page < totalPages) {
       pages.add(page);
@@ -47,7 +48,7 @@ const getPaginationItems = (currentPage: number, totalPages: number): Pagination
   return Array.from(pages)
     .sort((firstPage, secondPage) => firstPage - secondPage)
     .reduce<PaginationItem[]>((items, page, index, sortedPages) => {
-      const previousPage = sortedPages[index - BLOG_DEFAULT_PAGE];
+      const previousPage = sortedPages[index - 1];
 
       if (previousPage && page - previousPage > BLOG_PAGINATION_VISIBLE_PAGE_GAP) {
         items.push({
@@ -66,15 +67,29 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
   if (totalPages <= 1) return null;
 
   const paginationItems = getPaginationItems(currentPage, totalPages);
+  const showArrows = totalPages >= BLOG_PAGINATION_MIN_PAGES_FOR_ARROWS;
 
   return (
-    <nav className="mt-12 flex flex-wrap items-center justify-center gap-2" aria-label="Pagination">
-      {currentPage > 1 ? (
+    <nav className="mt-14 flex flex-wrap items-center justify-center gap-1.5" aria-label="Pagination">
+      {showArrows && currentPage > 1 ? (
         <Link
           href={getPageHref(basePath, currentPage - 1)}
-          className="rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-bold text-zinc-700 shadow-sm transition hover:border-rose-300 hover:bg-rose-50"
+          aria-label="Previous page"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 bg-white text-zinc-700 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-950"
         >
-          Previous
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
         </Link>
       ) : null}
       {paginationItems.map((item) =>
@@ -87,22 +102,35 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`rounded-full border px-4 py-2 text-sm font-bold shadow-sm transition ${
+            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-full border px-3 text-sm font-bold shadow-sm transition ${
               item.page === currentPage
-                ? 'border-rose-700 bg-rose-700 text-white'
-                : 'border-zinc-300 bg-white text-zinc-950 hover:border-rose-300 hover:bg-rose-50'
+                ? 'border-zinc-950 bg-zinc-950 text-white'
+                : 'border-zinc-300 bg-white text-zinc-950 hover:border-zinc-400 hover:bg-zinc-50'
             }`}
           >
             {item.page}
           </Link>
         ),
       )}
-      {currentPage < totalPages ? (
+      {showArrows && currentPage < totalPages ? (
         <Link
           href={getPageHref(basePath, currentPage + 1)}
-          className="rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-bold text-zinc-700 shadow-sm transition hover:border-rose-300 hover:bg-rose-50"
+          aria-label="Next page"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 bg-white text-zinc-700 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-950"
         >
-          Next
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
         </Link>
       ) : null}
     </nav>

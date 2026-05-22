@@ -68,8 +68,8 @@ export const siteConfig: SiteConfig = {
   footerCopyrightHolder: 'Your Brand',
   blog: {
     indexEyebrow: 'Blog',
-    indexTitle: 'Latest Articles',
-    indexDek: 'Insights, guides, and stories from the team for smarter growth.',
+    indexTitle: "It Is Your Brand's Blog",
+    indexDek: 'AI-driven, SEO-optimized content for your blog. Grow traffic on autopilot.',
     indexMetaDescription: 'Read the latest articles.',
 
     tagEyebrow: 'Tag',

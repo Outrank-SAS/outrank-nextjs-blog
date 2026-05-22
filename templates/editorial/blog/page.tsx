@@ -30,16 +30,17 @@ const BlogPage = async ({ searchParams }: Props) => {
   });
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-6 text-zinc-950 md:py-10">
-      <header className="mb-10 border-y border-zinc-950 py-5">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200 pb-5">
-          <p className="text-xs font-black uppercase tracking-[0.24em] text-rose-700">{siteConfig.blog.indexEyebrow}</p>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-zinc-500">Strategy / SEO / Growth</p>
-        </div>
-        <div className="grid gap-8 pt-8 md:grid-cols-[0.78fr_1fr] md:items-end md:gap-12">
-          <h1 className="font-serif text-6xl font-black leading-none text-zinc-950 md:text-8xl">
-            {siteConfig.blog.indexTitle}
-          </h1>
+    <main className="mx-auto w-full max-w-7xl px-4 py-12 text-zinc-950 md:py-20">
+      <header className="mb-14 border-b border-zinc-200 pb-12 md:mb-20 md:pb-16">
+        <div className="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end md:gap-12">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-rose-700">
+              {siteConfig.blog.indexEyebrow}
+            </p>
+            <h1 className="mt-4 font-serif text-5xl font-black leading-[1.05] text-zinc-950 md:text-7xl">
+              {siteConfig.blog.indexTitle}
+            </h1>
+          </div>
           <p className="max-w-2xl text-lg leading-8 text-zinc-600">{siteConfig.blog.indexDek}</p>
         </div>
       </header>
