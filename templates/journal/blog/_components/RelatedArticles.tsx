@@ -39,7 +39,7 @@ const RelatedArticles = ({ articles }: Props) => {
                 </div>
               ) : null}
               {visibleTags.length > 0 ? (
-                <p className="relative z-10 mt-4 flex flex-wrap gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">
+                <p className="relative z-10 mt-4 flex flex-wrap gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-950">
                   {visibleTags.map((tag, index) => (
                     <span key={tag} className="flex items-center gap-3">
                       {index > 0 ? <span aria-hidden="true">·</span> : null}
