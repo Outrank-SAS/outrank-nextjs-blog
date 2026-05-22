@@ -67,9 +67,9 @@ export const siteConfig: SiteConfig = {
   },
   footerCopyrightHolder: 'Your Brand',
   blog: {
-    indexEyebrow: 'Field Notes',
+    indexEyebrow: 'Blog',
     indexTitle: 'Latest Articles',
-    indexDek: 'Practical guides, comparisons, and actionable playbooks for smarter growth.',
+    indexDek: 'Insights, guides, and stories from the team for smarter growth.',
     indexMetaDescription: 'Read the latest articles.',
 
     tagEyebrow: 'Tag',

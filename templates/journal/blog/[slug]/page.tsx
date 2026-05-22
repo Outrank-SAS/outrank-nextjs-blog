@@ -88,9 +88,9 @@ const ArticlePage = async ({ params }: Props) => {
       </Link>
 
       <article className="mt-10">
-        <header className="mb-12 max-w-4xl">
+        <header className="mb-12 max-w-5xl">
           {visibleTags.length > 0 ? (
-            <div className="mb-5 flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-950">
+            <div className="mb-5 flex flex-wrap gap-x-3 gap-y-2 text-sm font-medium text-slate-950">
               {visibleTags.map((tag, index) => (
                 <span key={tag} className="flex items-center gap-3">
                   {index > 0 ? <span aria-hidden="true">·</span> : null}
@@ -118,7 +118,7 @@ const ArticlePage = async ({ params }: Props) => {
         </header>
 
         {hasTableOfContents ? (
-          <div className="lg:grid lg:grid-cols-[14rem_1fr] lg:gap-12">
+          <div className="lg:grid lg:grid-cols-[17rem_1fr] lg:gap-12">
             <div className="mb-10 lg:mb-0">
               <ArticleSidebar items={tocItems} />
             </div>

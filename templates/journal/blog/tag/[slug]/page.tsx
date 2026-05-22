@@ -75,12 +75,8 @@ const TagPage = async ({ params, searchParams }: Props) => {
       </Link>
 
       <header className="mb-14 mt-10 md:mb-20">
-        <p className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
-          <span>{siteConfig.blog.tagEyebrow}</span>
-          <span aria-hidden="true">·</span>
-          <span className="text-slate-500">
-            {total} {total === 1 ? 'article' : 'articles'}
-          </span>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          {total} {total === 1 ? 'article' : 'articles'}
         </p>
         <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
           #{tag}
