@@ -25,6 +25,7 @@ export type SiteBlogConfig = {
 
   emptyState: string;
   backToBlog: string;
+  allArticles: string;
 
   errorEyebrow: string;
   errorTitle: string;
@@ -80,6 +81,7 @@ export const siteConfig: SiteConfig = {
 
     emptyState: 'No articles found.',
     backToBlog: 'Back to blog',
+    allArticles: 'All articles',
 
     errorEyebrow: 'Error',
     errorTitle: 'Something went sideways.',
