@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
 import ArticleCard from './_components/ArticleCard';
 import Pagination from './_components/Pagination';
 import { getArticles } from './_lib/outrank';
@@ -10,7 +12,7 @@ export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Read the latest articles.',
+  description: siteConfig.blog.indexMetaDescription,
 };
 
 type Props = {
@@ -34,14 +36,14 @@ const BlogPage = async ({ searchParams }: Props) => {
       <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-10">
         <header className="mb-10 overflow-hidden rounded-lg border border-white/10 bg-white/[0.045] shadow-2xl shadow-black/30">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-5 py-4">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-300">Signal Desk</p>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-300">{siteConfig.blog.indexEyebrow}</p>
           </div>
           <div className="grid gap-8 px-5 py-8 md:grid-cols-[1fr_0.7fr] md:px-8 md:py-10">
             <div>
-              <h1 className="max-w-5xl text-4xl font-black leading-tight text-white md:text-6xl">Latest Articles</h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-300">
-                Practical guides, comparisons, and actionable playbooks for smarter growth.
-              </p>
+              <h1 className="max-w-5xl text-4xl font-black leading-tight text-white md:text-6xl">
+                {siteConfig.blog.indexTitle}
+              </h1>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-300">{siteConfig.blog.indexDek}</p>
             </div>
             <div className="rounded-lg border border-white/10 bg-black/25 p-5">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-500">Dispatch queue</p>
@@ -76,7 +78,7 @@ const BlogPage = async ({ searchParams }: Props) => {
           </div>
         ) : (
           <div className="rounded-lg border border-dashed border-white/20 bg-white/[0.04] p-10 text-center text-zinc-300">
-            No articles found.
+            {siteConfig.blog.emptyState}
           </div>
         )}
 

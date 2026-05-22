@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
 import ArticleCard from '../../_components/ArticleCard';
 import Pagination from '../../_components/Pagination';
 import { getArticles, getStaticArticles } from '../../_lib/outrank';
@@ -52,7 +54,7 @@ const TagPage = async ({ params, searchParams }: Props) => {
     <main className="min-h-screen bg-[#050807] text-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-10">
         <header className="mb-10 rounded-lg border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/30 md:p-8">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-300">Tagged signal</p>
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-300">{siteConfig.blog.tagEyebrow}</p>
           <h1 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">#{tag}</h1>
           <p className="mt-5 text-lg leading-8 text-zinc-300">
             {total} {total === 1 ? 'article' : 'articles'}
@@ -72,7 +74,7 @@ const TagPage = async ({ params, searchParams }: Props) => {
           </div>
         ) : (
           <div className="rounded-lg border border-dashed border-white/20 bg-white/[0.04] p-10 text-center text-zinc-300">
-            No articles found.
+            {siteConfig.blog.emptyState}
           </div>
         )}
 

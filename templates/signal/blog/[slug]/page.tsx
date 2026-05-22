@@ -3,6 +3,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
 import styles from '../_components/ArticleContent.module.css';
 import { getArticle, getStaticArticles } from '../_lib/outrank';
 import { formatDate } from '../_lib/format';
@@ -59,7 +61,7 @@ const ArticlePage = async ({ params }: Props) => {
           href="/blog"
           className="inline-flex items-center rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-sm font-bold text-zinc-100 transition hover:border-lime-300/50 hover:text-lime-200"
         >
-          Back to blog
+          {siteConfig.blog.backToBlog}
         </Link>
 
         <article className="mt-8">

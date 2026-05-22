@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
 import ArticleCard from './_components/ArticleCard';
 import Pagination from './_components/Pagination';
 import { getArticles } from './_lib/outrank';
@@ -10,7 +12,7 @@ export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Read the latest articles.',
+  description: siteConfig.blog.indexMetaDescription,
 };
 
 type Props = {
@@ -33,17 +35,17 @@ const BlogPage = async ({ searchParams }: Props) => {
         <header className="mb-10 md:mb-14">
           <div className="grid gap-8 border-b border-slate-200 pb-8 md:grid-cols-[0.74fr_1.26fr] md:items-end md:pb-12">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-teal-700">Outrank Studio</p>
-              <p className="mt-3 max-w-sm text-base leading-7 text-slate-600">Fresh SEO playbooks for practical teams.</p>
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-teal-700">{siteConfig.blog.indexEyebrow}</p>
+              {siteConfig.brandTagline ? (
+                <p className="mt-3 max-w-sm text-base leading-7 text-slate-600">{siteConfig.brandTagline}</p>
+              ) : null}
             </div>
 
             <div>
               <h1 className="max-w-4xl text-5xl font-black leading-none text-slate-950 md:text-7xl">
-                Latest Articles
+                {siteConfig.blog.indexTitle}
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-                Practical guides, comparisons, and actionable playbooks for smarter growth.
-              </p>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{siteConfig.blog.indexDek}</p>
             </div>
           </div>
         </header>
@@ -61,7 +63,7 @@ const BlogPage = async ({ searchParams }: Props) => {
           </div>
         ) : (
           <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center text-slate-600">
-            No articles found.
+            {siteConfig.blog.emptyState}
           </div>
         )}
 
