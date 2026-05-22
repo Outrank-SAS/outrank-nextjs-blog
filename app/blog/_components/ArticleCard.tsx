@@ -14,7 +14,7 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
   const visibleTags = article.tags.slice(0, BLOG_CARD_TAG_LIMIT);
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-200 hover:border-slate-300">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border-2 border-slate-200 bg-white shadow-sm transition duration-200 hover:border-slate-900/40">
       {article.image_url ? (
         <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
           <Image

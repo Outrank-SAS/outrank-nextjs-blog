@@ -74,9 +74,9 @@
 }
 
 .articleContent blockquote {
-  border-left: 0.25rem solid #14b8a6;
-  background: #f0fdfa;
-  color: #134e4a;
+  border-left: 0.25rem solid #7c3aed;
+  background: #f5f3ff;
+  color: #3b0764;
   padding: 1rem 1.25rem;
   border-radius: 0 8px 8px 0;
   font-style: normal;
