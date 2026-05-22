@@ -10,6 +10,30 @@ export type SiteSocialLinks = {
   email?: string;
 };
 
+export type SiteBlogConfig = {
+  indexEyebrow: string;
+  indexTitle: string;
+  indexDek: string;
+  indexMetaDescription: string;
+
+  tagEyebrow: string;
+
+  relatedEyebrow: string;
+  relatedTitle: string;
+
+  emptyState: string;
+  backToBlog: string;
+
+  errorEyebrow: string;
+  errorTitle: string;
+  errorDek: string;
+  errorRetry: string;
+
+  notFoundEyebrow: string;
+  notFoundTitle: string;
+  notFoundDek: string;
+};
+
 export type SiteConfig = {
   brandName: string;
   brandTagline?: string;
@@ -18,6 +42,7 @@ export type SiteConfig = {
   navLinks: SiteNavLink[];
   socialLinks: SiteSocialLinks;
   footerCopyrightHolder: string;
+  blog: SiteBlogConfig;
 };
 
 export const siteConfig: SiteConfig = {
@@ -38,4 +63,28 @@ export const siteConfig: SiteConfig = {
     email: 'hello@yourbrand.com',
   },
   footerCopyrightHolder: 'Your Brand',
+  blog: {
+    indexEyebrow: 'Field Notes',
+    indexTitle: 'Latest Articles',
+    indexDek: 'Practical guides, comparisons, and actionable playbooks for smarter growth.',
+    indexMetaDescription: 'Read the latest articles.',
+
+    tagEyebrow: 'Tag',
+
+    relatedEyebrow: 'Keep reading',
+    relatedTitle: 'More articles',
+
+    emptyState: 'No articles found.',
+    backToBlog: 'Back to blog',
+
+    errorEyebrow: 'Error',
+    errorTitle: 'Something went sideways.',
+    errorDek: 'We hit an unexpected error loading this page. Try again, or head back to the archive.',
+    errorRetry: 'Try again',
+
+    notFoundEyebrow: '404',
+    notFoundTitle: "We couldn't find that article.",
+    notFoundDek:
+      "The piece you're looking for may have been moved or the link is mistyped. Browse the archive instead.",
+  },
 };
