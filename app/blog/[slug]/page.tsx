@@ -3,6 +3,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
 import BackToTop from '../_components/BackToTop';
 import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
@@ -76,7 +78,7 @@ const ArticlePage = async ({ params }: Props) => {
           <line x1="19" y1="12" x2="5" y2="12" />
           <polyline points="12 19 5 12 12 5" />
         </svg>
-        Back to blog
+        {siteConfig.blog.backToBlog}
       </Link>
 
       <article className="mt-8">
