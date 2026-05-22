@@ -49,20 +49,22 @@ const TagPage = async ({ params, searchParams }: Props) => {
   const remainingArticles = articles.slice(1);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-10">
-      <header className="mb-10 border-b border-slate-200 pb-10">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-700">Tag notes</p>
-        <h1 className="mt-5 max-w-4xl text-5xl font-black leading-tight text-slate-950 md:text-7xl">#{tag}</h1>
-        <p className="mt-6 text-lg leading-8 text-slate-600">
+    <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
+      <header className="mb-14 md:mb-20">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Tag</p>
+        <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
+          #{tag}
+        </h1>
+        <p className="mt-5 text-lg leading-8 text-slate-600">
           {total} {total === 1 ? 'article' : 'articles'}
         </p>
       </header>
 
       {featuredArticle ? (
-        <div className="space-y-3">
+        <div>
           <ArticleCard article={featuredArticle} featured />
           {remainingArticles.length ? (
-            <div className="grid grid-cols-1 gap-3">
+            <div className="mt-14 border-t border-slate-200 md:mt-20">
               {remainingArticles.map((article) => (
                 <ArticleCard key={article.id} article={article} />
               ))}

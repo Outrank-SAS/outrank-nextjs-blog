@@ -30,22 +30,22 @@ const BlogPage = async ({ searchParams }: Props) => {
   const remainingArticles = articles.slice(1);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-10">
-      <header className="mb-10 border-b border-slate-200 pb-10">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-700">Field Notes</p>
-        <h1 className="mt-5 max-w-4xl text-5xl font-black leading-tight text-slate-950 md:text-7xl">
+    <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
+      <header className="mb-14 md:mb-20">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Field Notes</p>
+        <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
           Latest Articles
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+        <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
           Practical guides, comparisons, and actionable playbooks for smarter growth.
         </p>
       </header>
 
       {featuredArticle ? (
-        <div className="space-y-3">
+        <div>
           <ArticleCard article={featuredArticle} featured />
           {remainingArticles.length ? (
-            <div className="grid grid-cols-1 gap-3">
+            <div className="mt-14 border-t border-slate-200 md:mt-20">
               {remainingArticles.map((article) => (
                 <ArticleCard key={article.id} article={article} />
               ))}

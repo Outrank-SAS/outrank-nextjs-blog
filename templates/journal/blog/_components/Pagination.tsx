@@ -37,7 +37,7 @@ const getPaginationItems = (currentPage: number, totalPages: number): Pagination
   for (
     let page = currentPage - BLOG_PAGINATION_SIBLING_COUNT;
     page <= currentPage + BLOG_PAGINATION_SIBLING_COUNT;
-    page += BLOG_DEFAULT_PAGE
+    page++
   ) {
     if (page > BLOG_DEFAULT_PAGE && page < totalPages) {
       pages.add(page);
@@ -47,7 +47,7 @@ const getPaginationItems = (currentPage: number, totalPages: number): Pagination
   return Array.from(pages)
     .sort((firstPage, secondPage) => firstPage - secondPage)
     .reduce<PaginationItem[]>((items, page, index, sortedPages) => {
-      const previousPage = sortedPages[index - BLOG_DEFAULT_PAGE];
+      const previousPage = sortedPages[index - 1];
 
       if (previousPage && page - previousPage > BLOG_PAGINATION_VISIBLE_PAGE_GAP) {
         items.push({
@@ -68,18 +68,18 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
   const paginationItems = getPaginationItems(currentPage, totalPages);
 
   return (
-    <nav className="mt-10 flex flex-wrap items-center justify-start gap-2" aria-label="Pagination">
+    <nav className="mt-14 flex flex-wrap items-center justify-start gap-2" aria-label="Pagination">
       {currentPage > 1 ? (
         <Link
           href={getPageHref(basePath, currentPage - 1)}
-          className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-300 hover:bg-blue-50"
+          className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
         >
           Previous
         </Link>
       ) : null}
       {paginationItems.map((item) =>
         item.type === PAGINATION_ITEM_ELLIPSIS ? (
-          <span key={item.key} className="px-2 text-sm text-zinc-500" aria-hidden="true">
+          <span key={item.key} className="px-2 text-sm text-slate-500" aria-hidden="true">
             ...
           </span>
         ) : (
@@ -87,10 +87,10 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
+            className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
               item.page === currentPage
-                ? 'border-blue-700 bg-blue-700 text-white'
-                : 'border-slate-200 bg-white text-slate-950 hover:border-blue-300 hover:bg-blue-50'
+                ? 'border-slate-900 bg-slate-900 text-white'
+                : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
             }`}
           >
             {item.page}
@@ -100,7 +100,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
       {currentPage < totalPages ? (
         <Link
           href={getPageHref(basePath, currentPage + 1)}
-          className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-300 hover:bg-blue-50"
+          className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
         >
           Next
         </Link>
