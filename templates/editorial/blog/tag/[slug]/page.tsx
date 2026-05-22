@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { siteConfig } from '@/app/_config/siteConfig';
@@ -49,15 +50,35 @@ const TagPage = async ({ params, searchParams }: Props) => {
   });
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-6 text-zinc-950 md:py-10">
-      <header className="mb-10 border-y border-zinc-950 py-5">
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-rose-700">{siteConfig.blog.tagEyebrow}</p>
-        <div className="grid gap-8 pt-6 md:grid-cols-[0.78fr_1fr] md:items-end md:gap-12">
-          <h1 className="font-serif text-6xl font-black leading-none text-zinc-950 md:text-8xl">#{tag}</h1>
-          <p className="max-w-2xl text-lg leading-8 text-zinc-600">
-            {total} {total === 1 ? 'article' : 'articles'}
-          </p>
-        </div>
+    <main className="mx-auto w-full max-w-7xl px-4 py-12 text-zinc-950 md:py-20">
+      <Link
+        href="/blog"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-700 underline-offset-4 transition hover:text-violet-800 hover:underline"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        {siteConfig.blog.allArticles}
+      </Link>
+
+      <header className="mb-14 mt-10 border-b border-zinc-200 pb-12 md:mb-20 md:pb-16">
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-zinc-500">
+          {total} {total === 1 ? 'article' : 'articles'}
+        </p>
+        <h1 className="mt-4 font-serif text-5xl font-black leading-[1.05] text-zinc-950 md:text-7xl">
+          #{tag}
+        </h1>
       </header>
 
       {articles.length ? (
