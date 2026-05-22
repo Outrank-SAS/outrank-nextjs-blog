@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { siteConfig } from '@/app/_config/siteConfig';
@@ -50,12 +51,32 @@ const TagPage = async ({ params, searchParams }: Props) => {
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-10 md:py-16">
-      <header className="mb-12 max-w-3xl">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-700">{siteConfig.blog.tagEyebrow}</p>
-        <h1 className="mt-4 text-4xl font-black leading-tight text-slate-950 md:text-6xl">#{tag}</h1>
-        <p className="mt-5 text-lg leading-8 text-slate-600">
+      <Link
+        href="/blog"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        {siteConfig.blog.allArticles}
+      </Link>
+
+      <header className="mt-8 mb-12 max-w-3xl">
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
           {total} {total === 1 ? 'article' : 'articles'}
         </p>
+        <h1 className="mt-4 text-4xl font-black leading-tight text-slate-950 md:text-6xl">#{tag}</h1>
       </header>
 
       {articles.length ? (
