@@ -13,7 +13,7 @@ const RelatedArticles = ({ articles }: Props) => {
   return (
     <section className="mt-20 border-t border-slate-200 pt-12 md:mt-28 md:pt-16" aria-labelledby="related-articles-heading">
       <header className="mb-8 max-w-3xl">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-700">{siteConfig.blog.relatedEyebrow}</p>
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-violet-700">{siteConfig.blog.relatedEyebrow}</p>
         <h2 id="related-articles-heading" className="mt-3 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
           {siteConfig.blog.relatedTitle}
         </h2>

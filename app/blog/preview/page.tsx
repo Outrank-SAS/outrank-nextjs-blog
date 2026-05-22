@@ -56,7 +56,7 @@ const PreviewIndex = () => {
       </div>
 
       <header className="mt-10 mb-10">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-700">Preview</p>
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-violet-700">Preview</p>
         <h1 className="mt-4 text-4xl font-black leading-tight text-slate-950 md:text-5xl">Blog UI states</h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
           Click a card to inspect each state. Refresh after editing the corresponding component to see updates.
@@ -77,11 +77,11 @@ const PreviewIndex = () => {
             >
               {card.badge}
             </span>
-            <h2 className="mt-3 text-lg font-bold text-slate-950 transition group-hover:text-teal-700">
+            <h2 className="mt-3 text-lg font-bold text-slate-950 transition group-hover:text-violet-700">
               {card.title}
             </h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">{card.description}</p>
-            <span className="mt-auto pt-4 text-sm font-semibold text-teal-700">View →</span>
+            <span className="mt-auto pt-4 text-sm font-semibold text-violet-700">View →</span>
           </Link>
         ))}
       </div>

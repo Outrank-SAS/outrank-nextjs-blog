@@ -32,13 +32,12 @@ const BlogPage = async ({ searchParams }: Props) => {
   ]);
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-10 md:py-16">
-      <header className="mb-10 max-w-3xl">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-700">{siteConfig.blog.indexEyebrow}</p>
-        <h1 className="mt-4 text-4xl font-black leading-tight text-slate-950 md:text-6xl">
+    <main className="mx-auto w-full max-w-7xl px-4 py-12 md:py-20">
+      <header className="mx-auto mb-14 max-w-3xl text-center md:mb-16">
+        <h1 className="text-4xl font-black leading-tight text-slate-950 md:text-6xl">
           {siteConfig.blog.indexTitle}
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{siteConfig.blog.indexDek}</p>
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">{siteConfig.blog.indexDek}</p>
       </header>
 
       <BlogList
