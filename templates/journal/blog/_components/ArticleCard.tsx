@@ -36,7 +36,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
     return (
       <article className="group relative grid gap-7 md:grid-cols-[1.25fr_1fr] md:gap-12">
         {article.image_url ? (
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100 md:aspect-[3/2]">
             <Image
               src={article.image_url}
               alt={article.title}
@@ -90,7 +90,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
         </div>
       </div>
       {article.image_url ? (
-        <div className="relative order-first aspect-[16/10] overflow-hidden rounded-xl bg-slate-100 md:order-none md:aspect-[3/2]">
+        <div className="relative order-first aspect-[16/9] overflow-hidden rounded-xl bg-slate-100 md:order-none md:aspect-[16/9]">
           <Image
             src={article.image_url}
             alt={article.title}
