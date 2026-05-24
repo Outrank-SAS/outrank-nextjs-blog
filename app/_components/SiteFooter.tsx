@@ -52,7 +52,7 @@ const SiteFooter = () => {
   const socialLinks = buildSocialLinks();
 
   return (
-    <footer className="mt-20 border-t border-slate-200 bg-slate-50">
+    <footer data-component="site-footer" className="mt-20 border-t border-slate-200 bg-slate-50">
       <div className="mx-auto w-full max-w-7xl px-4 py-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>

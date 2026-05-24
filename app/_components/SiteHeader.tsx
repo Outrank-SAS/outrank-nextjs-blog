@@ -40,7 +40,10 @@ const SiteHeader = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen((isOpen) => !isOpen);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur">
+    <header
+      data-component="site-header"
+      className="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur"
+    >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4">
         <Link
           href={siteConfig.homeUrl}
