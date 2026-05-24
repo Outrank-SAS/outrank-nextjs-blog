@@ -41,7 +41,7 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
             ))}
           </div>
         ) : null}
-        <h2 className="text-xl font-semibold leading-tight text-slate-950 transition group-hover:text-violet-700">
+        <h2 className="text-xl font-semibold leading-tight text-slate-950 transition group-hover:text-default-accent">
           <Link
             href={`/blog/${article.slug}`}
             className="after:absolute after:inset-0 after:content-['']"

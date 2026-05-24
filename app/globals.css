@@ -23,6 +23,7 @@
    *   emerald-700= 4 120 87        rose-600 = 225 29 72
    *   amber-600  = 217 119 6       indigo-600 = 79 70 229
    */
+  --default-accent: 109 40 217;
   --editorial-accent: 109 40 217;
   --journal-accent: 29 78 216;
   --studio-accent: 15 118 110;

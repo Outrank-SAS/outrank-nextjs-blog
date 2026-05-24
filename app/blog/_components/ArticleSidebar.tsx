@@ -45,7 +45,7 @@ const ArticleSidebar = ({ items }: Props) => {
 
   return (
     <nav aria-label={siteConfig.blog.tableOfContentsLabel} className="sticky top-24 self-start">
-      <p className="text-xs font-bold uppercase tracking-[0.18em] text-violet-700">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-default-accent">
         {siteConfig.blog.tableOfContentsLabel}
       </p>
       <ul className="mt-4 space-y-1">

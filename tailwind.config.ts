@@ -8,6 +8,7 @@ const config: Config = {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
+        'default-accent': 'rgb(var(--default-accent) / <alpha-value>)',
         'signal-accent': 'rgb(var(--signal-accent) / <alpha-value>)',
         'editorial-accent': 'rgb(var(--editorial-accent) / <alpha-value>)',
         'journal-accent': 'rgb(var(--journal-accent) / <alpha-value>)',
