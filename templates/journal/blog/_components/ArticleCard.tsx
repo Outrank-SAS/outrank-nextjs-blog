@@ -47,7 +47,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
             />
           </div>
         ) : null}
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col">
           {tagList}
           <h2 className="mt-3 text-3xl font-bold leading-[1.1] tracking-tight text-journal-accent md:text-[2.75rem]">
             <Link
