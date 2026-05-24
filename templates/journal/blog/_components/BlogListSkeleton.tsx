@@ -12,7 +12,7 @@ const BlogListSkeleton = () => {
       </header>
 
       <ArticleCardSkeleton featured />
-      <div className="mt-14 border-t border-slate-200 md:mt-20">
+      <div className="mt-14 border-t border-journal-accent/30 md:mt-20">
         {COMPACT_PLACEHOLDERS.map((_, index) => (
           <ArticleCardSkeleton key={index} />
         ))}
