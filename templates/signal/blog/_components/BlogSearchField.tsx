@@ -54,7 +54,6 @@ const BlogSearchField = () => {
   }, [searchQuery]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
 
     const trimmedQuery = debouncedQuery.trim();
