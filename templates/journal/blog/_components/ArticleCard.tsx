@@ -69,7 +69,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
 
   return (
     <article className="group relative grid gap-5 border-b border-slate-200 py-9 md:grid-cols-[1fr_24rem] md:gap-10 md:py-10">
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col">
         {tagList}
         <h2 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-950 underline-offset-4 decoration-journal-accent decoration-2 transition group-hover:text-journal-accent group-hover:underline">
           <Link
@@ -80,7 +80,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
           </Link>
         </h2>
         <p className="mt-3 line-clamp-2 text-base leading-7 text-slate-600">{article.meta_description}</p>
-        <div className="mt-4 flex items-center gap-3 text-xs font-medium text-slate-600">
+        <div className="mt-auto flex items-center gap-3 pt-4 text-xs font-medium text-slate-600">
           <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
           <span aria-hidden="true">·</span>
           <span>{article.reading_time_minutes} min read</span>
