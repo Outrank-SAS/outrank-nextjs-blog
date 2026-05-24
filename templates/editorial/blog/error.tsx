@@ -17,7 +17,7 @@ const ErrorBoundary = ({ error, reset }: Props) => {
 
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-col items-start px-4 py-24 text-zinc-950 md:py-32">
-      <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">
+      <p className="text-xs font-black uppercase tracking-[0.24em] text-editorial-accent">
         {siteConfig.blog.errorEyebrow}
       </p>
       <h1 className="mt-4 font-serif text-4xl font-black leading-[1.05] text-zinc-950 md:text-6xl">
@@ -36,7 +36,7 @@ const ErrorBoundary = ({ error, reset }: Props) => {
         </button>
         <Link
           href="/blog"
-          className="text-sm font-semibold text-zinc-700 underline-offset-4 transition hover:text-violet-800 hover:underline"
+          className="text-sm font-semibold text-zinc-700 underline-offset-4 transition hover:text-editorial-accent hover:underline"
         >
           {siteConfig.blog.backToBlog}
         </Link>

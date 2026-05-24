@@ -16,7 +16,7 @@ const RelatedArticles = ({ articles }: Props) => {
 
   return (
     <section className="mx-auto mt-20 max-w-5xl border-t border-zinc-200 pt-14 md:mt-24 md:pt-16">
-      <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">
+      <p className="text-xs font-black uppercase tracking-[0.24em] text-editorial-accent">
         {siteConfig.blog.relatedEyebrow}
       </p>
       <h2 className="mt-4 font-serif text-3xl font-black leading-tight text-zinc-950 md:text-4xl">
@@ -47,7 +47,7 @@ const RelatedArticles = ({ articles }: Props) => {
                       {index > 0 ? <span aria-hidden="true">·</span> : null}
                       <Link
                         href={`/blog/tag/${encodeURIComponent(tag)}`}
-                        className="underline-offset-2 transition hover:text-violet-700 hover:underline"
+                        className="underline-offset-2 transition hover:text-editorial-accent hover:underline"
                       >
                         {tag}
                       </Link>
@@ -55,7 +55,7 @@ const RelatedArticles = ({ articles }: Props) => {
                   ))}
                 </p>
               ) : null}
-              <h3 className="mt-2 font-serif text-xl font-black leading-tight text-zinc-950 underline-offset-[6px] decoration-violet-700 decoration-2 transition group-hover:underline md:text-[1.375rem]">
+              <h3 className="mt-2 font-serif text-xl font-black leading-tight text-zinc-950 underline-offset-[6px] decoration-editorial-accent decoration-2 transition group-hover:underline md:text-[1.375rem]">
                 <Link
                   href={`/blog/${article.slug}`}
                   className="after:absolute after:inset-0 after:content-['']"

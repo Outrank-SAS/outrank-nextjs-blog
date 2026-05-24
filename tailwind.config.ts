@@ -9,6 +9,9 @@ const config: Config = {
       },
       colors: {
         'signal-accent': 'rgb(var(--signal-accent) / <alpha-value>)',
+        'editorial-accent': 'rgb(var(--editorial-accent) / <alpha-value>)',
+        'journal-accent': 'rgb(var(--journal-accent) / <alpha-value>)',
+        'studio-accent': 'rgb(var(--studio-accent) / <alpha-value>)',
       },
     },
   },

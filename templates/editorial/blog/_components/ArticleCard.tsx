@@ -49,7 +49,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
                 {index > 0 ? <span aria-hidden="true">·</span> : null}
                 <Link
                   href={`/blog/tag/${encodeURIComponent(tag)}`}
-                  className="underline-offset-2 transition hover:text-violet-700 hover:underline"
+                  className="underline-offset-2 transition hover:text-editorial-accent hover:underline"
                 >
                   {tag}
                 </Link>
@@ -60,8 +60,8 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
         <h2
           className={
             featured
-              ? 'font-serif text-4xl font-black leading-none text-zinc-950 underline-offset-[6px] decoration-violet-700 decoration-2 transition group-hover:underline md:text-5xl'
-              : 'font-serif text-2xl font-black leading-tight text-zinc-950 underline-offset-[6px] decoration-violet-700 decoration-2 transition group-hover:underline'
+              ? 'font-serif text-4xl font-black leading-none text-zinc-950 underline-offset-[6px] decoration-editorial-accent decoration-2 transition group-hover:underline md:text-5xl'
+              : 'font-serif text-2xl font-black leading-tight text-zinc-950 underline-offset-[6px] decoration-editorial-accent decoration-2 transition group-hover:underline'
           }
         >
           <Link href={`/blog/${article.slug}`} className="after:absolute after:inset-0 after:content-['']">

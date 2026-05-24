@@ -9,6 +9,23 @@
   --ink: #0f172a;
   --muted: #475569;
   --line: #e2e8f0;
+
+  /*
+   * Light-theme blog template accents.
+   * Each variable is an RGB triplet consumed both by Tailwind
+   * utilities (text-<name>-accent/30, bg-<name>-accent/10, ...)
+   * and by the matching ArticleContent.module.css via rgb(var(...)).
+   * Change one number and the whole template re-themes.
+   *
+   * Tailwind palette references for quick swaps:
+   *   violet-700 = 109 40 217      pink-600 = 219 39 119
+   *   blue-700   = 29 78 216       teal-700 = 15 118 110
+   *   emerald-700= 4 120 87        rose-600 = 225 29 72
+   *   amber-600  = 217 119 6       indigo-600 = 79 70 229
+   */
+  --editorial-accent: 109 40 217;
+  --journal-accent: 29 78 216;
+  --studio-accent: 15 118 110;
 }
 
 * {
