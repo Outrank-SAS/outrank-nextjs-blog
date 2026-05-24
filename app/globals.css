@@ -35,6 +35,10 @@ body {
   color: var(--ink);
 }
 
+html[data-blog-theme='dark'] {
+  color-scheme: dark;
+}
+
 html[data-blog-theme='dark'] body {
   background: #050807;
   color: #f4f4f5;
@@ -64,6 +68,11 @@ html[data-blog-theme='dark'] [data-component='site-header'] button:hover {
 html[data-blog-theme='dark'] [data-component='site-header'] button {
   border-color: rgba(255, 255, 255, 0.12);
   color: #d4d4d8;
+}
+
+html[data-blog-theme='dark'] [data-component='site-header'] nav[aria-label='Mobile'] {
+  background: #050807;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 html[data-blog-theme='dark'] [data-component='site-footer'] {
