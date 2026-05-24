@@ -63,7 +63,7 @@ const ArticlePage = async ({ params }: Props) => {
   const relatedArticles = await getRelatedArticles(article.slug, article.tags);
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
+    <main className="mx-auto w-full max-w-6xl px-4 pt-16 pb-8 md:pt-24 md:pb-14">
       <Link
         href="/blog"
         className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"

@@ -5,7 +5,7 @@ const SKELETON_TOC_ITEM_COUNT = 6;
 
 const ArticleSkeleton = () => {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
+    <main className="mx-auto w-full max-w-6xl px-4 pt-16 pb-8 md:pt-24 md:pb-14">
       <div className="h-5 w-28 animate-pulse rounded bg-slate-200" />
 
       <article className="mt-8 animate-pulse">
