@@ -57,7 +57,10 @@ const SiteFooter = () => {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
             <Link href={siteConfig.homeUrl} className="inline-flex items-center gap-2.5">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-950 text-sm font-bold text-white">
+              <span
+                data-brand-mark
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-950 text-sm font-bold text-white"
+              >
                 {siteConfig.brandName.charAt(0).toUpperCase()}
               </span>
               <span className="text-lg font-bold text-slate-950">{siteConfig.brandName}</span>
@@ -72,7 +75,10 @@ const SiteFooter = () => {
             <ul className="mt-4 space-y-2.5">
               {siteConfig.navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm font-medium text-slate-700 transition hover:text-slate-950">
+                  <Link
+                    href={link.href}
+                    className="text-sm font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+                  >
                     {link.label}
                   </Link>
                 </li>

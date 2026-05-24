@@ -14,7 +14,10 @@ const BrandMark = () => {
   }
 
   return (
-    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-950 text-sm font-bold text-white">
+    <span
+      data-brand-mark
+      className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-950 text-sm font-bold text-white"
+    >
       {siteConfig.brandName.charAt(0).toUpperCase()}
     </span>
   );
@@ -59,7 +62,7 @@ const SiteHeader = () => {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-slate-700 transition hover:text-slate-950"
+              className="text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
             >
               {link.label}
             </Link>
@@ -85,7 +88,7 @@ const SiteHeader = () => {
                 <Link
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="block py-3 text-base font-semibold text-slate-700 transition hover:text-slate-950"
+                  className="block py-3 text-base font-semibold text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
                 >
                   {link.label}
                 </Link>
