@@ -69,7 +69,7 @@ export const siteConfig: SiteConfig = {
   blog: {
     indexEyebrow: 'Blog',
     indexTitle: "It Is Your Brand's Blog",
-    indexDek: 'AI-driven, SEO-optimized content for your blog. Grow traffic on autopilot.',
+    indexDek: 'Essays, dispatches, and notes from the team.',
     indexMetaDescription: 'Read the latest articles.',
 
     tagEyebrow: 'Tag',
