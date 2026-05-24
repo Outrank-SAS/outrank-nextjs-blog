@@ -34,7 +34,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
 
   if (featured) {
     return (
-      <article className="group relative grid gap-7 md:grid-cols-[1.4fr_1fr] md:gap-12">
+      <article className="group relative grid gap-7 md:grid-cols-[1fr_1fr] md:gap-12">
         {article.image_url ? (
           <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100 md:aspect-[3/2]">
             <Image
@@ -42,14 +42,14 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
               alt={article.title}
               fill
               loading={resolvedLoading}
-              sizes="(min-width: 768px) 38rem, 100vw"
+              sizes="(min-width: 768px) 28rem, 100vw"
               className="object-cover transition duration-500 group-hover:scale-[1.03]"
             />
           </div>
         ) : null}
         <div className="flex flex-col justify-center">
           {tagList}
-          <h2 className="mt-3 text-3xl font-bold leading-[1.1] tracking-tight text-journal-accent underline-offset-[6px] decoration-journal-accent decoration-2 transition group-hover:underline md:text-[2.75rem]">
+          <h2 className="mt-3 text-3xl font-bold leading-[1.1] tracking-tight text-journal-accent underline-offset-[6px] decoration-journal-accent decoration-2 transition group-hover:underline md:text-[2.25rem]">
             <Link
               href={`/blog/${article.slug}`}
               className="after:absolute after:inset-0 after:content-['']"
