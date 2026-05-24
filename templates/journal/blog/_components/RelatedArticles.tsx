@@ -44,7 +44,7 @@ const RelatedArticles = ({ articles }: Props) => {
                     <Link
                       key={tag}
                       href={`/blog/tag/${encodeURIComponent(tag)}`}
-                      className="inline-flex items-center rounded-full border border-journal-accent/30 bg-journal-accent/10 px-2.5 py-0.5 text-xs font-medium text-journal-accent/70 transition hover:border-journal-accent/60 hover:bg-journal-accent/20 hover:text-journal-accent"
+                      className="inline-flex items-center rounded-full border border-journal-accent/20 bg-journal-accent/5 px-2.5 py-0.5 text-xs font-medium text-journal-accent transition hover:border-journal-accent/50 hover:bg-journal-accent/15"
                     >
                       {tag}
                     </Link>
