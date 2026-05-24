@@ -44,9 +44,9 @@ const BlogSearchField = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const initialQuery = searchParams.get(SEARCH_PARAM) || '';
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
+  const urlQuery = searchParams.get(SEARCH_PARAM) || '';
+  const [searchQuery, setSearchQuery] = useState(urlQuery);
+  const [debouncedQuery, setDebouncedQuery] = useState(urlQuery);
 
   useEffect(() => {
     const handle = setTimeout(() => setDebouncedQuery(searchQuery), SEARCH_DEBOUNCE_MS);
@@ -72,6 +72,15 @@ const BlogSearchField = () => {
       router.replace(nextUrl, { scroll: false });
     }
   }, [debouncedQuery, pathname, router]);
+
+  /* eslint-disable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
+  useEffect(() => {
+    if (urlQuery !== debouncedQuery) {
+      setSearchQuery(urlQuery);
+      setDebouncedQuery(urlQuery);
+    }
+  }, [urlQuery]);
+  /* eslint-enable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
 
   return (
     <div className="relative">

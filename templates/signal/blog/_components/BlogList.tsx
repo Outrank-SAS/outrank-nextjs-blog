@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 
@@ -15,6 +16,25 @@ type Props = {
   currentPage: number;
   totalPages: number;
 };
+
+const FrownIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
+    <line x1="9" y1="9" x2="9.01" y2="9" />
+    <line x1="15" y1="9" x2="15.01" y2="9" />
+  </svg>
+);
 
 const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: Props) => {
   const searchParams = useSearchParams();
@@ -46,8 +66,22 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
             ))}
           </div>
         ) : (
-          <div className="rounded-lg border border-dashed border-white/20 bg-white/[0.04] p-10 text-center text-zinc-300">
-            Nothing matched your search.
+          <div className="flex flex-col items-center rounded-lg border border-white/10 bg-white/[0.04] px-6 py-16 text-center shadow-2xl shadow-black/30">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-zinc-400">
+              <FrownIcon />
+            </div>
+            <h3 className="mt-5 text-2xl font-black tracking-tight text-white">
+              No matches for <span className="text-lime-300">“{trimmedQuery}”</span>
+            </h3>
+            <p className="mt-3 max-w-md text-base leading-7 text-zinc-300">
+              Try different keywords, or jump back to the full blog.
+            </p>
+            <Link
+              href="/blog"
+              className="mt-7 inline-flex items-center rounded-full bg-lime-300 px-5 py-2.5 text-sm font-bold text-zinc-950 transition hover:bg-lime-200"
+            >
+              Show all articles
+            </Link>
           </div>
         )
       ) : featuredArticle ? (
