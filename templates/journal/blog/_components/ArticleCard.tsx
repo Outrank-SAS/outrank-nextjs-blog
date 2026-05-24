@@ -34,7 +34,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
 
   if (featured) {
     return (
-      <article className="group relative grid gap-7 md:grid-cols-[1.15fr_1fr] md:gap-12">
+      <article className="group relative grid gap-7 md:grid-cols-[1.25fr_1fr] md:gap-12">
         {article.image_url ? (
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100">
             <Image
@@ -42,7 +42,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
               alt={article.title}
               fill
               loading={resolvedLoading}
-              sizes="(min-width: 768px) 32rem, 100vw"
+              sizes="(min-width: 768px) 38rem, 100vw"
               className="object-cover transition duration-500 group-hover:scale-[1.03]"
             />
           </div>
@@ -71,7 +71,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
   }
 
   return (
-    <article className="group relative grid gap-5 border-b border-slate-200 py-9 md:grid-cols-[1fr_19rem] md:gap-10 md:py-10">
+    <article className="group relative grid gap-5 border-b border-slate-200 py-9 md:grid-cols-[1fr_24rem] md:gap-10 md:py-10">
       <div className="flex flex-col justify-center">
         {tagList}
         <h2 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-journal-accent">
@@ -96,7 +96,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
             alt={article.title}
             fill
             loading={resolvedLoading}
-            sizes="(min-width: 768px) 19rem, 100vw"
+            sizes="(min-width: 768px) 24rem, 100vw"
             className="object-cover transition duration-500 group-hover:scale-[1.04]"
           />
         </div>

@@ -32,7 +32,7 @@ const BlogPage = async ({ searchParams }: Props) => {
   const remainingArticles = articles.slice(1);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
+    <main className="mx-auto w-full max-w-6xl px-4 py-6 md:py-12">
       <header className="mb-14 md:mb-20">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">
           {siteConfig.blog.indexEyebrow}
