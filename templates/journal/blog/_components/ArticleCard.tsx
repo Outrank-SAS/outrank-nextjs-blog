@@ -34,7 +34,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
 
   if (featured) {
     return (
-      <article className="group relative grid gap-7 md:grid-cols-[1fr_1fr] md:gap-12">
+      <article className="group relative grid gap-7 md:grid-cols-[1fr_1fr] md:gap-10">
         {article.image_url ? (
           <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100 md:aspect-[3/2]">
             <Image
