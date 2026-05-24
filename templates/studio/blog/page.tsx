@@ -35,7 +35,7 @@ const BlogPage = async ({ searchParams }: Props) => {
         <header className="mb-10 md:mb-14">
           <div className="grid gap-8 border-b border-slate-200 pb-8 md:grid-cols-[0.74fr_1.26fr] md:items-end md:pb-12">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-teal-700">{siteConfig.blog.indexEyebrow}</p>
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-studio-accent">{siteConfig.blog.indexEyebrow}</p>
               {siteConfig.brandTagline ? (
                 <p className="mt-3 max-w-sm text-base leading-7 text-slate-600">{siteConfig.brandTagline}</p>
               ) : null}

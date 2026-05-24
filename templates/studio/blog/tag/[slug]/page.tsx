@@ -52,7 +52,7 @@ const TagPage = async ({ params, searchParams }: Props) => {
     <main className="min-h-screen bg-[#f8fbfa] text-slate-950">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
         <header className="mb-10 border-b border-slate-200 pb-8 md:mb-14 md:pb-12">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-teal-700">{siteConfig.blog.tagEyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.2em] text-studio-accent">{siteConfig.blog.tagEyebrow}</p>
           <h1 className="mt-5 text-5xl font-black leading-none text-slate-950 md:text-7xl">#{tag}</h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
             {total} {total === 1 ? 'article' : 'articles'}

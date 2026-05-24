@@ -17,10 +17,10 @@ const ArticleCard = ({ article, articleNumber, imageLoading = 'lazy' }: Props) =
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group block h-full focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-600"
+      className="group block h-full focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-accent"
     >
       <article className="grid gap-5 py-7 transition md:grid-cols-[3rem_15rem_1fr] md:gap-7 md:py-9">
-        <div className="text-sm font-black tabular-nums text-teal-700 md:pt-1">{displayNumber ?? 'Studio'}</div>
+        <div className="text-sm font-black tabular-nums text-studio-accent md:pt-1">{displayNumber ?? 'Studio'}</div>
         {article.image_url ? (
           <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-slate-200 bg-slate-100 md:aspect-[4/3]">
             {imageLoading === 'eager' ? (
@@ -55,7 +55,7 @@ const ArticleCard = ({ article, articleNumber, imageLoading = 'lazy' }: Props) =
               </span>
             ))}
           </div>
-          <h2 className="max-w-3xl text-2xl font-black leading-tight text-slate-950 transition group-hover:text-teal-800 md:text-3xl">
+          <h2 className="max-w-3xl text-2xl font-black leading-tight text-slate-950 transition group-hover:text-studio-accent md:text-3xl">
             {article.title}
           </h2>
           <p className="mt-3 max-w-2xl line-clamp-2 text-base leading-7 text-slate-600">

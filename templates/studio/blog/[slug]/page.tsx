@@ -59,7 +59,7 @@ const ArticlePage = async ({ params }: Props) => {
       <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
         <Link
           href="/blog"
-          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-teal-200 hover:text-teal-800"
+          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-studio-accent/40 hover:text-studio-accent"
         >
           {siteConfig.blog.backToBlog}
         </Link>
@@ -71,7 +71,7 @@ const ArticlePage = async ({ params }: Props) => {
                 <Link
                   key={tag}
                   href={`/blog/tag/${encodeURIComponent(tag)}`}
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-600 transition hover:border-teal-200 hover:text-teal-800"
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-600 transition hover:border-studio-accent/40 hover:text-studio-accent"
                 >
                   {tag}
                 </Link>
