@@ -21,10 +21,10 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
     <article
       className={
         isFeaturedWithImage
-          ? 'group relative grid h-full overflow-hidden rounded-lg border border-lime-300/30 bg-white/[0.07] shadow-2xl shadow-black/30 transition duration-200 hover:-translate-y-1 hover:border-lime-300/60 md:grid-cols-[1.05fr_0.95fr]'
+          ? 'group relative grid h-full overflow-hidden rounded-lg border border-signal-accent/30 bg-white/[0.07] shadow-2xl shadow-black/30 transition duration-200 hover:-translate-y-1 hover:border-signal-accent/60 md:grid-cols-[1.05fr_0.95fr]'
           : featured
-            ? 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-lime-300/30 bg-white/[0.07] shadow-2xl shadow-black/30 transition duration-200 hover:-translate-y-1 hover:border-lime-300/60'
-            : 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/[0.06] shadow-xl shadow-black/20 transition duration-200 hover:-translate-y-1 hover:border-lime-300/40 hover:bg-white/[0.08]'
+            ? 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-signal-accent/30 bg-white/[0.07] shadow-2xl shadow-black/30 transition duration-200 hover:-translate-y-1 hover:border-signal-accent/60'
+            : 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/[0.06] shadow-xl shadow-black/20 transition duration-200 hover:-translate-y-1 hover:border-signal-accent/40 hover:bg-white/[0.08]'
       }
     >
       {article.image_url ? (
@@ -52,7 +52,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
               <Link
                 key={tag}
                 href={`/blog/tag/${encodeURIComponent(tag)}`}
-                className="inline-flex items-center rounded-full border border-lime-300/30 bg-lime-300/10 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-lime-200 transition hover:border-lime-300/60 hover:bg-lime-300/20 hover:text-lime-100"
+                className="inline-flex items-center rounded-full border border-signal-accent/30 bg-signal-accent/10 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-signal-accent transition hover:border-signal-accent/60 hover:bg-signal-accent/20 hover:text-signal-accent"
               >
                 {tag}
               </Link>
@@ -62,8 +62,8 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
         <h2
           className={
             featured
-              ? 'text-3xl font-black leading-tight text-white transition group-hover:text-lime-200 md:text-5xl'
-              : 'text-xl font-black leading-tight text-white transition group-hover:text-lime-200'
+              ? 'text-3xl font-black leading-tight text-white transition group-hover:text-signal-accent md:text-5xl'
+              : 'text-xl font-black leading-tight text-white transition group-hover:text-signal-accent'
           }
         >
           <Link href={`/blog/${article.slug}`} className="after:absolute after:inset-0 after:content-['']">

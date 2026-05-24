@@ -92,7 +92,7 @@ const BlogSearchField = () => {
         onChange={(event) => setSearchQuery(event.target.value)}
         placeholder="Search articles…"
         aria-label="Search articles"
-        className="h-12 w-full rounded-lg border border-white/10 bg-white/[0.06] pl-12 pr-12 text-base text-white placeholder:text-zinc-500 transition focus:border-lime-300/40 focus:outline-none focus:ring-2 focus:ring-lime-300/15 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+        className="h-12 w-full rounded-lg border border-white/10 bg-white/[0.06] pl-12 pr-12 text-base text-white placeholder:text-zinc-500 transition focus:border-signal-accent/40 focus:outline-none focus:ring-2 focus:ring-signal-accent/15 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
       />
       {searchQuery ? (
         <button

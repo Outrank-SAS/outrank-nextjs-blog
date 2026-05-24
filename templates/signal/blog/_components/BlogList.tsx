@@ -73,14 +73,14 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
               <FrownIcon />
             </div>
             <h3 className="mt-5 text-2xl font-black tracking-tight text-white">
-              No matches for <span className="text-lime-300">“{trimmedQuery}”</span>
+              No matches for <span className="text-signal-accent">“{trimmedQuery}”</span>
             </h3>
             <p className="mt-3 max-w-md text-base leading-7 text-zinc-300">
               Try different keywords, or jump back to the full blog.
             </p>
             <Link
               href="/blog"
-              className="mt-7 inline-flex items-center rounded-full bg-lime-300 px-5 py-2.5 text-sm font-bold text-zinc-950 transition hover:bg-lime-200"
+              className="mt-7 inline-flex items-center rounded-full bg-signal-accent px-5 py-2.5 text-sm font-bold text-zinc-950 transition hover:bg-signal-accent"
             >
               Show all articles
             </Link>

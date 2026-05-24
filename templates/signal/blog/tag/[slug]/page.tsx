@@ -59,7 +59,7 @@ const TagPage = async ({ params, searchParams }: Props) => {
       <div className="mx-auto w-full max-w-7xl px-4 py-12 md:py-20">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-300 underline-offset-4 transition hover:text-lime-300 hover:underline"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-300 underline-offset-4 transition hover:text-signal-accent hover:underline"
         >
           <svg
             width="16"

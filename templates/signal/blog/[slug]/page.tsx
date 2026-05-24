@@ -63,7 +63,7 @@ const ArticlePage = async ({ params }: Props) => {
       <div className="mx-auto w-full max-w-7xl px-4 py-12 md:py-20">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-300 underline-offset-4 transition hover:text-lime-300 hover:underline"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-300 underline-offset-4 transition hover:text-signal-accent hover:underline"
         >
           <svg
             width="16"
@@ -90,7 +90,7 @@ const ArticlePage = async ({ params }: Props) => {
                   <Link
                     key={tag}
                     href={`/blog/tag/${encodeURIComponent(tag)}`}
-                    className="inline-flex items-center rounded-full border border-lime-300/30 bg-lime-300/10 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-lime-200 transition hover:border-lime-300/60 hover:bg-lime-300/20 hover:text-lime-100"
+                    className="inline-flex items-center rounded-full border border-signal-accent/30 bg-signal-accent/10 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-signal-accent transition hover:border-signal-accent/60 hover:bg-signal-accent/20 hover:text-signal-accent"
                   >
                     {tag}
                   </Link>

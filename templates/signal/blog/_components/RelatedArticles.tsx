@@ -16,7 +16,7 @@ const RelatedArticles = ({ articles }: Props) => {
 
   return (
     <section className="mx-auto mt-20 max-w-5xl border-t border-white/10 pt-14 md:mt-24 md:pt-16">
-      <p className="text-xs font-black uppercase tracking-[0.22em] text-lime-300">
+      <p className="text-xs font-black uppercase tracking-[0.22em] text-signal-accent">
         {siteConfig.blog.relatedEyebrow}
       </p>
       <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-4xl">
@@ -29,7 +29,7 @@ const RelatedArticles = ({ articles }: Props) => {
           return (
             <article
               key={article.id}
-              className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-xl shadow-black/20 transition duration-200 hover:border-lime-300/40 hover:bg-white/[0.06]"
+              className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-xl shadow-black/20 transition duration-200 hover:border-signal-accent/40 hover:bg-white/[0.06]"
             >
               {article.image_url ? (
                 <div className="relative aspect-[16/10] overflow-hidden bg-white/[0.05]">
@@ -50,14 +50,14 @@ const RelatedArticles = ({ articles }: Props) => {
                       <Link
                         key={tag}
                         href={`/blog/tag/${encodeURIComponent(tag)}`}
-                        className="inline-flex items-center rounded-full border border-lime-300/30 bg-lime-300/10 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-lime-200 transition hover:border-lime-300/60 hover:bg-lime-300/20 hover:text-lime-100"
+                        className="inline-flex items-center rounded-full border border-signal-accent/30 bg-signal-accent/10 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-signal-accent transition hover:border-signal-accent/60 hover:bg-signal-accent/20 hover:text-signal-accent"
                       >
                         {tag}
                       </Link>
                     ))}
                   </div>
                 ) : null}
-                <h3 className="text-lg font-black leading-snug text-white transition group-hover:text-lime-200">
+                <h3 className="text-lg font-black leading-snug text-white transition group-hover:text-signal-accent">
                   <Link href={`/blog/${article.slug}`} className="after:absolute after:inset-0 after:content-['']">
                     {article.title}
                   </Link>

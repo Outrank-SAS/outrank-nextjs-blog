@@ -7,6 +7,9 @@ const config: Config = {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
+      colors: {
+        'signal-accent': 'rgb(var(--signal-accent) / <alpha-value>)',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

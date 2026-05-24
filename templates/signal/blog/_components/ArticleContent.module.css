@@ -62,7 +62,7 @@
 }
 
 .articleContent a {
-  color: #bef264;
+  color: rgb(var(--signal-accent));
   font-weight: 650;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
@@ -74,9 +74,9 @@
 }
 
 .articleContent blockquote {
-  border-left: 0.25rem solid #84cc16;
-  background: rgba(190, 242, 100, 0.1);
-  color: #ecfccb;
+  border-left: 0.25rem solid rgb(var(--signal-accent));
+  background: rgb(var(--signal-accent) / 0.1);
+  color: color-mix(in srgb, rgb(var(--signal-accent)) 30%, #ffffff);
   padding: 1rem 1.25rem;
   border-radius: 0 8px 8px 0;
   font-style: normal;
@@ -85,16 +85,16 @@
 .articleContent code {
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.08);
-  color: #ecfccb;
+  color: color-mix(in srgb, rgb(var(--signal-accent)) 30%, #ffffff);
   padding: 0.15rem 0.35rem;
   font-weight: 650;
 }
 
 .articleContent pre {
-  border: 1px solid rgba(190, 242, 100, 0.2);
+  border: 1px solid rgb(var(--signal-accent) / 0.2);
   border-radius: 8px;
   background: #101214;
-  color: #ecfccb;
+  color: color-mix(in srgb, rgb(var(--signal-accent)) 30%, #ffffff);
   overflow-x: auto;
   padding: 1rem;
 }
@@ -135,7 +135,7 @@
 }
 
 .articleContent thead {
-  background: rgba(190, 242, 100, 0.1);
+  background: rgb(var(--signal-accent) / 0.1);
 }
 
 .articleContent th,

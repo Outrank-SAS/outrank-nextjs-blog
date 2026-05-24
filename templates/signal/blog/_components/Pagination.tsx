@@ -75,7 +75,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage - 1)}
           aria-label="Previous page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-lime-300/50 hover:text-lime-200"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-signal-accent/50 hover:text-signal-accent"
         >
           <svg
             width="16"
@@ -104,8 +104,8 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             aria-current={item.page === currentPage ? 'page' : undefined}
             className={`inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-bold transition ${
               item.page === currentPage
-                ? 'border-lime-300 bg-lime-300 text-zinc-950'
-                : 'border-white/15 bg-white/[0.06] text-zinc-100 hover:border-lime-300/50 hover:text-lime-200'
+                ? 'border-signal-accent bg-signal-accent text-zinc-950'
+                : 'border-white/15 bg-white/[0.06] text-zinc-100 hover:border-signal-accent/50 hover:text-signal-accent'
             }`}
           >
             {item.page}
@@ -116,7 +116,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage + 1)}
           aria-label="Next page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-lime-300/50 hover:text-lime-200"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-signal-accent/50 hover:text-signal-accent"
         >
           <svg
             width="16"

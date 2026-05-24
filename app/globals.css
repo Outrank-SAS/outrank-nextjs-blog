@@ -37,6 +37,22 @@ body {
 
 html[data-blog-theme='dark'] {
   color-scheme: dark;
+
+  /*
+   * Signal template accent.
+   * Change this RGB triplet to swap the lime accent for your own color.
+   * Every solid and translucent usage across the signal blog (tag pills,
+   * pagination, links, blockquotes, hover states, etc.) is derived from
+   * this one value via Tailwind's alpha modifier (rgb / <alpha-value>)
+   * or CSS rgb(var(--signal-accent) / N).
+   *
+   * Examples:
+   *   --signal-accent: 190 242 100;  // lime-300 (default)
+   *   --signal-accent: 129 140 248;  // indigo-400
+   *   --signal-accent: 244 114 182;  // pink-400
+   *   --signal-accent: 251 146 60;   // orange-400
+   */
+  --signal-accent: 190 242 100;
 }
 
 html[data-blog-theme='dark'] body {
