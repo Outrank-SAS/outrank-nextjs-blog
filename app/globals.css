@@ -142,3 +142,50 @@ html[data-blog-theme='dark'] [data-component='site-footer'] > div > div:last-chi
   border-color: rgba(255, 255, 255, 0.08);
   color: #a1a1aa;
 }
+
+html[data-blog-theme='dark'] .animate-pulse .bg-slate-100,
+html[data-blog-theme='dark'] .animate-pulse .bg-slate-200,
+html[data-blog-theme='dark'] .animate-pulse > div {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] h1,
+html[data-blog-theme='dark'] [data-component='blog-not-found'] h1 {
+  color: #f4f4f5;
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] p,
+html[data-blog-theme='dark'] [data-component='blog-not-found'] p {
+  color: #d4d4d8;
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] button,
+html[data-blog-theme='dark'] [data-component='blog-not-found'] a {
+  background: #f4f4f5;
+  color: #050807;
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] button:hover,
+html[data-blog-theme='dark'] [data-component='blog-not-found'] a:hover {
+  background: #ffffff;
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] a[href='/blog'] {
+  background: rgba(255, 255, 255, 0.04);
+  color: #d4d4d8;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] a[href='/blog']:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] [aria-hidden] {
+  color: #fda4af;
+}
+
+html[data-blog-theme='dark'] [data-component='blog-error'] [aria-hidden='true']:first-child {
+  background: rgba(253, 164, 175, 0.08);
+}

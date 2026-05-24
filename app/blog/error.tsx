@@ -18,7 +18,11 @@ const BlogError = ({ error, reset }: Props) => {
   }, [error]);
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-20 text-center md:py-28">
+    <main
+      data-component="blog-error"
+      role="alert"
+      className="mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-20 text-center md:py-28"
+    >
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50">
         <svg
           width="32"
