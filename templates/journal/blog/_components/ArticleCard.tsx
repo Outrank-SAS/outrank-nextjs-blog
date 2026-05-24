@@ -57,9 +57,6 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
               {article.title}
             </Link>
           </h2>
-          <p className="mt-5 line-clamp-3 text-base leading-7 text-slate-600 md:text-lg md:leading-8">
-            {article.meta_description}
-          </p>
           <div className="mt-6 flex items-center gap-3 text-xs font-medium text-slate-600">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
             <span aria-hidden="true">·</span>
