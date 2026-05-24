@@ -94,7 +94,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
         <div>
           <ArticleCard article={featuredArticle} featured />
           {remainingArticles.length ? (
-            <div className="mt-14 border-t border-slate-200 md:mt-20">
+            <div className="mt-12 border-t border-slate-200 md:mt-16">
               {remainingArticles.map((article) => (
                 <ArticleCard key={article.id} article={article} />
               ))}

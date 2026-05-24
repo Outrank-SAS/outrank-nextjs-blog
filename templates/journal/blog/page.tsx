@@ -34,7 +34,7 @@ const BlogPage = async ({ searchParams }: Props) => {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
-      <header className="mb-14 border-b border-slate-200 pb-10 md:mb-20 md:pb-14">
+      <header className="mb-12 border-b border-slate-200 pb-10 md:mb-16 md:pb-14">
         <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:items-end lg:gap-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">
