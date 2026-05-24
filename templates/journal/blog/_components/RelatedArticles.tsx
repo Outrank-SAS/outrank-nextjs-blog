@@ -15,7 +15,7 @@ const RelatedArticles = ({ articles }: Props) => {
   if (articles.length === 0) return null;
 
   return (
-    <section className="mx-auto mt-20 max-w-5xl border-t border-journal-accent/30 pt-14 md:mt-24 md:pt-16">
+    <section className="mx-auto mt-20 max-w-5xl border-t border-slate-200 pt-14 md:mt-24 md:pt-16">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">{siteConfig.blog.relatedEyebrow}</p>
       <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-slate-950 md:text-4xl">
         {siteConfig.blog.relatedTitle}

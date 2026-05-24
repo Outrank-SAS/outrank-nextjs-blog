@@ -71,7 +71,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
   }
 
   return (
-    <article className="group relative grid gap-5 border-b border-journal-accent/30 py-9 md:grid-cols-[1fr_24rem] md:gap-10 md:py-10">
+    <article className="group relative grid gap-5 border-b border-slate-200 py-9 md:grid-cols-[1fr_24rem] md:gap-10 md:py-10">
       <div className="flex flex-col justify-center">
         {tagList}
         <h2 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-journal-accent">

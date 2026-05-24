@@ -47,7 +47,7 @@ const BlogPage = async ({ searchParams }: Props) => {
         <div>
           <ArticleCard article={featuredArticle} featured />
           {remainingArticles.length ? (
-            <div className="mt-14 border-t border-journal-accent/30 md:mt-20">
+            <div className="mt-14 border-t border-slate-200 md:mt-20">
               {remainingArticles.map((article) => (
                 <ArticleCard key={article.id} article={article} />
               ))}
