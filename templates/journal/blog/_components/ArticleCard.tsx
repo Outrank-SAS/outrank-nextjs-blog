@@ -17,19 +17,17 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
 
   const tagList =
     visibleTags.length > 0 ? (
-      <p className="relative z-10 flex flex-wrap gap-x-3 gap-y-1 text-sm font-medium text-slate-950">
-        {visibleTags.map((tag, index) => (
-          <span key={tag} className="flex items-center gap-3">
-            {index > 0 ? <span aria-hidden="true">·</span> : null}
-            <Link
-              href={`/blog/tag/${encodeURIComponent(tag)}`}
-              className="underline-offset-2 transition hover:underline"
-            >
-              {tag}
-            </Link>
-          </span>
+      <div className="relative z-10 flex flex-wrap gap-2">
+        {visibleTags.map((tag) => (
+          <Link
+            key={tag}
+            href={`/blog/tag/${encodeURIComponent(tag)}`}
+            className="inline-flex items-center rounded-full border border-journal-accent/30 bg-journal-accent/10 px-2.5 py-0.5 text-xs font-medium text-journal-accent transition hover:border-journal-accent/60 hover:bg-journal-accent/20"
+          >
+            {tag}
+          </Link>
         ))}
-      </p>
+      </div>
     ) : null;
 
   if (featured) {
