@@ -5,7 +5,7 @@ import { siteConfig } from '@/app/_config/siteConfig';
 const NotFound = () => {
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-col items-start justify-center px-4 py-24 md:py-32">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">
         {siteConfig.blog.notFoundEyebrow}
       </p>
       <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-5xl">
@@ -14,7 +14,7 @@ const NotFound = () => {
       <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">{siteConfig.blog.notFoundDek}</p>
       <Link
         href="/blog"
-        className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 underline-offset-4 transition hover:text-blue-800 hover:underline"
+        className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 underline-offset-4 transition hover:text-journal-accent hover:underline"
       >
         <svg
           width="16"

@@ -68,7 +68,7 @@ const ArticlePage = async ({ params }: Props) => {
     <main className="mx-auto w-full max-w-6xl px-4 py-6 md:py-12">
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 underline-offset-4 transition hover:text-blue-800 hover:underline"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 underline-offset-4 transition hover:text-journal-accent hover:underline"
       >
         <svg
           width="16"

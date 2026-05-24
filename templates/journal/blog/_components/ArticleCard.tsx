@@ -49,7 +49,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
         ) : null}
         <div className="flex flex-col justify-center">
           {tagList}
-          <h2 className="mt-3 text-3xl font-bold leading-[1.1] tracking-tight text-slate-950 transition group-hover:text-blue-800 md:text-[2.75rem]">
+          <h2 className="mt-3 text-3xl font-bold leading-[1.1] tracking-tight text-slate-950 transition group-hover:text-journal-accent md:text-[2.75rem]">
             <Link
               href={`/blog/${article.slug}`}
               className="after:absolute after:inset-0 after:content-['']"
@@ -74,7 +74,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
     <article className="group relative grid gap-5 border-b border-slate-200 py-9 md:grid-cols-[1fr_19rem] md:gap-10 md:py-10">
       <div className="flex flex-col justify-center">
         {tagList}
-        <h2 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-blue-800">
+        <h2 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-journal-accent">
           <Link
             href={`/blog/${article.slug}`}
             className="after:absolute after:inset-0 after:content-['']"

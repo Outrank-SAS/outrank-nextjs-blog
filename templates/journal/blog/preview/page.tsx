@@ -56,7 +56,7 @@ const PreviewIndex = () => {
       </div>
 
       <header className="mt-12 mb-12 md:mt-16 md:mb-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Preview</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">Preview</p>
         <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-5xl">
           Blog UI states
         </h1>
@@ -79,11 +79,11 @@ const PreviewIndex = () => {
             >
               {card.badge}
             </span>
-            <h2 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-blue-800">
+            <h2 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-journal-accent">
               {card.title}
             </h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">{card.description}</p>
-            <span className="mt-auto pt-4 text-sm font-medium text-blue-700">View →</span>
+            <span className="mt-auto pt-4 text-sm font-medium text-journal-accent">View →</span>
           </Link>
         ))}
       </div>

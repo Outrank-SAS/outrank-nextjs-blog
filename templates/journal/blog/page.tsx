@@ -34,7 +34,7 @@ const BlogPage = async ({ searchParams }: Props) => {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
       <header className="mb-14 md:mb-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">
           {siteConfig.blog.indexEyebrow}
         </p>
         <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">

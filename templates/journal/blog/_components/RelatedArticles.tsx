@@ -16,7 +16,7 @@ const RelatedArticles = ({ articles }: Props) => {
 
   return (
     <section className="mx-auto mt-20 max-w-5xl border-t border-slate-200 pt-14 md:mt-24 md:pt-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">{siteConfig.blog.relatedEyebrow}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">{siteConfig.blog.relatedEyebrow}</p>
       <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-slate-950 md:text-4xl">
         {siteConfig.blog.relatedTitle}
       </h2>
@@ -53,7 +53,7 @@ const RelatedArticles = ({ articles }: Props) => {
                   ))}
                 </p>
               ) : null}
-              <h3 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-blue-800 md:text-[1.375rem]">
+              <h3 className="mt-2 text-2xl font-semibold leading-snug tracking-tight text-slate-950 transition group-hover:text-journal-accent md:text-[1.375rem]">
                 <Link
                   href={`/blog/${article.slug}`}
                   className="after:absolute after:inset-0 after:content-['']"
