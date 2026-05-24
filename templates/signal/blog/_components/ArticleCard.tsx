@@ -14,13 +14,17 @@ type Props = {
 const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
   const resolvedLoading = imageLoading ?? (featured ? 'eager' : 'lazy');
   const visibleTags = article.tags.slice(0, BLOG_CARD_TAG_LIMIT);
+  const hasImage = Boolean(article.image_url);
+  const isFeaturedWithImage = featured && hasImage;
 
   return (
     <article
       className={
-        featured
+        isFeaturedWithImage
           ? 'group relative grid h-full overflow-hidden rounded-lg border border-lime-300/30 bg-white/[0.07] shadow-2xl shadow-black/30 transition duration-200 hover:-translate-y-1 hover:border-lime-300/60 md:grid-cols-[1.05fr_0.95fr]'
-          : 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/[0.06] shadow-xl shadow-black/20 transition duration-200 hover:-translate-y-1 hover:border-lime-300/40 hover:bg-white/[0.08]'
+          : featured
+            ? 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-lime-300/30 bg-white/[0.07] shadow-2xl shadow-black/30 transition duration-200 hover:-translate-y-1 hover:border-lime-300/60'
+            : 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/[0.06] shadow-xl shadow-black/20 transition duration-200 hover:-translate-y-1 hover:border-lime-300/40 hover:bg-white/[0.08]'
       }
     >
       {article.image_url ? (
