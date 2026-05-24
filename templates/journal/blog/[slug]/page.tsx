@@ -95,7 +95,7 @@ const ArticlePage = async ({ params }: Props) => {
                 <Link
                   key={tag}
                   href={`/blog/tag/${encodeURIComponent(tag)}`}
-                  className="inline-flex items-center rounded-full border border-journal-accent/30 bg-journal-accent/10 px-2.5 py-0.5 text-xs font-medium text-journal-accent transition hover:border-journal-accent/60 hover:bg-journal-accent/20"
+                  className="inline-flex items-center rounded-full border border-journal-accent/30 bg-journal-accent/10 px-2.5 py-0.5 text-xs font-medium text-journal-accent/70 transition hover:border-journal-accent/60 hover:bg-journal-accent/20 hover:text-journal-accent"
                 >
                   {tag}
                 </Link>
