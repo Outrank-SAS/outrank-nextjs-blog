@@ -30,7 +30,7 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
           </div>
         ) : null}
         <div className="flex flex-1 flex-col pt-5">
-          <p className="mb-3 text-xs font-black uppercase tracking-[0.12em] text-slate-700">
+          <p className="mb-3 text-xs font-medium text-slate-500">
             {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).join(', ')}
           </p>
           <h2 className="text-xl font-semibold leading-tight text-slate-950 transition group-hover:text-studio-accent">
