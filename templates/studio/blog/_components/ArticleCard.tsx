@@ -16,7 +16,7 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
       href={`/blog/${article.slug}`}
       className="group block h-full focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-accent"
     >
-      <article className="flex h-full flex-col rounded-lg p-5 transition duration-200 hover:bg-studio-accent/5">
+      <article className="-mb-px -mr-px flex h-full flex-col border-b border-r border-slate-200 p-8 transition duration-200 hover:bg-studio-accent/5 md:p-10">
         {article.image_url ? (
           <div className="relative aspect-[16/10] overflow-hidden rounded-md bg-slate-100">
             <Image
