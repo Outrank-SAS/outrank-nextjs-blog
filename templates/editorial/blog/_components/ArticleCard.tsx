@@ -20,7 +20,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
       className={
         featured
           ? 'group relative grid h-full overflow-hidden rounded-lg border border-zinc-950 bg-white shadow-xl shadow-zinc-200/80 md:grid-cols-[minmax(0,0.9fr)_minmax(22rem,1fr)]'
-          : 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition duration-200 hover:border-zinc-300'
+          : 'group relative flex h-full flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition duration-200 hover:ring-4 hover:ring-editorial-accent/15'
       }
     >
       {article.image_url ? (
