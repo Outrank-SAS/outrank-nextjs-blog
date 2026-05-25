@@ -65,7 +65,7 @@ const ArticlePage = async ({ params }: Props) => {
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <section className="bg-outrank-classic-accent">
-        <div className="mx-auto w-full max-w-7xl px-4 pb-40 pt-12 md:pb-56 md:pt-20">
+        <div className="mx-auto w-full max-w-7xl px-4 py-12 md:py-20">
           <Link
             href="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 underline-offset-4 transition hover:text-white hover:underline"
@@ -87,50 +87,51 @@ const ArticlePage = async ({ params }: Props) => {
             {siteConfig.blog.backToBlog}
           </Link>
 
-          <div className="mx-auto mt-8 max-w-5xl text-center md:mt-12">
-            {article.tags.length > 0 ? (
-              <div className="mb-6 flex flex-wrap justify-center gap-2">
-                {article.tags.map((tag) => (
-                  <Link
-                    key={tag}
-                    href={`/blog/tag/${encodeURIComponent(tag)}`}
-                    className="inline-flex items-center rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition hover:border-white/60 hover:bg-white/20"
-                  >
-                    {tag}
-                  </Link>
-                ))}
+          <div className="mt-8 grid grid-cols-1 gap-10 md:mt-12 lg:grid-cols-[1.5fr_1fr] lg:items-center lg:gap-16">
+            <div className="flex flex-col">
+              {article.tags.length > 0 ? (
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {article.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/blog/tag/${encodeURIComponent(tag)}`}
+                      className="inline-flex items-center rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition hover:border-white/60 hover:bg-white/20"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+              <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-white md:text-4xl lg:text-6xl">
+                {article.title}
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-violet-100">
+                {article.meta_description}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3 text-sm font-medium text-violet-200">
+                <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
+                <span aria-hidden="true">·</span>
+                <span>{article.reading_time_minutes} min read</span>
+              </div>
+            </div>
+            {article.image_url ? (
+              <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-white/20 bg-violet-700">
+                <Image
+                  src={article.image_url}
+                  alt={article.title}
+                  fill
+                  loading="eager"
+                  sizes="(min-width: 768px) 34rem, 100vw"
+                  className="object-cover"
+                />
               </div>
             ) : null}
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
-              {article.title}
-            </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-violet-100 md:text-xl">
-              {article.meta_description}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-violet-200">
-              <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
-              <span aria-hidden="true">·</span>
-              <span>{article.reading_time_minutes} min read</span>
-            </div>
           </div>
         </div>
       </section>
 
       <div className="mx-auto w-full max-w-7xl px-4 py-12 md:py-16">
         <article>
-          {article.image_url ? (
-            <div className="relative mx-auto -mt-40 mb-12 aspect-[16/9] max-w-4xl overflow-hidden rounded-2xl border border-violet-100 bg-slate-100 md:-mt-56 md:mb-16">
-              <Image
-                src={article.image_url}
-                alt={article.title}
-                fill
-                loading="eager"
-                sizes="(min-width: 768px) 896px, 100vw"
-                className="object-cover"
-              />
-            </div>
-          ) : null}
-
           <div className="mx-auto max-w-7xl xl:grid xl:grid-cols-[14rem_minmax(0,1fr)] xl:gap-12">
             {hasTableOfContents ? (
               <aside className="hidden xl:block">

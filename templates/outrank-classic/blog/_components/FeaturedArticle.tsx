@@ -12,7 +12,7 @@ type Props = {
 const FeaturedArticle = ({ article }: Props) => {
   return (
     <article className="group relative mb-6 overflow-hidden rounded-2xl bg-outrank-classic-accent transition duration-200 hover:-translate-y-1 hover:bg-violet-700 md:mb-10">
-      <div className="grid grid-cols-1 gap-6 p-6 md:grid-cols-[1fr_1.2fr] md:items-center md:gap-10 md:p-8">
+      <div className="grid grid-cols-1 gap-6 p-6 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-10 md:p-8">
         <div className="flex flex-col">
           <div className="relative z-10 mb-4 flex flex-wrap gap-2">
             {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).map((tag) => (
