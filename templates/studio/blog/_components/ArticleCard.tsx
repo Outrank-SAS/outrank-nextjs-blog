@@ -7,20 +7,16 @@ import { formatDate } from '../_lib/format';
 
 type Props = {
   article: OutrankArticleSummary;
-  articleNumber?: number;
   imageLoading?: 'eager' | 'lazy';
 };
 
-const ArticleCard = ({ article, articleNumber, imageLoading = 'lazy' }: Props) => {
-  const displayNumber = articleNumber ? String(articleNumber).padStart(2, '0') : null;
-
+const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
   return (
     <Link
       href={`/blog/${article.slug}`}
       className="group block h-full focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-accent"
     >
-      <article className="grid gap-5 py-7 transition md:grid-cols-[3rem_15rem_1fr] md:gap-7 md:py-9">
-        <div className="text-sm font-black tabular-nums text-studio-accent md:pt-1">{displayNumber ?? 'Studio'}</div>
+      <article className="grid gap-5 py-7 transition md:grid-cols-[15rem_1fr] md:gap-7 md:py-9">
         {article.image_url ? (
           <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-slate-200 bg-slate-100 md:aspect-[4/3]">
             {imageLoading === 'eager' ? (

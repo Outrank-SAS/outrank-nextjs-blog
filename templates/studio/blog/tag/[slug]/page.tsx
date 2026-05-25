@@ -65,7 +65,6 @@ const TagPage = async ({ params, searchParams }: Props) => {
               <ArticleCard
                 key={article.id}
                 article={article}
-                articleNumber={index + 1}
                 imageLoading={index < 3 ? 'eager' : 'lazy'}
               />
             ))}
