@@ -55,6 +55,7 @@ const ArticleSidebar = ({ items }: Props) => {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
+                onClick={() => setActiveId(item.id)}
                 className={`block py-1.5 text-sm leading-snug transition ${item.level === 3 ? 'pl-4' : ''} ${
                   isActive ? 'font-semibold text-signal-accent' : 'text-zinc-400 hover:text-zinc-200'
                 }`}
