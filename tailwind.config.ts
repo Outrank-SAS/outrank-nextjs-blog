@@ -13,6 +13,7 @@ const config: Config = {
         'editorial-accent': 'rgb(var(--editorial-accent) / <alpha-value>)',
         'journal-accent': 'rgb(var(--journal-accent) / <alpha-value>)',
         'studio-accent': 'rgb(var(--studio-accent) / <alpha-value>)',
+        'studio-dark-accent': 'rgb(var(--studio-dark-accent) / <alpha-value>)',
       },
     },
   },

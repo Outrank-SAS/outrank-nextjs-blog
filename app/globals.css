@@ -72,6 +72,14 @@ html[data-blog-theme='dark'] {
    *   --signal-accent: 251 146 60;   // orange-400
    */
   --signal-accent: 190 242 100;
+
+  /*
+   * Studio Dark template accent — violet-300 for a soft pastel
+   * purple (touch of white mixed in) that pops on the deep zinc
+   * background. Used in tag hover, page hover, active pagination,
+   * focus rings, etc.
+   */
+  --studio-dark-accent: 196 181 253;
 }
 
 html[data-blog-theme='dark'] body {

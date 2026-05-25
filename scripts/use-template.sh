@@ -7,7 +7,7 @@ DEMO_DIR="$ROOT_DIR/scripts/demo-mode"
 APP_BLOG="$ROOT_DIR/app/blog"
 
 usage() {
-  echo "Usage: $0 <default|studio|editorial|signal|journal>"
+  echo "Usage: $0 <default|studio|studio-dark|editorial|signal|journal>"
   exit 1
 }
 
@@ -20,7 +20,7 @@ case "$TEMPLATE" in
     git checkout HEAD -- app/blog
     git clean -fd app/blog >/dev/null
     ;;
-  studio|editorial|signal|journal)
+  studio|studio-dark|editorial|signal|journal)
     if [[ ! -d "templates/$TEMPLATE/blog" ]]; then
       echo "Template not found: templates/$TEMPLATE/blog"
       exit 1
