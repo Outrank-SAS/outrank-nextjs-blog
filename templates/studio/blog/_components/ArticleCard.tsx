@@ -16,7 +16,7 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
       href={`/blog/${article.slug}`}
       className="group block h-full focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-accent"
     >
-      <article className="flex h-full flex-col p-6 transition duration-200 hover:bg-studio-accent/10 md:p-8">
+      <article className="flex h-full flex-col p-6 transition duration-200 hover:bg-studio-accent/5 md:p-8">
         {article.image_url ? (
           <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
             <Image
@@ -40,7 +40,7 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
               </span>
             ))}
           </div>
-          <h2 className="font-serif text-2xl font-black leading-tight text-slate-950 underline-offset-[6px] decoration-studio-accent decoration-2 transition group-hover:text-studio-accent group-hover:underline">
+          <h2 className="font-serif text-2xl font-black leading-tight text-slate-950 transition group-hover:text-studio-accent">
             {article.title}
           </h2>
           <div className="mt-auto flex flex-wrap items-center gap-3 pt-5 text-xs font-medium text-slate-500">
