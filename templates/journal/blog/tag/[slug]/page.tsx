@@ -48,9 +48,6 @@ const TagPage = async ({ params, searchParams }: Props) => {
     limit: BLOG_ARTICLES_PER_PAGE,
     tag,
   });
-  const featuredArticle = articles[0];
-  const remainingArticles = articles.slice(1);
-
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-6 md:py-12">
       <Link
@@ -75,24 +72,21 @@ const TagPage = async ({ params, searchParams }: Props) => {
       </Link>
 
       <header className="mb-14 mt-10 md:mb-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-          {total} {total === 1 ? 'article' : 'articles'}
-        </p>
-        <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
-          #{tag}
-        </h1>
+        <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+          <h1 className="max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
+            #{tag}
+          </h1>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            {total} {total === 1 ? 'article' : 'articles'}
+          </p>
+        </div>
       </header>
 
-      {featuredArticle ? (
+      {articles.length > 0 ? (
         <div>
-          <ArticleCard article={featuredArticle} featured />
-          {remainingArticles.length ? (
-            <div className="mt-14 border-t border-slate-200 md:mt-20">
-              {remainingArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
-          ) : null}
+          {articles.map((article) => (
+            <ArticleCard key={article.id} article={article} />
+          ))}
         </div>
       ) : (
         <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center text-slate-600">
