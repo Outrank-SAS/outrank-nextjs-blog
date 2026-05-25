@@ -83,23 +83,23 @@ const BlogSearchField = () => {
 
   return (
     <div className="relative">
-      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-        <SearchIcon />
-      </span>
       <input
         type="search"
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
         placeholder="Search articles…"
         aria-label="Search articles"
-        className="h-12 w-full rounded-lg border border-slate-200 bg-white pl-12 pr-12 text-base text-slate-900 placeholder:text-slate-400 transition focus:border-journal-accent/40 focus:outline-none focus:ring-2 focus:ring-journal-accent/15 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+        className="peer h-14 w-full rounded-full border border-slate-200 bg-slate-50 pl-14 pr-12 text-base text-slate-900 placeholder:text-slate-400 transition hover:border-slate-300 hover:bg-white focus:border-journal-accent/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-journal-accent/10 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
       />
+      <span className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 transition-colors peer-focus:text-journal-accent">
+        <SearchIcon />
+      </span>
       {searchQuery ? (
         <button
           type="button"
           onClick={() => setSearchQuery('')}
           aria-label="Clear search"
-          className="absolute right-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+          className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
         >
           <ClearIcon />
         </button>
