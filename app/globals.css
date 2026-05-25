@@ -27,6 +27,18 @@
   --editorial-accent: 109 40 217;
   --journal-accent: 5 74 218;
   --studio-accent: 29 78 216;
+
+  /*
+   * Outrank Classic template accent — violet-600, the real Outrank
+   * brand violet from outrank.so. Used in hero banner, card tag
+   * pills, "Read article" links, active pagination, focus rings.
+   *
+   * Tailwind palette references for quick swaps:
+   *   violet-600 = 124 58 237 (Outrank brand, default)
+   *   violet-700 = 109 40 217 (slightly darker)
+   *   purple-600 = 147 51 234 (more magenta)
+   */
+  --outrank-classic-accent: 124 58 237;
 }
 
 * {

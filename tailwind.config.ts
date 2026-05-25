@@ -14,6 +14,7 @@ const config: Config = {
         'journal-accent': 'rgb(var(--journal-accent) / <alpha-value>)',
         'studio-accent': 'rgb(var(--studio-accent) / <alpha-value>)',
         'studio-dark-accent': 'rgb(var(--studio-dark-accent) / <alpha-value>)',
+        'outrank-classic-accent': 'rgb(var(--outrank-classic-accent) / <alpha-value>)',
       },
     },
   },
