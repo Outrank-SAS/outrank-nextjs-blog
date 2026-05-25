@@ -8,6 +8,8 @@ import {
   BLOG_ARTICLE_REQUEST_ERROR,
   BLOG_ALL_ARTICLES_REQUEST_ERROR,
   BLOG_DEFAULT_PAGE,
+  BLOG_RELATED_ARTICLES_FETCH_LIMIT,
+  BLOG_RELATED_ARTICLES_LIMIT,
   BLOG_REVALIDATE_SECONDS,
   BLOG_SITEMAP_PAGE_SIZE,
   OUTRANK_ENV_ERROR_PATTERN,
@@ -86,6 +88,28 @@ export const getArticle = unstable_cache(
   { revalidate: BLOG_REVALIDATE_SECONDS },
 );
 
+const getAllArticleSummariesCached = unstable_cache(
+  async (): Promise<ArticleSummary[]> =>
+    runOutrankRequest(
+      () => getClient().getAllArticles(BLOG_SITEMAP_PAGE_SIZE),
+      BLOG_ALL_ARTICLES_REQUEST_ERROR,
+    ),
+  ['outrank-blog-all-article-summaries'],
+  { revalidate: BLOG_REVALIDATE_SECONDS },
+);
+
+export const getAllArticleSummaries = async (): Promise<ArticleSummary[]> => {
+  try {
+    return await getAllArticleSummariesCached();
+  } catch (error) {
+    if (isOutrankConfigurationError(error)) {
+      throw error;
+    }
+
+    return [];
+  }
+};
+
 const getStaticArticlesByParams = unstable_cache(
   async (): Promise<StaticArticle[]> => {
     const articles = await runOutrankRequest(
@@ -103,6 +127,39 @@ const getStaticArticlesByParams = unstable_cache(
   ['outrank-blog-static-articles'],
   { revalidate: BLOG_REVALIDATE_SECONDS },
 );
+
+export const getRelatedArticles = async (
+  currentSlug: string,
+  tags: string[],
+): Promise<ArticleSummary[]> => {
+  if (tags.length === 0) return [];
+
+  const seen = new Set<string>();
+  const related: ArticleSummary[] = [];
+
+  for (const tag of tags) {
+    if (related.length >= BLOG_RELATED_ARTICLES_LIMIT) break;
+
+    try {
+      const { articles } = await getArticlesByParams(
+        BLOG_DEFAULT_PAGE,
+        BLOG_RELATED_ARTICLES_FETCH_LIMIT,
+        tag,
+      );
+
+      for (const article of articles) {
+        if (article.slug === currentSlug || seen.has(article.slug)) continue;
+        seen.add(article.slug);
+        related.push(article);
+        if (related.length >= BLOG_RELATED_ARTICLES_LIMIT) break;
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  return related;
+};
 
 export const getStaticArticles = async (): Promise<StaticArticle[]> => {
   try {

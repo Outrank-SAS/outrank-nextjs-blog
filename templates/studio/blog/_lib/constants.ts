@@ -3,6 +3,8 @@ export const BLOG_ARTICLES_PER_PAGE = 12;
 export const BLOG_SITEMAP_PAGE_SIZE = 100;
 export const BLOG_REVALIDATE_SECONDS = process.env.NODE_ENV === 'development' ? 1 : 86400;
 export const BLOG_CARD_TAG_LIMIT = 3;
+export const BLOG_RELATED_ARTICLES_LIMIT = 3;
+export const BLOG_RELATED_ARTICLES_FETCH_LIMIT = 6;
 export const BLOG_PAGINATION_SIBLING_COUNT = 1;
 export const BLOG_PAGINATION_VISIBLE_PAGE_GAP = 1;
 export const BLOG_INDEX_SITEMAP_PRIORITY = 0.8;
