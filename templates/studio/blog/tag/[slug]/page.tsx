@@ -60,7 +60,7 @@ const TagPage = async ({ params, searchParams }: Props) => {
         </header>
 
         {articles.length ? (
-          <div className="grid grid-cols-1 border-l border-t border-slate-200 md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             {articles.map((article, index) => (
               <ArticleCard
                 key={article.id}
