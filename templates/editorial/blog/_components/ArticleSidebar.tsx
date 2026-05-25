@@ -10,7 +10,7 @@ type Props = {
   items: TocItem[];
 };
 
-const OBSERVER_ROOT_MARGIN = '-20% 0px -70% 0px';
+const OBSERVER_ROOT_MARGIN = '0px 0px -75% 0px';
 
 const ArticleSidebar = ({ items }: Props) => {
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? '');
