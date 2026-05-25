@@ -30,20 +30,13 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
           </div>
         ) : null}
         <div className="flex flex-1 flex-col pt-5">
-          <div className="mb-4 flex flex-wrap gap-2">
-            {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-600"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <h2 className="text-2xl font-black leading-tight text-slate-950 transition group-hover:text-studio-accent">
+          <p className="mb-3 text-xs font-black uppercase tracking-[0.12em] text-slate-700">
+            {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).join(', ')}
+          </p>
+          <h2 className="text-3xl font-black leading-[1.15] tracking-tight text-studio-accent transition group-hover:underline md:text-[2rem]">
             {article.title}
           </h2>
-          <p className="mt-3 line-clamp-2 text-base leading-7 text-slate-600">
+          <p className="mt-4 line-clamp-3 text-base leading-7 text-slate-600">
             {article.meta_description}
           </p>
           <div className="mt-auto flex flex-wrap items-center gap-3 pt-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
