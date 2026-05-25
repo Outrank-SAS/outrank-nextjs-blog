@@ -5,11 +5,13 @@ import { notFound } from 'next/navigation';
 
 import { siteConfig } from '@/app/_config/siteConfig';
 
+import ArticleSidebar from '../_components/ArticleSidebar';
 import BackToTop from '../_components/BackToTop';
 import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
 import { getArticle, getRelatedArticles, getStaticArticles } from '../_lib/outrank';
 import { formatDate } from '../_lib/format';
+import { ensureHeadingIds } from '../_lib/toc';
 
 export const revalidate = 86400;
 
@@ -56,6 +58,8 @@ const ArticlePage = async ({ params }: Props) => {
     notFound();
   }
 
+  const { html: articleHtml, tocItems } = ensureHeadingIds(article.html);
+  const hasTableOfContents = tocItems.length > 0;
   const relatedArticles = await getRelatedArticles(article.slug, article.tags);
 
   return (
@@ -124,7 +128,18 @@ const ArticlePage = async ({ params }: Props) => {
           </div>
         ) : null}
 
-        <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: article.html }} />
+        <div className="mx-auto max-w-5xl xl:grid xl:grid-cols-[12rem_minmax(0,1fr)] xl:gap-8">
+          {hasTableOfContents ? (
+            <aside className="hidden xl:block">
+              <div className="sticky top-24">
+                <ArticleSidebar items={tocItems} />
+              </div>
+            </aside>
+          ) : (
+            <div className="hidden xl:block" />
+          )}
+          <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+        </div>
       </article>
 
       <RelatedArticles articles={relatedArticles} />
