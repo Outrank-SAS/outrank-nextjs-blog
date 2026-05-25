@@ -33,7 +33,7 @@ const BlogPage = async ({ searchParams }: Props) => {
     <main className="min-h-screen bg-white text-slate-950">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
         <header className="mb-10 md:mb-14">
-          <h1 className="max-w-4xl text-5xl font-black leading-none text-slate-950 md:text-7xl">
+          <h1 className="text-4xl font-black leading-tight text-slate-950 md:text-6xl">
             {siteConfig.blog.indexTitle}
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{siteConfig.blog.indexDek}</p>
