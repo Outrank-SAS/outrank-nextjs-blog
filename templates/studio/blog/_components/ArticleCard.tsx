@@ -30,15 +30,22 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
           </div>
         ) : null}
         <div className="flex flex-1 flex-col pt-5">
-          <p className="mb-3 text-xs font-medium text-slate-500">
-            {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).join(', ')}
-          </p>
-          <h2 className="text-xl font-semibold leading-tight text-slate-950 transition group-hover:text-studio-accent">
+          <div className="mb-4 flex flex-wrap gap-2">
+            {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).map((tag) => (
+              <span
+                key={tag}
+                className="inline-flex items-center rounded-full border border-studio-accent/20 bg-studio-accent/5 px-2.5 py-0.5 text-xs font-medium text-studio-accent"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h2 className="font-serif text-2xl font-black leading-tight text-slate-950 underline-offset-[6px] decoration-studio-accent decoration-2 transition group-hover:text-studio-accent group-hover:underline">
             {article.title}
           </h2>
-          <div className="mt-auto flex flex-wrap items-center gap-3 pt-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
+          <div className="mt-auto flex flex-wrap items-center gap-3 pt-5 text-xs font-medium text-slate-500">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
-            <span aria-hidden="true">/</span>
+            <span aria-hidden="true">·</span>
             <span>{article.reading_time_minutes} min read</span>
           </div>
         </div>
