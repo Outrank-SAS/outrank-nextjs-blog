@@ -88,9 +88,9 @@ const ArticlePage = async ({ params }: Props) => {
       </Link>
 
       <article className="mt-10">
-        <header className="mb-12 max-w-5xl">
+        <header className="mx-auto mb-12 max-w-5xl text-center">
           {visibleTags.length > 0 ? (
-            <div className="mb-5 flex flex-wrap gap-2">
+            <div className="mb-6 flex flex-wrap justify-center gap-2">
               {visibleTags.map((tag) => (
                 <Link
                   key={tag}
@@ -105,57 +105,43 @@ const ArticlePage = async ({ params }: Props) => {
           <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
             {article.title}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
             {article.meta_description}
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3 text-sm font-medium text-slate-600">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-slate-600">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
             <span aria-hidden="true">·</span>
             <span>{article.reading_time_minutes} min read</span>
           </div>
         </header>
 
-        {hasTableOfContents ? (
-          <div className="lg:grid lg:grid-cols-[17rem_1fr] lg:gap-12">
-            <div className="mb-10 lg:mb-0">
-              <ArticleSidebar items={tocItems} />
-            </div>
-
-            <div>
-              {article.image_url ? (
-                <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-xl bg-slate-100">
-                  <Image
-                    src={article.image_url}
-                    alt={article.title}
-                    fill
-                    loading="eager"
-                    sizes="(min-width: 1024px) 720px, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              ) : null}
-
-              <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
-            </div>
+        {article.image_url ? (
+          <div className="relative mx-auto mb-12 aspect-[16/9] max-w-5xl overflow-hidden rounded-xl bg-slate-100">
+            <Image
+              src={article.image_url}
+              alt={article.title}
+              fill
+              loading="eager"
+              sizes="(min-width: 768px) 896px, 100vw"
+              className="object-cover"
+            />
           </div>
-        ) : (
-          <>
-            {article.image_url ? (
-              <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-xl bg-slate-100">
-                <Image
-                  src={article.image_url}
-                  alt={article.title}
-                  fill
-                  loading="eager"
-                  sizes="(min-width: 1024px) 896px, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            ) : null}
+        ) : null}
 
+        <div className="mx-auto max-w-5xl xl:grid xl:grid-cols-[12rem_minmax(0,1fr)] xl:gap-8">
+          {hasTableOfContents ? (
+            <aside className="hidden xl:block">
+              <div className="sticky top-24">
+                <ArticleSidebar items={tocItems} />
+              </div>
+            </aside>
+          ) : (
+            <div className="hidden xl:block" />
+          )}
+          <div className="mx-auto w-full max-w-3xl xl:mx-0 xl:max-w-none">
             <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
-          </>
-        )}
+          </div>
+        </div>
       </article>
 
       <RelatedArticles articles={relatedArticles} />

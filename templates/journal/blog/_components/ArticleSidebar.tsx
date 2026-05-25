@@ -44,7 +44,7 @@ const ArticleSidebar = ({ items }: Props) => {
   if (items.length === 0) return null;
 
   return (
-    <nav aria-label={siteConfig.blog.tableOfContentsLabel} className="sticky top-24 self-start">
+    <nav aria-label={siteConfig.blog.tableOfContentsLabel}>
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">
         {siteConfig.blog.tableOfContentsLabel}
       </p>
@@ -55,6 +55,7 @@ const ArticleSidebar = ({ items }: Props) => {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
+                onClick={() => setActiveId(item.id)}
                 className={`block py-1.5 text-sm leading-snug transition ${item.level === 3 ? 'pl-4' : ''} ${
                   isActive ? 'font-semibold text-slate-950' : 'text-slate-600 hover:text-slate-900'
                 }`}
