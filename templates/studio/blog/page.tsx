@@ -30,7 +30,7 @@ const BlogPage = async ({ searchParams }: Props) => {
   });
 
   return (
-    <main className="min-h-screen bg-[#f8fbfa] text-slate-950">
+    <main className="min-h-screen bg-white text-slate-950">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
         <header className="mb-10 md:mb-14">
           <div className="grid gap-8 border-b border-slate-200 pb-8 md:grid-cols-[0.74fr_1.26fr] md:items-end md:pb-12">

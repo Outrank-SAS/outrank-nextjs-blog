@@ -55,7 +55,7 @@ const ArticlePage = async ({ params }: Props) => {
   }
 
   return (
-    <main className="min-h-screen bg-[#f8fbfa] text-slate-950">
+    <main className="min-h-screen bg-white text-slate-950">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
         <Link
           href="/blog"
