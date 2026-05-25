@@ -33,25 +33,14 @@ const BlogPage = async ({ searchParams }: Props) => {
     <main className="min-h-screen bg-white text-slate-950">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-14">
         <header className="mb-10 md:mb-14">
-          <div className="grid gap-8 border-b border-slate-200 pb-8 md:grid-cols-[0.74fr_1.26fr] md:items-end md:pb-12">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-studio-accent">{siteConfig.blog.indexEyebrow}</p>
-              {siteConfig.brandTagline ? (
-                <p className="mt-3 max-w-sm text-base leading-7 text-slate-600">{siteConfig.brandTagline}</p>
-              ) : null}
-            </div>
-
-            <div>
-              <h1 className="max-w-4xl text-5xl font-black leading-none text-slate-950 md:text-7xl">
-                {siteConfig.blog.indexTitle}
-              </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{siteConfig.blog.indexDek}</p>
-            </div>
-          </div>
+          <h1 className="max-w-4xl text-5xl font-black leading-none text-slate-950 md:text-7xl">
+            {siteConfig.blog.indexTitle}
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{siteConfig.blog.indexDek}</p>
         </header>
 
         {articles.length ? (
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article, index) => (
               <ArticleCard
                 key={article.id}
