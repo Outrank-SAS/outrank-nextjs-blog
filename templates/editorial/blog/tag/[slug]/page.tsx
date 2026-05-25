@@ -73,12 +73,14 @@ const TagPage = async ({ params, searchParams }: Props) => {
       </Link>
 
       <header className="mb-14 mt-10 border-b border-zinc-200 pb-12 md:mb-20 md:pb-16">
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-zinc-500">
-          {total} {total === 1 ? 'article' : 'articles'}
-        </p>
-        <h1 className="mt-4 font-serif text-5xl font-black leading-[1.05] text-zinc-950 md:text-7xl">
-          #{tag}
-        </h1>
+        <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+          <h1 className="font-serif text-5xl font-black leading-[1.05] text-zinc-950 md:text-7xl">
+            #{tag}
+          </h1>
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-zinc-500">
+            {total} {total === 1 ? 'article' : 'articles'}
+          </p>
+        </div>
       </header>
 
       {articles.length ? (
