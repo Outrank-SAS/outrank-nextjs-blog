@@ -59,8 +59,22 @@ const ArticlePage = async ({ params }: Props) => {
       <div className="mx-auto w-full max-w-7xl px-4 py-8 md:py-14">
         <Link
           href="/blog"
-          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-studio-accent/40 hover:text-studio-accent"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-studio-accent hover:underline"
         >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
           {siteConfig.blog.backToBlog}
         </Link>
 
@@ -77,7 +91,7 @@ const ArticlePage = async ({ params }: Props) => {
                 </Link>
               ))}
             </div>
-            <h1 className="mx-auto max-w-5xl text-4xl font-black leading-tight text-slate-950 md:text-6xl">
+            <h1 className="mx-auto max-w-5xl font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">
               {article.title}
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">

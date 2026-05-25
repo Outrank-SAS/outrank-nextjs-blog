@@ -12,7 +12,7 @@ type Props = {
 
 const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
   return (
-    <article className="group relative flex h-full flex-col p-6 transition duration-200 hover:bg-studio-accent/5 md:p-8">
+    <article className="group relative flex h-full flex-col p-6 transition duration-200 hover:bg-studio-accent/[0.08] md:p-8">
       {article.image_url ? (
         <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
           <Image
@@ -31,14 +31,17 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
             <Link
               key={tag}
               href={`/blog/tag/${encodeURIComponent(tag)}`}
-              className="inline-flex items-center rounded-full border border-studio-accent/20 bg-studio-accent/5 px-2.5 py-0.5 text-xs font-medium text-studio-accent transition hover:border-studio-accent/50 hover:bg-studio-accent/15"
+              className="relative inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-medium text-slate-600 transition hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900"
             >
               {tag}
             </Link>
           ))}
         </div>
         <h2 className="font-serif text-2xl font-black leading-tight text-slate-950 transition group-hover:text-studio-accent">
-          <Link href={`/blog/${article.slug}`} className="after:absolute after:inset-0 after:content-['']">
+          <Link
+            href={`/blog/${article.slug}`}
+            className="underline-offset-4 decoration-studio-accent/60 decoration-2 group-hover:underline after:absolute after:inset-0 after:content-['']"
+          >
             {article.title}
           </Link>
         </h2>

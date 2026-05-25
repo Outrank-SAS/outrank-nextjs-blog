@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import { siteConfig } from '@/app/_config/siteConfig';
@@ -51,10 +52,29 @@ const TagPage = async ({ params, searchParams }: Props) => {
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <div className="mx-auto w-full max-w-7xl px-4 py-8 md:py-14">
-        <header className="mb-10 border-b border-slate-200 pb-8 md:mb-14 md:pb-12">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-studio-accent">{siteConfig.blog.tagEyebrow}</p>
-          <h1 className="mt-5 text-4xl font-black leading-tight text-slate-950 md:text-6xl">#{tag}</h1>
-          <p className="mt-6 text-lg leading-8 text-slate-600">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-studio-accent hover:underline"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+          {siteConfig.blog.backToBlog}
+        </Link>
+        <header className="mb-10 mt-8 flex flex-wrap items-baseline gap-x-5 gap-y-2 border-b border-slate-200 pb-8 md:mb-14 md:pb-12">
+          <h1 className="font-serif text-4xl font-black leading-tight text-slate-950 md:text-6xl">#{tag}</h1>
+          <p className="text-lg leading-8 text-slate-600">
             {total} {total === 1 ? 'article' : 'articles'}
           </p>
         </header>
