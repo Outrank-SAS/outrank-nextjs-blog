@@ -14,7 +14,7 @@ const FeaturedArticle = ({ article }: Props) => {
     <article className="group relative mb-4 overflow-hidden rounded-lg border border-studio-dark-accent/30 bg-white/[0.07] shadow-2xl shadow-black/30 transition duration-200 hover:-translate-y-1 hover:border-studio-dark-accent/60 md:mb-8">
       <div className="grid grid-cols-1 gap-8 p-6 md:grid-cols-[1.4fr_1fr] md:gap-12 md:p-8">
         {article.image_url ? (
-          <div className="relative aspect-[21/9] overflow-hidden bg-zinc-900">
+          <div className="relative aspect-[21/9] overflow-hidden rounded-md bg-zinc-900">
             <Image
               src={article.image_url}
               alt={article.title}

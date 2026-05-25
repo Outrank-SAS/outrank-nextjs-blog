@@ -1,7 +1,7 @@
 const ArticleCardSkeleton = () => {
   return (
     <article className="flex h-full flex-col p-6 md:p-8">
-      <div className="relative aspect-[16/10] animate-pulse bg-zinc-800" />
+      <div className="relative aspect-[16/10] animate-pulse rounded-md bg-zinc-800" />
       <div className="flex flex-1 flex-col pt-5">
         <div className="mb-4 flex flex-wrap gap-2">
           <div className="h-5 w-14 animate-pulse rounded-full bg-zinc-800" />

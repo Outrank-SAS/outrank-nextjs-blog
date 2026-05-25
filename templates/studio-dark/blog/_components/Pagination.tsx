@@ -91,7 +91,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             aria-current={item.page === currentPage ? 'page' : undefined}
             className={`inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-medium transition ${
               item.page === currentPage
-                ? 'border-studio-dark-accent bg-studio-dark-accent text-white'
+                ? 'border-white bg-white text-zinc-950'
                 : 'border-zinc-700 bg-zinc-950 text-zinc-300 hover:border-studio-dark-accent hover:text-studio-dark-accent'
             }`}
           >
