@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 import { siteConfig } from '@/app/_config/siteConfig';
 
@@ -48,6 +49,10 @@ const TagPage = async ({ params, searchParams }: Props) => {
     limit: BLOG_ARTICLES_PER_PAGE,
     tag,
   });
+
+  if (total === 0) {
+    notFound();
+  }
 
   return (
     <main className="min-h-screen bg-white text-slate-950">

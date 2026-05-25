@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { siteConfig } from '@/app/_config/siteConfig';
 
 import ArticleSidebar from '../_components/ArticleSidebar';
+import BackToTop from '../_components/BackToTop';
 import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
 import { getArticle, getRelatedArticles, getStaticArticles } from '../_lib/outrank';
@@ -140,6 +141,7 @@ const ArticlePage = async ({ params }: Props) => {
 
         <RelatedArticles articles={relatedArticles} />
       </div>
+      <BackToTop />
     </main>
   );
 };
