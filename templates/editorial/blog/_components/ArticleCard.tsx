@@ -61,7 +61,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
           className={
             featured
               ? 'font-serif text-4xl font-black leading-none text-zinc-950 underline-offset-[6px] decoration-editorial-accent decoration-2 transition group-hover:underline md:text-5xl'
-              : 'font-serif text-3xl font-black leading-tight text-zinc-950 underline-offset-[6px] decoration-editorial-accent decoration-2 transition group-hover:underline'
+              : 'font-serif text-[1.75rem] font-black leading-tight text-zinc-950 underline-offset-[6px] decoration-editorial-accent decoration-2 transition group-hover:underline'
           }
         >
           <Link href={`/blog/${article.slug}`} className="after:absolute after:inset-0 after:content-['']">
