@@ -125,15 +125,19 @@ const ArticlePage = async ({ params }: Props) => {
             </div>
           ) : null}
 
-          <div className="relative mx-auto max-w-3xl">
+          <div className="mx-auto max-w-5xl xl:grid xl:grid-cols-[12rem_minmax(0,1fr)] xl:gap-8">
             {hasTableOfContents ? (
-              <aside className="absolute -left-32 top-0 hidden w-28 xl:block">
+              <aside className="hidden xl:block">
                 <div className="sticky top-24">
                   <ArticleSidebar items={tocItems} />
                 </div>
               </aside>
-            ) : null}
-            <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+            ) : (
+              <div className="hidden xl:block" />
+            )}
+            <div className="mx-auto w-full max-w-3xl xl:mx-0 xl:max-w-none">
+              <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+            </div>
           </div>
         </article>
 
