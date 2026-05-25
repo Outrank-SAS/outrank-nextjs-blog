@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import {
   BLOG_DEFAULT_PAGE,
+  BLOG_PAGINATION_MIN_PAGES_FOR_ARROWS,
   BLOG_PAGINATION_SIBLING_COUNT,
   BLOG_PAGINATION_VISIBLE_PAGE_GAP,
 } from '../_lib/constants';
@@ -66,10 +67,11 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
   if (totalPages <= 1) return null;
 
   const paginationItems = getPaginationItems(currentPage, totalPages);
+  const showArrows = totalPages >= BLOG_PAGINATION_MIN_PAGES_FOR_ARROWS;
 
   return (
     <nav className="mt-12 flex flex-wrap items-center justify-center gap-2" aria-label="Pagination">
-      {currentPage > 1 ? (
+      {showArrows && currentPage > 1 ? (
         <Link
           href={getPageHref(basePath, currentPage - 1)}
           className="inline-flex h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-studio-accent hover:text-studio-accent"
@@ -97,7 +99,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
           </Link>
         ),
       )}
-      {currentPage < totalPages ? (
+      {showArrows && currentPage < totalPages ? (
         <Link
           href={getPageHref(basePath, currentPage + 1)}
           className="inline-flex h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-studio-accent hover:text-studio-accent"
