@@ -33,12 +33,9 @@ const ArticleCard = ({ article, imageLoading = 'lazy' }: Props) => {
           <p className="mb-3 text-xs font-black uppercase tracking-[0.12em] text-slate-700">
             {article.tags.slice(0, BLOG_CARD_TAG_LIMIT).join(', ')}
           </p>
-          <h2 className="text-3xl font-black leading-[1.15] tracking-tight text-studio-accent md:text-[2rem]">
+          <h2 className="text-3xl font-black leading-[1.15] tracking-tight text-slate-950 transition group-hover:text-studio-accent md:text-[2rem]">
             {article.title}
           </h2>
-          <p className="mt-4 line-clamp-3 text-base leading-7 text-slate-600">
-            {article.meta_description}
-          </p>
           <div className="mt-auto flex flex-wrap items-center gap-3 pt-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
             <span aria-hidden="true">/</span>
