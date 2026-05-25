@@ -16,10 +16,7 @@ const RelatedArticles = ({ articles }: Props) => {
 
   return (
     <section className="mx-auto mt-20 max-w-5xl border-t border-zinc-200 pt-14 md:mt-24 md:pt-16">
-      <p className="text-xs font-black uppercase tracking-[0.24em] text-editorial-accent">
-        {siteConfig.blog.relatedEyebrow}
-      </p>
-      <h2 className="mt-4 font-serif text-3xl font-black leading-tight text-zinc-950 md:text-4xl">
+      <h2 className="font-serif text-3xl font-black leading-tight text-zinc-950 md:text-4xl">
         {siteConfig.blog.relatedTitle}
       </h2>
 

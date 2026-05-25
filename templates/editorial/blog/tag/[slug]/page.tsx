@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 import { siteConfig } from '@/app/_config/siteConfig';
 
@@ -48,6 +49,10 @@ const TagPage = async ({ params, searchParams }: Props) => {
     limit: BLOG_ARTICLES_PER_PAGE,
     tag,
   });
+
+  if (total === 0) {
+    notFound();
+  }
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-12 text-zinc-950 md:py-20">
