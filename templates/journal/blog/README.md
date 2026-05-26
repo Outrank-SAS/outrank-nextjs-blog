@@ -2,7 +2,7 @@
 
 Journal is a minimal, long-form Outrank blog template with a featured article and compact list-style archive. Copy this
 entire folder into a Next.js App Router project as `app/blog` after installing the `outrank-next-js-blog@^0.1.2`
-package.
+package. For a fresh default setup, also copy the shared starter folders `app/_config` and `app/_components`.
 
 Required server-side environment variable:
 
