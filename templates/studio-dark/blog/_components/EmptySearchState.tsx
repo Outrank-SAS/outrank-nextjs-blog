@@ -109,8 +109,7 @@ const EmptySearchState = ({ query, allArticles }: Props) => {
             No articles found for <span className="text-studio-dark-accent">“{truncateQuery(query)}”</span>
           </h3>
           <p className="mt-4 max-w-md text-base leading-7 text-zinc-400">
-            We searched high and low, but couldn’t find any matches. Try different keywords or
-            explore popular topics.
+            Try a different keyword or pick a popular topic below.
           </p>
           <div className="mt-7">
             <Link
