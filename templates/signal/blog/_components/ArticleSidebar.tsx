@@ -71,7 +71,7 @@ const ArticleSidebar = ({ items }: Props) => {
                 href={`#${item.id}`}
                 onClick={(event) => handleTocClick(event, item.id)}
                 className={`block py-1.5 text-sm leading-snug transition ${item.level === 3 ? 'pl-4' : ''} ${
-                  isActive ? 'font-semibold text-signal-accent' : 'text-zinc-400 hover:text-zinc-200'
+                  isActive ? 'font-semibold text-signal-accent' : 'text-zinc-300 hover:text-white'
                 }`}
               >
                 {item.text}
