@@ -1,8 +1,8 @@
-# Outrank Studio Blog Template
+# Outrank Studio Dark Blog Template
 
-Studio is a bright, structured Outrank blog template with a numbered article feed and clean product-team styling.
-Copy this entire folder into a Next.js App Router project as `app/blog` after installing the `outrank-next-js-blog@^0.1.2`
-package.
+Studio Dark is a dark, structured Outrank blog template with a featured article, compact cards, and clean product-team
+styling. Copy this entire folder into a Next.js App Router project as `app/blog` after installing the
+`outrank-next-js-blog@^0.1.2` package.
 
 Required server-side environment variable:
 

@@ -81,6 +81,8 @@ to route markup, component styling, layout, and CSS.
 | --- | --- | --- |
 | Default | `app/blog` | A clean, neutral blog that is easy to customize. |
 | Studio | `templates/studio/blog` | Product teams that want a bright, structured editorial index. |
+| Studio Dark | `templates/studio-dark/blog` | Teams that want the Studio layout with a dark visual system. |
+| Outrank Classic | `templates/outrank-classic/blog` | Outrank-branded sites that want a polished product-blog feel. |
 | Editorial | `templates/editorial/blog` | Magazine-style sites with high-contrast typography. |
 | Signal | `templates/signal/blog` | Dark, dashboard-like growth or operations blogs. |
 | Journal | `templates/journal/blog` | Minimal, readable long-form article libraries. |

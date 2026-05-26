@@ -1,8 +1,8 @@
-# Outrank Studio Blog Template
+# Outrank Classic Blog Template
 
-Studio is a bright, structured Outrank blog template with a numbered article feed and clean product-team styling.
-Copy this entire folder into a Next.js App Router project as `app/blog` after installing the `outrank-next-js-blog@^0.1.2`
-package.
+Outrank Classic is a polished, Outrank-branded blog template with a product-blog feel, featured content, and balanced
+article cards. Copy this entire folder into a Next.js App Router project as `app/blog` after installing the
+`outrank-next-js-blog@^0.1.2` package.
 
 Required server-side environment variable:
 

@@ -28,7 +28,7 @@ const PREVIEW_CARDS: PreviewCard[] = [
   },
   {
     title: 'Error state',
-    description: 'How the blog renders when something throws (data fetch fails, server error, etc).',
+    description: 'Static visual preview of the blog error UI. In development, the page can also trigger the boundary.',
     href: '/blog/preview/error',
     badge: 'Error',
   },

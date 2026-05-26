@@ -86,6 +86,28 @@ export const getArticle = unstable_cache(
   { revalidate: BLOG_REVALIDATE_SECONDS },
 );
 
+const getAllArticleSummariesCached = unstable_cache(
+  async (): Promise<ArticleSummary[]> =>
+    runOutrankRequest(
+      () => getClient().getAllArticles(BLOG_SITEMAP_PAGE_SIZE),
+      BLOG_ALL_ARTICLES_REQUEST_ERROR,
+    ),
+  ['outrank-blog-all-article-summaries'],
+  { revalidate: BLOG_REVALIDATE_SECONDS },
+);
+
+export const getAllArticleSummaries = async (): Promise<ArticleSummary[]> => {
+  try {
+    return await getAllArticleSummariesCached();
+  } catch (error) {
+    if (isOutrankConfigurationError(error)) {
+      throw error;
+    }
+
+    return [];
+  }
+};
+
 const getStaticArticlesByParams = unstable_cache(
   async (): Promise<StaticArticle[]> => {
     const articles = await runOutrankRequest(
@@ -114,4 +136,45 @@ export const getStaticArticles = async (): Promise<StaticArticle[]> => {
 
     return [];
   }
+};
+
+const RELATED_ARTICLES_DEFAULT_LIMIT = 3;
+
+const sortByCreatedAtDesc = (a: ArticleSummary, b: ArticleSummary): number =>
+  new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+
+export const getRelatedArticles = async (
+  currentSlug: string,
+  currentTags: string[],
+  limit: number = RELATED_ARTICLES_DEFAULT_LIMIT,
+): Promise<ArticleSummary[]> => {
+  const all = await getAllArticleSummaries();
+  const candidates = all.filter((article) => article.slug !== currentSlug);
+  if (candidates.length === 0) return [];
+
+  const currentTagSet = new Set(currentTags);
+
+  const scored = candidates
+    .map((article) => ({
+      article,
+      overlap: article.tags.reduce((count, tag) => (currentTagSet.has(tag) ? count + 1 : count), 0),
+    }))
+    .filter(({ overlap }) => overlap > 0)
+    .sort((a, b) => {
+      if (b.overlap !== a.overlap) return b.overlap - a.overlap;
+      return sortByCreatedAtDesc(a.article, b.article);
+    });
+
+  const related: ArticleSummary[] = scored.slice(0, limit).map(({ article }) => article);
+
+  if (related.length < limit) {
+    const usedSlugs = new Set(related.map((article) => article.slug));
+    const filler = candidates
+      .filter((article) => !usedSlugs.has(article.slug))
+      .sort(sortByCreatedAtDesc)
+      .slice(0, limit - related.length);
+    related.push(...filler);
+  }
+
+  return related;
 };
