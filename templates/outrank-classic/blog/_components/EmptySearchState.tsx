@@ -93,11 +93,11 @@ const EmptySearchState = ({ query, allArticles }: Props) => {
 
   return (
     <section className="rounded-3xl border border-violet-100 bg-gradient-to-br from-violet-50/40 to-white p-6 md:p-12">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_1.1fr] md:items-center md:gap-12">
-        <div className="relative mx-auto aspect-[5/4] w-1/2 max-w-[240px] md:w-[85%] md:max-w-none">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-12">
+        <div className="relative mx-auto aspect-[5/4] w-1/3 max-w-[180px] lg:w-[85%] lg:max-w-none">
           <EmptySearchIllustration />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <h3 className="text-2xl font-bold leading-tight tracking-tight text-slate-950 md:text-4xl">
             No articles found for <span className="text-outrank-classic-accent">“{query}”</span>
           </h3>
@@ -114,9 +114,9 @@ const EmptySearchState = ({ query, allArticles }: Props) => {
             </Link>
           </div>
           {popularTags.length > 0 ? (
-            <div className="mt-8 border-t border-violet-100 pt-6">
+            <div className="mt-8 w-full border-t border-violet-100 pt-6">
               <p className="text-xs font-medium text-slate-500">Try searching for:</p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap justify-center gap-2 lg:justify-start">
                 {popularTags.map((tag) => (
                   <Link
                     key={tag}

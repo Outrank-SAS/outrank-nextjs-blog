@@ -35,7 +35,7 @@ const BlogPage = async ({ searchParams }: Props) => {
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <div className="mx-auto w-full max-w-7xl px-4 py-8 md:py-14">
-        <header className="mb-10 grid gap-8 md:mb-14 md:grid-cols-[1fr_20rem] md:items-end md:gap-12">
+        <header className="mb-10 grid gap-8 md:mb-14 lg:grid-cols-[1fr_20rem] lg:items-end lg:gap-12">
           <div>
             <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-950 md:text-6xl">
               {siteConfig.blog.indexTitle}
