@@ -6,8 +6,9 @@ A native Next.js App Router starter for publishing Outrank articles on your own 
 
 This starter connects to the Outrank Next.js Blog API, fetches published articles with a private server-side API key,
 and renders a production-ready blog with cached article pages, tag pages, pagination, metadata, and a dynamic sitemap.
-The default copyable blog lives in `app/blog`, and alternate complete blog templates live under `templates/`. An
-existing App Router project can install the package, copy one `blog` folder, set the API key, and run.
+The default copyable starter uses three app folders: `app/blog`, `app/_config`, and `app/_components`. Alternate
+complete blog route templates live under `templates/`. An existing App Router project can install the package, copy the
+default folders, set the API key, and run.
 
 ## Prerequisites
 
@@ -51,8 +52,9 @@ This repo uses the published package:
 
 ## Add This Blog To An Existing App
 
-Install the API package, copy this repo's default `app/blog` folder into your Next.js App Router project, and set the
-server-side API key:
+Install the API package, copy all three default app folders into your Next.js App Router project, and set the
+server-side API key. Do not copy only `app/blog` for the default starter: the blog imports shared copy from
+`app/_config`, and the starter shell uses `app/_components` for the header and footer.
 
 ```env
 OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
@@ -61,10 +63,13 @@ OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
 ```bash
 npm install outrank-next-js-blog@^0.1.2
 cp -R app/blog ../my-next-app/app/blog
+cp -R app/_config ../my-next-app/app/_config
+cp -R app/_components ../my-next-app/app/_components
 ```
 
-The copied folder includes the blog routes, article pages, tag pages, sitemap, Outrank API wrapper, local components,
-types, constants, formatting helpers, pagination, and article content styles.
+The copied folders include the blog routes, article pages, tag pages, sitemap, Outrank API wrapper, local blog
+components, shared site copy/configuration, starter header/footer components, types, constants, formatting helpers,
+pagination, and article content styles.
 
 The UI uses Tailwind utility classes. This starter already includes Tailwind, but an existing app needs Tailwind set up
 and configured to scan `app/**/*.{ts,tsx}`.
@@ -72,7 +77,7 @@ and configured to scan `app/**/*.{ts,tsx}`.
 ## Choose A Template
 
 This repo includes multiple theme folders under `templates/`. They all render the same Outrank blog integration; only
-the UI changes. Each template is just a replacement `blog` folder.
+the UI changes. Each template is a replacement `blog` folder that still uses the shared starter config.
 
 The shared API/data files are kept the same as the default `app/blog` folder. Template differences should stay limited
 to route markup, component styling, layout, and CSS.
@@ -88,9 +93,11 @@ to route markup, component styling, layout, and CSS.
 | Journal | `templates/journal/blog` | Minimal, readable long-form article libraries. |
 
 To use a template in this starter, replace `app/blog` with the template's `blog` folder. In an existing app, copy the
-chosen template directly into that app's `app/blog` route:
+shared starter folders once, then copy the chosen template directly into that app's `app/blog` route:
 
 ```bash
+cp -R app/_config ../my-next-app/app/_config
+cp -R app/_components ../my-next-app/app/_components
 cp -R templates/signal/blog ../my-next-app/app/blog
 ```
 
