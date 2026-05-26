@@ -87,7 +87,7 @@ const ArticlePage = async ({ params }: Props) => {
         </Link>
 
         <article className="mt-8">
-          <header className="mx-auto mb-10 max-w-5xl border-b border-zinc-800 pb-8 text-center md:pb-12">
+          <header className="mx-auto mb-10 max-w-5xl text-center md:mb-14">
             <div className="mb-6 flex flex-wrap justify-center gap-2">
               {article.tags.map((tag) => (
                 <Link
@@ -112,20 +112,7 @@ const ArticlePage = async ({ params }: Props) => {
             </div>
           </header>
 
-          {article.image_url ? (
-            <div className="relative mx-auto mb-12 aspect-[16/9] max-w-5xl overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900  ">
-              <Image
-                src={article.image_url}
-                alt={article.title}
-                fill
-                loading="eager"
-                sizes="(min-width: 768px) 896px, 100vw"
-                className="object-cover"
-              />
-            </div>
-          ) : null}
-
-          <div className="mx-auto max-w-5xl xl:grid xl:grid-cols-[12rem_minmax(0,1fr)] xl:gap-8">
+          <div className="mx-auto max-w-7xl xl:grid xl:grid-cols-[14rem_minmax(0,1fr)] xl:gap-12">
             {hasTableOfContents ? (
               <aside className="hidden xl:block">
                 <div className="sticky top-24">
@@ -135,7 +122,21 @@ const ArticlePage = async ({ params }: Props) => {
             ) : (
               <div className="hidden xl:block" />
             )}
-            <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+            <div>
+              {article.image_url ? (
+                <div className="relative mb-12 aspect-[16/9] max-w-[56rem] overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
+                  <Image
+                    src={article.image_url}
+                    alt={article.title}
+                    fill
+                    loading="eager"
+                    sizes="(min-width: 768px) 896px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
+              <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+            </div>
           </div>
         </article>
 
