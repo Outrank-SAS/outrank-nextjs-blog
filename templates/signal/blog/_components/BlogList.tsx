@@ -45,8 +45,12 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
       {isSearching ? (
         filteredResults.length > 0 ? (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {filteredResults.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+            {filteredResults.map((article, index) => (
+              <ArticleCard
+                key={article.id}
+                article={article}
+                imageLoading={index < 4 ? 'eager' : 'lazy'}
+              />
             ))}
           </div>
         ) : (
@@ -61,16 +65,24 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
           <ArticleCard article={featuredArticle} featured />
           {remainingArticles.length ? (
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {remainingArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+              {remainingArticles.map((article, index) => (
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  imageLoading={index < 4 ? 'eager' : 'lazy'}
+                />
               ))}
             </div>
           ) : null}
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {remainingArticles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {remainingArticles.map((article, index) => (
+            <ArticleCard
+              key={article.id}
+              article={article}
+              imageLoading={index < 4 ? 'eager' : 'lazy'}
+            />
           ))}
         </div>
       )}

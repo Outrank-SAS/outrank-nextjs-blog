@@ -3,6 +3,10 @@
 import { useEffect, useState } from 'react';
 
 const SCROLL_THRESHOLD_PX = 400;
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+const getScrollBehavior = (): ScrollBehavior =>
+  window.matchMedia(REDUCED_MOTION_QUERY).matches ? 'auto' : 'smooth';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +21,7 @@ const BackToTop = () => {
   }, []);
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: getScrollBehavior() });
   };
 
   return (

@@ -89,8 +89,12 @@ const TagPage = async ({ params, searchParams }: Props) => {
 
         {articles.length > 0 ? (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+            {articles.map((article, index) => (
+              <ArticleCard
+                key={article.id}
+                article={article}
+                imageLoading={index < 4 ? 'eager' : 'lazy'}
+              />
             ))}
           </div>
         ) : (

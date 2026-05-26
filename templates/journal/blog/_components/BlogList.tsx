@@ -44,8 +44,12 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
       {isSearching ? (
         filteredResults.length > 0 ? (
           <div>
-            {filteredResults.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+            {filteredResults.map((article, index) => (
+              <ArticleCard
+                key={article.id}
+                article={article}
+                imageLoading={index === 0 ? 'eager' : 'lazy'}
+              />
             ))}
           </div>
         ) : (
@@ -60,16 +64,24 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
           <ArticleCard article={featuredArticle} featured />
           {remainingArticles.length ? (
             <div className="mt-12 border-t border-slate-200 md:mt-16">
-              {remainingArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+              {remainingArticles.map((article, index) => (
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  imageLoading={index === 0 ? 'eager' : 'lazy'}
+                />
               ))}
             </div>
           ) : null}
         </div>
       ) : (
         <div>
-          {remainingArticles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {remainingArticles.map((article, index) => (
+            <ArticleCard
+              key={article.id}
+              article={article}
+              imageLoading={index === 0 ? 'eager' : 'lazy'}
+            />
           ))}
         </div>
       )}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { type MouseEvent, useEffect, useState } from 'react';
 
 import { siteConfig } from '@/app/_config/siteConfig';
 
@@ -11,6 +11,10 @@ type Props = {
 };
 
 const OBSERVER_ROOT_MARGIN = '-20% 0px -70% 0px';
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+const getScrollBehavior = (): ScrollBehavior =>
+  window.matchMedia(REDUCED_MOTION_QUERY).matches ? 'auto' : 'smooth';
 
 const ArticleSidebar = ({ items }: Props) => {
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? '');
@@ -43,6 +47,16 @@ const ArticleSidebar = ({ items }: Props) => {
 
   if (items.length === 0) return null;
 
+  const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    event.preventDefault();
+    setActiveId(id);
+    target.scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
+    window.history.pushState(null, '', `#${id}`);
+  };
+
   return (
     <nav aria-label={siteConfig.blog.tableOfContentsLabel}>
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-journal-accent">
@@ -55,7 +69,7 @@ const ArticleSidebar = ({ items }: Props) => {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                onClick={() => setActiveId(item.id)}
+                onClick={(event) => handleTocClick(event, item.id)}
                 className={`block py-1.5 text-sm leading-snug transition ${item.level === 3 ? 'pl-4' : ''} ${
                   isActive ? 'font-semibold text-slate-950' : 'text-slate-600 hover:text-slate-900'
                 }`}
