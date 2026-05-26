@@ -3,6 +3,8 @@ import Link from 'next/link';
 import type { OutrankArticleSummary } from '../_types/blog';
 
 const SUGGESTED_TAGS_LIMIT = 5;
+const QUERY_DISPLAY_MAX_LENGTH = 40;
+
 
 type Props = {
   query: string;
@@ -27,6 +29,9 @@ const collectPopularTags = (articles: OutrankArticleSummary[]): string[] => {
     .slice(0, SUGGESTED_TAGS_LIMIT)
     .map(([tag]) => tag);
 };
+const truncateQuery = (value: string): string =>
+  value.length > QUERY_DISPLAY_MAX_LENGTH ? `${value.slice(0, QUERY_DISPLAY_MAX_LENGTH)}…` : value;
+
 
 const EmptySearchIllustration = () => (
   <svg
@@ -100,8 +105,8 @@ const EmptySearchState = ({ query, allArticles }: Props) => {
           <EmptySearchIllustration />
         </div>
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          <h3 className="font-serif text-2xl font-black leading-tight tracking-tight text-zinc-50 md:text-4xl">
-            No articles found for <span className="text-studio-dark-accent">“{query}”</span>
+          <h3 className="break-words font-serif text-2xl font-black leading-tight tracking-tight text-zinc-50 md:text-4xl">
+            No articles found for <span className="text-studio-dark-accent">“{truncateQuery(query)}”</span>
           </h3>
           <p className="mt-4 max-w-md text-base leading-7 text-zinc-400">
             We searched high and low, but couldn’t find any matches. Try different keywords or
