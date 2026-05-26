@@ -49,7 +49,7 @@ const STRIP_EXTENSION_ATTRIBUTES_SCRIPT = `
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body suppressHydrationWarning className="flex min-h-screen flex-col bg-white text-slate-900 antialiased">
         <Script id="strip-extension-attributes" strategy="beforeInteractive">
           {STRIP_EXTENSION_ATTRIBUTES_SCRIPT}
