@@ -6,14 +6,15 @@ A native Next.js App Router starter for publishing Outrank articles on your own 
 
 This starter connects to the Outrank Next.js Blog API, fetches published articles with a private server-side API key,
 and renders a production-ready blog with cached article pages, tag pages, pagination, metadata, and a dynamic sitemap.
-All copyable blog code lives inside `app/blog`, so an existing App Router project can install the package, copy that
-folder, set the API key, and run.
+The default copyable blog lives in `app/blog`, and alternate complete blog templates live under `templates/`. An
+existing App Router project can install the package, copy one `blog` folder, set the API key, and run.
 
 ## Prerequisites
 
 - Node.js installed locally
 - An Outrank account with a product configured
 - A Next.js Blog integration API key from Outrank
+- Tailwind CSS configured in the target app if you are copying a blog folder into an existing project
 
 ## Environment Setup
 
@@ -28,7 +29,7 @@ OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
 This starter uses the published `outrank-next-js-blog` package from npm. You can install it in any Next.js site:
 
 ```bash
-npm install outrank-next-js-blog
+npm install outrank-next-js-blog@^0.1.2
 ```
 
 ```typescript
@@ -39,23 +40,61 @@ const { articles } = await client.getArticles(1, 12);
 const article = await client.getArticle('your-article-slug');
 ```
 
+List methods return article summaries for index, tag, and sitemap views. Fetch a single slug with `getArticle` when you
+need the rendered HTML or Markdown body.
+
 This repo uses the published package:
 
 ```json
-"outrank-next-js-blog": "^0.1.1"
+"outrank-next-js-blog": "^0.1.2"
 ```
 
 ## Add This Blog To An Existing App
 
-Install the package, copy the entire `app/blog` folder into your Next.js App Router project, and set
-`OUTRANK_BLOG_API_KEY` on the server:
+Install the API package, copy this repo's default `app/blog` folder into your Next.js App Router project, and set the
+server-side API key:
+
+```env
+OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
+```
 
 ```bash
-npm install outrank-next-js-blog
+npm install outrank-next-js-blog@^0.1.2
+cp -R app/blog ../my-next-app/app/blog
 ```
 
 The copied folder includes the blog routes, article pages, tag pages, sitemap, Outrank API wrapper, local components,
 types, constants, formatting helpers, pagination, and article content styles.
+
+The UI uses Tailwind utility classes. This starter already includes Tailwind, but an existing app needs Tailwind set up
+and configured to scan `app/**/*.{ts,tsx}`.
+
+## Choose A Template
+
+This repo includes multiple theme folders under `templates/`. They all render the same Outrank blog integration; only
+the UI changes. Each template is just a replacement `blog` folder.
+
+The shared API/data files are kept the same as the default `app/blog` folder. Template differences should stay limited
+to route markup, component styling, layout, and CSS.
+
+| Template | Path | Best For |
+| --- | --- | --- |
+| Default | `app/blog` | A clean, neutral blog that is easy to customize. |
+| Studio | `templates/studio/blog` | Product teams that want a bright, structured editorial index. |
+| Studio Dark | `templates/studio-dark/blog` | Teams that want the Studio layout with a dark visual system. |
+| Outrank Classic | `templates/outrank-classic/blog` | Outrank-branded sites that want a polished product-blog feel. |
+| Editorial | `templates/editorial/blog` | Magazine-style sites with high-contrast typography. |
+| Signal | `templates/signal/blog` | Dark, dashboard-like growth or operations blogs. |
+| Journal | `templates/journal/blog` | Minimal, readable long-form article libraries. |
+
+To use a template in this starter, replace `app/blog` with the template's `blog` folder. In an existing app, copy the
+chosen template directly into that app's `app/blog` route:
+
+```bash
+cp -R templates/signal/blog ../my-next-app/app/blog
+```
+
+If your app already has an `app/blog` route, move or remove the old folder before copying the template.
 
 ## Running the Development Server
 
@@ -119,3 +158,13 @@ Key implementation details:
 ## Deploy
 
 Set `OUTRANK_BLOG_API_KEY` in your hosting provider and deploy the app.
+
+Before shipping, run:
+
+```bash
+npm run lint
+npm run build
+```
+
+Production builds require access to your Outrank API key because article pages, tag pages, and the blog sitemap are
+generated from published Outrank content.

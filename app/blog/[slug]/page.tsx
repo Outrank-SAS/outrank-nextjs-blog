@@ -3,9 +3,15 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { siteConfig } from '@/app/_config/siteConfig';
+
+import ArticleSidebar from '../_components/ArticleSidebar';
+import BackToTop from '../_components/BackToTop';
+import RelatedArticles from '../_components/RelatedArticles';
 import styles from '../_components/ArticleContent.module.css';
-import { getArticle, getStaticArticles } from '../_lib/outrank';
+import { getArticle, getRelatedArticles, getStaticArticles } from '../_lib/outrank';
 import { formatDate } from '../_lib/format';
+import { ensureHeadingIds } from '../_lib/toc';
 
 export const revalidate = 86400;
 
@@ -52,56 +58,104 @@ const ArticlePage = async ({ params }: Props) => {
     notFound();
   }
 
+  const { html: articleHtml, tocItems } = ensureHeadingIds(article.html);
+  const hasTableOfContents = tocItems.length > 0;
+  const relatedArticles = await getRelatedArticles(article.slug, article.tags);
+
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-8 md:py-14">
+    <main className="mx-auto w-full max-w-6xl px-4 pt-16 pb-8 md:pt-24 md:pb-14">
       <Link
         href="/blog"
-        className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
       >
-        Back to blog
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        {siteConfig.blog.backToBlog}
       </Link>
 
       <article className="mt-8">
-        <header className="mx-auto mb-10 max-w-4xl">
-          <div className="mb-5 flex flex-wrap justify-center gap-2">
-            {article.tags.map((tag) => (
-              <Link
-                key={tag}
-                href={`/blog/tag/${encodeURIComponent(tag)}`}
-                className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-800 transition hover:bg-teal-100"
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
+        <header className="mb-10 max-w-5xl">
+          {article.tags.length > 0 ? (
+            <div className="mb-5 flex flex-wrap gap-2">
+              {article.tags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/blog/tag/${encodeURIComponent(tag)}`}
+                  className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700 transition hover:bg-slate-200 hover:text-slate-950"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          ) : null}
           <h1 className="text-4xl font-black leading-tight text-slate-950 md:text-6xl">{article.title}</h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
             {article.meta_description}
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-slate-500">
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-sm font-medium text-slate-500">
             <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
             <span aria-hidden="true">/</span>
             <span>{article.reading_time_minutes} min read</span>
           </div>
         </header>
 
-        {article.image_url ? (
-          <div className="relative mx-auto mb-12 max-w-4xl aspect-[16/9] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-2xl shadow-slate-200/70">
-            <Image
-              src={article.image_url}
-              alt={article.title}
-              fill
-              priority
-              sizes="(min-width: 768px) 896px, 100vw"
-              className="object-cover"
-            />
-          </div>
-        ) : null}
+        {hasTableOfContents ? (
+          <div className="lg:grid lg:grid-cols-[1fr_17rem] lg:gap-12">
+            <div>
+              {article.image_url ? (
+                <div className="relative mb-12 aspect-[16/9] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-2xl shadow-slate-200/70">
+                  <Image
+                    src={article.image_url}
+                    alt={article.title}
+                    fill
+                    loading="eager"
+                    sizes="(min-width: 1024px) 768px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
 
-        <div className="mx-auto max-w-5xl">
-          <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: article.html }} />
-        </div>
+              <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+            </div>
+
+            <div className="hidden lg:block">
+              <ArticleSidebar items={tocItems} />
+            </div>
+          </div>
+        ) : (
+          <>
+            {article.image_url ? (
+              <div className="relative mx-auto mb-12 max-w-3xl aspect-[16/9] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-2xl shadow-slate-200/70">
+                <Image
+                  src={article.image_url}
+                  alt={article.title}
+                  fill
+                  loading="eager"
+                  sizes="(min-width: 768px) 768px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : null}
+
+            <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+          </>
+        )}
       </article>
+
+      <RelatedArticles articles={relatedArticles} />
+      <BackToTop />
     </main>
   );
 };

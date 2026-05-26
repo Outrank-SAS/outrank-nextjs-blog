@@ -62,7 +62,7 @@
 }
 
 .articleContent a {
-  color: #5b21b6;
+  color: rgb(var(--default-accent));
   font-weight: 650;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
@@ -74,9 +74,9 @@
 }
 
 .articleContent blockquote {
-  border-left: 0.25rem solid #14b8a6;
-  background: #f0fdfa;
-  color: #134e4a;
+  border-left: 0.25rem solid rgb(var(--default-accent));
+  background: rgb(var(--default-accent) / 0.08);
+  color: color-mix(in srgb, rgb(var(--default-accent)) 50%, #0f172a);
   padding: 1rem 1.25rem;
   border-radius: 0 8px 8px 0;
   font-style: normal;
