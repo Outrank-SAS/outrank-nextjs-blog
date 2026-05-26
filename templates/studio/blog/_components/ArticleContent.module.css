@@ -8,8 +8,8 @@
 }
 
 .articleContent > * {
-  max-width: 52rem;
-  margin-left: auto;
+  max-width: 56rem;
+  margin-left: 0;
   margin-right: auto;
 }
 
