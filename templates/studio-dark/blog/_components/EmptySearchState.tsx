@@ -109,7 +109,7 @@ const EmptySearchState = ({ query, allArticles }: Props) => {
             No articles found for <span className="text-studio-dark-accent">“{truncateQuery(query)}”</span>
           </h3>
           <p className="mt-4 max-w-md text-base leading-7 text-zinc-400">
-            Try a different keyword or pick a popular topic below.
+            {popularTags.length > 0 ? 'Try a different keyword or pick a popular topic below.' : 'Try a different keyword.'}
           </p>
           <div className="mt-7">
             <Link

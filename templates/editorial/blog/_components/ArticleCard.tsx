@@ -77,7 +77,7 @@ const ArticleCard = ({ article, featured = false, imageLoading }: Props) => {
         >
           {article.meta_description}
         </p>
-        <div className="mt-auto flex items-center justify-between gap-4 pt-6 text-xs font-bold uppercase tracking-[0.12em] text-zinc-500">
+        <div className="mt-auto flex items-center justify-between gap-4 pt-6 text-[0.6875rem] font-semibold uppercase tracking-wide text-zinc-500">
           <time dateTime={article.created_at}>{formatDate(article.created_at)}</time>
           <span>{article.reading_time_minutes} min read</span>
         </div>
