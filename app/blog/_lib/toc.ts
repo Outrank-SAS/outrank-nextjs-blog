@@ -13,7 +13,7 @@ const ARTICLE_SECTION_REGEX = /<h([23])([^>]*)>([\s\S]*?)<\/h\1>([\s\S]*?)(?=<h[
 const INLINE_TOC_HEADING_REGEX = /^(table\s+of\s+contents|contents|in\s+this\s+article|on\s+this\s+page):?$/i;
 const INLINE_TOC_BLOCK_OPEN_REGEX = /^\s*<(nav|ol|ul)\b[^>]*>/i;
 const INLINE_TOC_LINK_PARAGRAPH_REGEX = /^\s*<p\b[^>]*>[\s\S]*?<\/p>/i;
-const HASH_LINK_REGEX = /\bhref="#[^"]+"/i;
+const HASH_LINK_REGEX = /\bhref\s*=\s*(["'])#[^"']+\1/i;
 const SELF_CLOSING_TAG_END_REGEX = /\/>\s*$/;
 const ID_COLLISION_START = 2;
 
