@@ -5,6 +5,8 @@ styling. Copy this entire folder into a Next.js App Router project as `app/blog`
 `outrank-next-js-blog@^0.1.2` package. For a fresh default setup, also copy the shared starter folders `app/_config` and
 `app/_components`.
 
+Deployed demo: `https://outrank.so/blog-templates/studio-dark`
+
 Required server-side environment variable:
 
 ```env

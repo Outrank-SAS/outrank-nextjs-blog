@@ -4,6 +4,8 @@ Signal is a dark, dashboard-inspired Outrank blog template with a featured artic
 Copy this entire folder into a Next.js App Router project as `app/blog` after installing the `outrank-next-js-blog@^0.1.2`
 package. For a fresh default setup, also copy the shared starter folders `app/_config` and `app/_components`.
 
+Deployed demo: `https://outrank.so/blog-templates/signal`
+
 Required server-side environment variable:
 
 ```env

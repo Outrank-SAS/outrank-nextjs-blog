@@ -3,6 +3,8 @@
 This is the default Outrank blog implementation. For the default starter setup, copy all three app folders into a
 Next.js App Router project after installing the `outrank-next-js-blog@^0.1.2` package:
 
+Deployed demo: `https://outrank.so/blog-templates/default`
+
 ```text
 app/blog -> app/blog
 app/_config -> app/_config
