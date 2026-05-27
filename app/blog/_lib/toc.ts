@@ -9,6 +9,9 @@ const ID_ATTR_REGEX = /\bid="([^"]+)"/;
 const HTML_TAG_REGEX = /<[^>]+>/g;
 const NON_SLUG_CHARS_REGEX = /[^a-z0-9\s-]/g;
 const WHITESPACE_REGEX = /\s+/g;
+const ARTICLE_SECTION_REGEX = /<h([23])([^>]*)>([\s\S]*?)<\/h\1>([\s\S]*?)(?=<h[23]\b|$)/gi;
+const INLINE_TOC_HEADING_REGEX = /^(table\s+of\s+contents|contents|in\s+this\s+article|on\s+this\s+page):?$/i;
+const INLINE_TOC_BODY_REGEX = /<(nav|ol|ul)\b[\s\S]*?<\/\1>/i;
 const ID_COLLISION_START = 2;
 
 const stripHtml = (html: string): string => html.replace(HTML_TAG_REGEX, '').trim();
@@ -19,6 +22,30 @@ const slugify = (text: string): string =>
     .replace(NON_SLUG_CHARS_REGEX, '')
     .trim()
     .replace(WHITESPACE_REGEX, '-');
+
+const removeInlineTableOfContents = (html: string): string =>
+  html.replace(
+    ARTICLE_SECTION_REGEX,
+    (
+      match,
+      _level: string,
+      _attrs: string,
+      content: string,
+      sectionBody: string,
+    ) => {
+      const text = stripHtml(content).replace(WHITESPACE_REGEX, ' ');
+
+      if (!INLINE_TOC_HEADING_REGEX.test(text)) {
+        return match;
+      }
+
+      if (INLINE_TOC_BODY_REGEX.test(sectionBody)) {
+        return '';
+      }
+
+      return sectionBody;
+    },
+  );
 
 const claimId = (id: string, used: Set<string>): string => {
   if (!used.has(id)) {
@@ -35,8 +62,14 @@ const claimId = (id: string, used: Set<string>): string => {
 export const ensureHeadingIds = (html: string): { html: string; tocItems: TocItem[] } => {
   const tocItems: TocItem[] = [];
   const usedIds = new Set<string>();
+  const htmlWithoutInlineToc = removeInlineTableOfContents(html);
 
-  const output = html.replace(HEADING_REGEX, (match, levelStr: string, attrs: string, content: string) => {
+  const output = htmlWithoutInlineToc.replace(HEADING_REGEX, (
+    match,
+    levelStr: string,
+    attrs: string,
+    content: string,
+  ) => {
     const text = stripHtml(content);
     if (!text) return match;
 

@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { siteConfig } from '@/app/_config/siteConfig';
 
+import { BLOG_INDEX_EAGER_IMAGE_LIMIT, BLOG_SEARCH_DEBOUNCE_MS } from '../_lib/constants';
 import ArticleCard from './ArticleCard';
 import EmptySearchState from './EmptySearchState';
 import Pagination from './Pagination';
@@ -12,8 +13,6 @@ import type { OutrankArticleSummary } from '../_types/blog';
 
 const SEARCH_PARAM = 'q';
 const PAGE_PARAM = 'page';
-const SEARCH_DEBOUNCE_MS = 150;
-const EAGER_IMAGE_COUNT = 3;
 
 type Props = {
   paginatedArticles: OutrankArticleSummary[];
@@ -65,7 +64,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
 
   useEffect(() => {
-    const handle = setTimeout(() => setDebouncedQuery(searchQuery), SEARCH_DEBOUNCE_MS);
+    const handle = setTimeout(() => setDebouncedQuery(searchQuery), BLOG_SEARCH_DEBOUNCE_MS);
     return () => clearTimeout(handle);
   }, [searchQuery]);
 
@@ -122,7 +121,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
             onChange={(event) => setSearchQuery(event.target.value)}
             placeholder="Search articles…"
             aria-label="Search articles"
-            className="h-14 w-full rounded-full border border-slate-200 bg-white pl-14 pr-14 text-base text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-default-accent/40 focus:outline-none focus:ring-2 focus:ring-default-accent/15 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+            className="h-14 w-full rounded-full border border-slate-200 bg-white pl-14 pr-14 text-base text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-[rgb(var(--default-accent)/0.4)] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--default-accent)/0.15)] [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
           />
           {searchQuery ? (
             <button
@@ -143,7 +142,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
             <ArticleCard
               key={article.id}
               article={article}
-              imageLoading={index < EAGER_IMAGE_COUNT ? 'eager' : 'lazy'}
+              imageLoading={index < BLOG_INDEX_EAGER_IMAGE_LIMIT ? 'eager' : 'lazy'}
             />
           ))}
         </div>

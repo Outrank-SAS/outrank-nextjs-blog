@@ -8,6 +8,7 @@ import {
   BLOG_ARTICLE_REQUEST_ERROR,
   BLOG_ALL_ARTICLES_REQUEST_ERROR,
   BLOG_DEFAULT_PAGE,
+  BLOG_RELATED_ARTICLES_DEFAULT_LIMIT,
   BLOG_REVALIDATE_SECONDS,
   BLOG_SITEMAP_PAGE_SIZE,
   OUTRANK_API_KEY_PLACEHOLDER,
@@ -190,15 +191,13 @@ export const getAllArticleSummaries = async (): Promise<ArticleSummary[]> => {
   }
 };
 
-const RELATED_ARTICLES_DEFAULT_LIMIT = 3;
-
 const sortByCreatedAtDesc = (a: ArticleSummary, b: ArticleSummary): number =>
   new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
 
 export const getRelatedArticles = async (
   currentSlug: string,
   currentTags: string[],
-  limit: number = RELATED_ARTICLES_DEFAULT_LIMIT,
+  limit: number = BLOG_RELATED_ARTICLES_DEFAULT_LIMIT,
 ): Promise<ArticleSummary[]> => {
   const all = await getAllArticleSummaries();
   const candidates = all.filter((article) => article.slug !== currentSlug);
