@@ -27,6 +27,12 @@ const PAGINATION_ITEM_PAGE = 'page';
 const PAGINATION_ITEM_ELLIPSIS = 'ellipsis';
 const PAGINATION_START_ELLIPSIS_KEY = 'start-ellipsis';
 const PAGINATION_END_ELLIPSIS_KEY = 'end-ellipsis';
+const SIGNAL_ACCENT_COLOR = 'rgb(var(--signal-accent, 190 242 100))';
+const ACTIVE_PAGE_STYLE = {
+  backgroundColor: SIGNAL_ACCENT_COLOR,
+  borderColor: SIGNAL_ACCENT_COLOR,
+  color: '#050807',
+};
 
 const getPageHref = (basePath: string, page: number) => {
   return page === BLOG_DEFAULT_PAGE ? basePath : `${basePath}?page=${page}`;
@@ -75,7 +81,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage - 1)}
           aria-label="Previous page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-signal-accent/50 hover:text-signal-accent"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-signal-accent/50 hover:text-signal-accent"
         >
           <svg
             width="16"
@@ -102,7 +108,8 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-bold transition ${
+            style={item.page === currentPage ? ACTIVE_PAGE_STYLE : undefined}
+            className={`inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-md border px-3 text-sm font-bold leading-none transition ${
               item.page === currentPage
                 ? 'border-signal-accent bg-signal-accent text-zinc-950'
                 : 'border-white/15 bg-white/[0.06] text-zinc-100 hover:border-signal-accent/50 hover:text-signal-accent'
@@ -116,7 +123,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage + 1)}
           aria-label="Next page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-signal-accent/50 hover:text-signal-accent"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/15 bg-white/[0.06] text-zinc-100 transition hover:border-signal-accent/50 hover:text-signal-accent"
         >
           <svg
             width="16"
