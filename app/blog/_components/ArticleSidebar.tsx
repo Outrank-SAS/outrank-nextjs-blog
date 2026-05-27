@@ -10,7 +10,7 @@ type Props = {
   items: TocItem[];
 };
 
-const OBSERVER_ROOT_MARGIN = '-20% 0px -70% 0px';
+const OBSERVER_ROOT_MARGIN = '0px 0px -75% 0px';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 const SCROLL_ACTIVE_LOCK_MS = 800;
 const TABLE_OF_CONTENTS_LIST_CLASS =
