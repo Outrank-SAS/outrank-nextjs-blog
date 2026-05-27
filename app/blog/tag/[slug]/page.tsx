@@ -6,7 +6,7 @@ import { siteConfig } from '@/app/_config/siteConfig';
 import ArticleCard from '../../_components/ArticleCard';
 import Pagination from '../../_components/Pagination';
 import { getArticles, getStaticArticles } from '../../_lib/outrank';
-import { BLOG_ARTICLES_PER_PAGE } from '../../_lib/constants';
+import { BLOG_ARTICLES_PER_PAGE, BLOG_TAG_EAGER_IMAGE_LIMIT } from '../../_lib/constants';
 import { getPageParam } from '../../_lib/format';
 
 export const revalidate = 86400;
@@ -84,7 +84,11 @@ const TagPage = async ({ params, searchParams }: Props) => {
       {articles.length ? (
         <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
           {articles.map((article, index) => (
-            <ArticleCard key={article.id} article={article} imageLoading={index < 3 ? 'eager' : 'lazy'} />
+            <ArticleCard
+              key={article.id}
+              article={article}
+              imageLoading={index < BLOG_TAG_EAGER_IMAGE_LIMIT ? 'eager' : 'lazy'}
+            />
           ))}
         </div>
       ) : (
