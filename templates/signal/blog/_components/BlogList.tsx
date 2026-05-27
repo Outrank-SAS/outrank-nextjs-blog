@@ -61,7 +61,7 @@ const BlogList = ({ paginatedArticles, allArticles, currentPage, totalPages }: P
           No articles found.
         </div>
       ) : featuredArticle ? (
-        <div className="space-y-5">
+        <div className="flex flex-col gap-5">
           <ArticleCard article={featuredArticle} featured />
           {remainingArticles.length ? (
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">

@@ -75,7 +75,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage - 1)}
           aria-label="Previous page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
         >
           <svg
             width="16"
@@ -102,7 +102,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-semibold shadow-sm transition ${
+            className={`inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-md border px-3 text-sm font-semibold leading-none shadow-sm transition ${
               item.page === currentPage
                 ? 'border-slate-950 bg-slate-950 text-white'
                 : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
@@ -116,7 +116,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage + 1)}
           aria-label="Next page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
         >
           <svg
             width="16"

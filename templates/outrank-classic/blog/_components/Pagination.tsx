@@ -27,6 +27,12 @@ const PAGINATION_ITEM_PAGE = 'page';
 const PAGINATION_ITEM_ELLIPSIS = 'ellipsis';
 const PAGINATION_START_ELLIPSIS_KEY = 'start-ellipsis';
 const PAGINATION_END_ELLIPSIS_KEY = 'end-ellipsis';
+const OUTRANK_CLASSIC_ACCENT_COLOR = 'rgb(var(--outrank-classic-accent, 124 58 237))';
+const ACTIVE_PAGE_STYLE = {
+  backgroundColor: OUTRANK_CLASSIC_ACCENT_COLOR,
+  borderColor: OUTRANK_CLASSIC_ACCENT_COLOR,
+  color: '#ffffff',
+};
 
 const getPageHref = (basePath: string, page: number) => {
   return page === BLOG_DEFAULT_PAGE ? basePath : `${basePath}?page=${page}`;
@@ -74,7 +80,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
       {showArrows && currentPage > 1 ? (
         <Link
           href={getPageHref(basePath, currentPage - 1)}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-outrank-classic-accent hover:text-outrank-classic-accent"
+          className="inline-flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-md border border-slate-300 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-outrank-classic-accent hover:text-outrank-classic-accent"
         >
           Previous
         </Link>
@@ -89,7 +95,8 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-medium transition ${
+            style={item.page === currentPage ? ACTIVE_PAGE_STYLE : undefined}
+            className={`inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-md border px-3 text-sm font-medium leading-none transition ${
               item.page === currentPage
                 ? 'border-outrank-classic-accent bg-outrank-classic-accent text-white'
                 : 'border-slate-300 bg-white text-slate-700 hover:border-outrank-classic-accent hover:text-outrank-classic-accent'
@@ -102,7 +109,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
       {showArrows && currentPage < totalPages ? (
         <Link
           href={getPageHref(basePath, currentPage + 1)}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-slate-300 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-outrank-classic-accent hover:text-outrank-classic-accent"
+          className="inline-flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-md border border-slate-300 bg-white px-4 text-sm font-medium text-slate-700 transition hover:border-outrank-classic-accent hover:text-outrank-classic-accent"
         >
           Next
         </Link>

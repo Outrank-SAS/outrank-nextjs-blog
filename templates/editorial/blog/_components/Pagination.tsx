@@ -75,7 +75,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage - 1)}
           aria-label="Previous page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 bg-white text-zinc-700 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-950"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-zinc-300 bg-white text-zinc-700 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-950"
         >
           <svg
             width="16"
@@ -102,7 +102,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-full border px-3 text-sm font-bold shadow-sm transition ${
+            className={`inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-full border px-3 text-sm font-bold leading-none shadow-sm transition ${
               item.page === currentPage
                 ? 'border-zinc-950 bg-zinc-950 text-white'
                 : 'border-zinc-300 bg-white text-zinc-950 hover:border-zinc-400 hover:bg-zinc-50'
@@ -116,7 +116,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
         <Link
           href={getPageHref(basePath, currentPage + 1)}
           aria-label="Next page"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 bg-white text-zinc-700 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-950"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-zinc-300 bg-white text-zinc-700 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-950"
         >
           <svg
             width="16"

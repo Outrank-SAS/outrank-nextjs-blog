@@ -18,7 +18,7 @@ const BlogListSkeleton = () => {
           </div>
         </header>
 
-        <div className="space-y-5">
+        <div className="flex flex-col gap-5">
           <ArticleCardSkeleton featured />
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
             {Array.from({ length: GRID_PLACEHOLDER_COUNT }).map((_, index) => (
