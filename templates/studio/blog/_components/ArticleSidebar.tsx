@@ -12,6 +12,8 @@ type Props = {
 
 const OBSERVER_ROOT_MARGIN = '0px 0px -75% 0px';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+const TABLE_OF_CONTENTS_LIST_CLASS =
+  'mt-4 max-h-[calc(100vh-10rem)] space-y-1 overflow-y-auto overscroll-contain pr-2 [scrollbar-gutter:stable]';
 
 const getScrollBehavior = (): ScrollBehavior =>
   window.matchMedia(REDUCED_MOTION_QUERY).matches ? 'auto' : 'smooth';
@@ -62,7 +64,7 @@ const ArticleSidebar = ({ items }: Props) => {
       <p className="text-xs font-black uppercase tracking-[0.24em] text-slate-950">
         {siteConfig.blog.tableOfContentsLabel}
       </p>
-      <ul className="mt-4 space-y-1">
+      <ul className={TABLE_OF_CONTENTS_LIST_CLASS}>
         {items.map((item) => {
           const isActive = activeId === item.id;
           return (
