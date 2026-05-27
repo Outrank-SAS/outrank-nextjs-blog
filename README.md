@@ -10,6 +10,11 @@ The default copyable starter uses three app folders: `app/blog`, `app/_config`, 
 complete blog route templates live under `templates/`. An existing App Router project can install the package, copy the
 default folders, set the API key, and run.
 
+## Deployed Template Demos
+
+Live demos for every template are deployed at `https://outrank.so/blog-templates`. Individual demos use the pattern
+`https://outrank.so/blog-templates/<template-slug>`, for example `https://outrank.so/blog-templates/signal`.
+
 ## Prerequisites
 
 - Node.js installed locally
@@ -24,6 +29,9 @@ Create a Next.js Blog integration in Outrank, copy the API key, then create a `.
 ```env
 OUTRANK_BLOG_API_KEY=your_outrank_blog_api_key
 ```
+
+Use one API key for the product whose articles should appear in the blog. You do not need a separate API key for each
+visual template.
 
 ## API Client Package
 
@@ -82,15 +90,15 @@ the UI changes. Each template is a replacement `blog` folder that still uses the
 The shared API/data files are kept the same as the default `app/blog` folder. Template differences should stay limited
 to route markup, component styling, layout, and CSS.
 
-| Template | Path | Best For |
-| --- | --- | --- |
-| Default | `app/blog` | A clean, neutral blog that is easy to customize. |
-| Studio | `templates/studio/blog` | Product teams that want a bright, structured editorial index. |
-| Studio Dark | `templates/studio-dark/blog` | Teams that want the Studio layout with a dark visual system. |
-| Outrank Classic | `templates/outrank-classic/blog` | Outrank-branded sites that want a polished product-blog feel. |
-| Editorial | `templates/editorial/blog` | Magazine-style sites with high-contrast typography. |
-| Signal | `templates/signal/blog` | Dark, dashboard-like growth or operations blogs. |
-| Journal | `templates/journal/blog` | Minimal, readable long-form article libraries. |
+| Template | Path | Live Demo | Best For |
+| --- | --- | --- | --- |
+| Default | `app/blog` | `https://outrank.so/blog-templates/default` | A clean, neutral blog that is easy to customize. |
+| Studio | `templates/studio/blog` | `https://outrank.so/blog-templates/studio` | Product teams that want a bright, structured editorial index. |
+| Studio Dark | `templates/studio-dark/blog` | `https://outrank.so/blog-templates/studio-dark` | Teams that want the Studio layout with a dark visual system. |
+| Outrank Classic | `templates/outrank-classic/blog` | `https://outrank.so/blog-templates/outrank-classic` | Outrank-branded sites that want a polished product-blog feel. |
+| Editorial | `templates/editorial/blog` | `https://outrank.so/blog-templates/editorial` | Magazine-style sites with high-contrast typography. |
+| Signal | `templates/signal/blog` | `https://outrank.so/blog-templates/signal` | Dark, dashboard-like growth or operations blogs. |
+| Journal | `templates/journal/blog` | `https://outrank.so/blog-templates/journal` | Minimal, readable long-form article libraries. |
 
 To use a template in this starter, replace `app/blog` with the template's `blog` folder. In an existing app, copy the
 shared starter folders once, then copy the chosen template directly into that app's `app/blog` route:
@@ -102,6 +110,16 @@ cp -R templates/signal/blog ../my-next-app/app/blog
 ```
 
 If your app already has an `app/blog` route, move or remove the old folder before copying the template.
+
+To preview a template inside this starter repo before copying it elsewhere, run the helper script with a template slug:
+
+```bash
+./scripts/use-template.sh signal
+npm run dev
+```
+
+The helper swaps the selected template into `app/blog` and uses local demo-mode data for quick visual review. For a real
+deployment, keep `OUTRANK_BLOG_API_KEY` server-side and use the production API client.
 
 ## Running the Development Server
 
@@ -165,6 +183,10 @@ Key implementation details:
 ## Deploy
 
 Set `OUTRANK_BLOG_API_KEY` in your hosting provider and deploy the app.
+
+The hosted Outrank demo deployment keeps all template routes under `outrank.so/blog-templates/*` and uses one
+server-side `OUTRANK_BLOG_API_KEY` for the shared demo content. Customer sites should follow the same rule when one
+product feeds one blog, regardless of which visual template is selected.
 
 Before shipping, run:
 
