@@ -74,7 +74,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
       {showArrows && currentPage > 1 ? (
         <Link
           href={getPageHref(basePath, currentPage - 1)}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-950 px-4 text-sm font-medium text-zinc-300 transition hover:border-studio-dark-accent hover:text-studio-dark-accent"
+          className="inline-flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-md border border-zinc-700 bg-zinc-950 px-4 text-sm font-medium text-zinc-300 transition hover:border-studio-dark-accent hover:text-studio-dark-accent"
         >
           Previous
         </Link>
@@ -89,7 +89,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
             key={item.page}
             href={getPageHref(basePath, item.page)}
             aria-current={item.page === currentPage ? 'page' : undefined}
-            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-medium transition ${
+            className={`inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-md border px-3 text-sm font-medium leading-none transition ${
               item.page === currentPage
                 ? 'border-white bg-white text-zinc-950'
                 : 'border-zinc-700 bg-zinc-950 text-zinc-300 hover:border-studio-dark-accent hover:text-studio-dark-accent'
@@ -102,7 +102,7 @@ const Pagination = ({ basePath, currentPage, totalPages }: Props) => {
       {showArrows && currentPage < totalPages ? (
         <Link
           href={getPageHref(basePath, currentPage + 1)}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-700 bg-zinc-950 px-4 text-sm font-medium text-zinc-300 transition hover:border-studio-dark-accent hover:text-studio-dark-accent"
+          className="inline-flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-md border border-zinc-700 bg-zinc-950 px-4 text-sm font-medium text-zinc-300 transition hover:border-studio-dark-accent hover:text-studio-dark-accent"
         >
           Next
         </Link>
